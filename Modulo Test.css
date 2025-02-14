@@ -1,0 +1,1440 @@
+/* Info 
+Modulo by Shaydelity
+Github: https://github.com/Shaydelity
+Contact: shaydedg@gmail.com
+-----------------------------------*/
+
+/* To-do: 
+- Consider numbered lists and alike for callout titles, prevent breakage.
+- Continue gathering code from Encore
+*/
+
+@import 'mobile/mobile';
+@import 'mobile/ios';
+@import 'mobile/toolbar';
+
+@charset "UTF-8";
+
+:root {
+  --big-heading-letter-spacing: 0.07em;
+  --medium-heading-letter-spacing: 0.06em;
+  --small-heading-letter-spacing: 0.04em;
+  --heading-color: 225, 225, 225;
+  --text-color: 230, 230, 230;
+  --pdf-text-size: 12pt;
+  --h1-font: "Onest", "Rowdies", "Nexa", "Inter";
+  --h2-font: "Onest", "Rowdies", "Nexa", "Inter";
+  --h3-font: "Onest", "Rowdies", "Nexa", "Inter";
+  --h4-font: "Onest", "Rowdies", "Nexa", "Inter";
+  --h5-font: "Onest", "Rowdies", "Nexa", "Inter";
+  --h6-font: "Onest", "Rowdies", "Nexa", "Inter";
+  --h4-vertical-padding: 0.4rem;
+  --background-primary: rgb(0, 0, 0);
+  --pdf-hr-gradient: linear-gradient(to right, rgba(90, 90, 90, 0), rgba(25, 25, 25, 1), rgba(90, 90, 90, 0)) 1;
+  --callout-quote-gradient: linear-gradient(to right, rgba(var(--hr-color),0.4), rgba(var(--hr-color),0.3), rgba(var(--hr-color),0.2)) 1;
+  --pdf-callout-quote-gradient: linear-gradient(to right, rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.3), rgba(0, 0, 0, 0.05)) 1;
+  --hr-gradient: linear-gradient(to right, rgba(var(--hr-color),0), rgba(var(--hr-color),0.4), rgba(var(--hr-color),0)) 1;  
+  --hr-color: 255, 255, 255;
+  --tab-radius: 0.5em;
+
+  --hex-violet: #7f00ff;
+
+  /* MONOCHROME COLORS */
+  --white: 255, 255, 255;
+  --lightest-grey: 223, 223, 223;
+  --lighter-grey: 190, 190, 190;
+  --light-grey: 159, 159, 159;
+  --grey: 127, 127, 127;
+  --dark-grey: 95, 95, 95;
+  --darker-grey: 64, 64, 64;
+  --darkest-grey: 31, 31, 31;
+  --black: 0, 0, 0;
+
+  /* BASE COLORS */
+  --blue-violet: 135, 45, 225;
+  --violet: 127, 0, 255;
+  --purple: 160, 32, 240;
+  --fuchsia: 255, 0, 255;
+  --lavender: 195, 130, 255;
+  /* My #2 favorite color!*/
+  --pink: 255, 150, 200;
+  --magenta: 255, 0, 144;
+  --red-magenta: 255, 50, 100;
+  --crimson: 220, 20, 60;
+  --red: 255, 0, 0;
+  --vermillion: 227, 66, 52;
+  --coral: 255, 127, 80;
+  --orange: 255, 187, 103;
+  --amber: 255, 191, 0;
+  --tangerine: 243, 133, 0;
+  --yellow: 255, 255, 0;
+  --chartreuse: 127, 255, 0;
+  --brown: 150, 75, 0;
+  --green: 0, 255, 0;
+  --teal: 0, 128, 128;
+  --turquoise: 64, 224, 208;
+  --cyan: 0, 255, 255;
+  --blue-cyan: 70, 177, 235;
+  --cerulean: 0, 123, 167;
+  --blue: 0, 0, 255;
+  --indigo: 75, 0, 130;
+  /* My #3 favorite color! */
+
+  /* LIGHT COLORS */
+  --light-faviolet: 165, 80, 255;
+  --light-indigo-violet: 165, 80, 255;
+  --light-blue-violet: 165, 100, 255;
+  --light-violet: 183, 159, 255;
+  --light-purple: 182, 107, 248;
+  --light-fuchsia: 255, 112, 255;
+  --light-lavender: 234, 217, 255;
+  --light-pink: 255, 190, 200;
+  --light-magenta: 255, 105, 170;
+  --light-red-magenta: 255, 100, 150;
+  --light-crimson: 236, 102, 107;
+  --light-red: 255, 106, 88;
+  --light-vermillion: 239, 120, 105;
+  --light-coral: 255, 161, 126;
+  --light-orange: 255, 210, 158;
+  --light-amber: 255, 207, 108;
+  --light-tangerine: 249, 165, 97;
+  --light-yellow: 254, 255, 119;
+  --light-chartreuse: 164, 255, 113;
+  --light-green: 120, 255, 112;
+  --light-teal: 90, 159, 158;
+  --light-turquoise: 130, 233, 220;
+  --light-cyan: 124, 255, 255;
+  --light-blue-cyan: 100, 205, 255;
+  --light-cerulean: 88, 155, 189;
+  --light-blue: 48, 107, 255;
+  --light-indigo: 115, 78, 163;
+
+  /* LIGHTER COLORS */
+  --lighter-faviolet: 200, 140, 255;
+  --lighter-indigo-violet: 200, 140, 255;
+  --lighter-blue-violet: 200, 160, 255;
+  --lighter-violet: 183, 159, 255;
+  --lighter-purple: 206, 160, 253;
+  --lighter-fuchsia: 255, 166, 255;
+  --lighter-lavender: 255, 240, 255;
+  --lighter-pink: 255, 220, 230;
+  --lighter-magenta: 255, 160, 198;
+  --lighter-red-magenta: 255, 150, 200;
+  --lighter-crimson: 255, 120, 130;
+  --lighter-red: 255, 161, 145;
+  --lighter-vermillion: 249, 167, 155;
+  --lighter-coral: 255, 192, 170;
+  --lighter-orange: 255, 233, 206;
+  --lighter-amber: 255, 224, 162;
+  --lighter-tangerine: 253, 195, 153;
+  --lighter-yellow: 254, 255, 171;
+  --lighter-chartreuse: 195, 255, 167;
+  --lighter-green: 172, 255, 166;
+  --lighter-teal: 147, 189, 189;
+  --lighter-turquoise: 176, 241, 231;
+  --lighter-cyan: 176, 255, 255;
+  --lighter-blue-cyan: 150, 235, 255;
+  --lighter-cerulean: 146, 187, 211;
+  --lighter-blue: 115, 163, 255;
+  --lighter-indigo: 159, 136, 195;
+
+  /* LIGHTEST COLORS */
+  --lightest-faviolet: 230, 190, 255;
+  --lightest-indigo-violet: 230, 190, 255;
+  --lightest-blue-violet: 230, 210, 255;
+  --lightest-violet: 218, 207, 255;
+  --lightest-purple: 206, 160, 253;
+  --lightest-fuchsia: 255, 211, 255;
+  --lightest-lavender: 255, 250, 255;
+  --lightest-pink: 255, 240, 245;
+  --lightest-magenta: 255, 208, 227;
+  --lightest-red-magenta: 255, 200, 220;
+  --lightest-crimson: 255, 180, 190;
+  --lightest-red: 255, 208, 199;
+  --lightest-vermillion: 254, 210, 203;
+  --lightest-coral: 255, 224, 211;
+  --lightest-orange: 255, 233, 206;
+  --lightest-amber: 255, 240, 210;
+  --lightest-tangerine: 255, 226, 203;
+  --lightest-yellow: 254, 255, 216;
+  --lightest-chartreuse: 226, 255, 212;
+  --lightest-green: 216, 255, 211;
+  --lightest-teal: 200, 222, 222;
+  --lightest-turquoise: 217, 248, 243;
+  --lightest-cyan: 218, 255, 255;
+  --lightest-blue-cyan: 200, 250, 255;
+  --lightest-cerulean: 199, 221, 234;
+  --lightest-blue: 183, 209, 255;
+  --lightest-indigo: 206, 194, 226;
+
+  /* DARK COLORS */
+  --dark-faviolet: 105, 30, 205;
+  --dark-indigo-violet: 105, 30, 205;
+  --dark-blue-violet: 105, 50, 205;
+  --dark-violet: 84, 0, 173;
+  --dark-purple: 106, 17, 163;
+  --dark-fuchsia: 173, 0, 173;
+  --dark-lavender: 170, 150, 205;
+  --dark-pink: 195, 130, 140;
+  --dark-magenta: 173, 0, 96;
+  --dark-red-magenta: 185, 0, 50;
+  --dark-crimson: 170, 0, 10;
+  --dark-red: 173, 0, 0;
+  --dark-vermillion: 154, 43, 32;
+  --dark-coral: 173, 84, 52;
+  --dark-orange: 173, 109, 0;
+  --dark-amber: 173, 130, 0;
+  --dark-tangerine: 165, 88, 0;
+  --dark-yellow: 173, 173, 0;
+  --dark-chartreuse: 84, 173, 0;
+  --dark-green: 0, 173, 0;
+  --dark-teal: 0, 85, 85;
+  --dark-turquoise: 39, 153, 141;
+  --dark-cyan: 0, 173, 173;
+  --dark-blue-cyan: 30, 140, 170;
+  --dark-cerulean: 0, 81, 112;
+  --dark-blue: 0, 0, 173;
+  --dark-indigo: 48, 0, 86;
+
+  /* DARKER COLORS */
+  --darker-faviolet: 65, 0, 145;
+  --darker-indigo-violet: 65, 0, 145;
+  --darker-blue-violet: 65, 20, 145;
+  --darker-violet: 45, 0, 98;
+  --darker-purple: 59, 5, 92;
+  --darker-fuchsia: 98, 0, 98;
+  --darker-lavender: 120, 100, 155;
+  --darker-pink: 145, 80, 90;
+  --darker-magenta: 98, 0, 53;
+  --darker-red-magenta: 135, 0, 10;
+  --darker-crimson: 120, 0, 0;
+  --darker-red: 98, 0, 0;
+  --darker-vermillion: 86, 19, 13;
+  --darker-coral: 98, 45, 25;
+  --darker-orange: 98, 61, 0;
+  --darker-amber: 98, 73, 0;
+  --darker-tangerine: 93, 48, 0;
+  --darker-yellow: 98, 98, 0;
+  --darker-chartreuse: 45, 98, 0;
+  --darker-green: 0, 98, 0;
+  --darker-teal: 0, 46, 46;
+  --darker-turquoise: 18, 85, 79;
+  --darker-cyan: 0, 98, 98;
+  --darker-blue-cyan: 20, 90, 120;
+  --darker-cerulean: 0, 43, 63;
+  --darker-blue: 0, 0, 98;
+  --darker-indigo: 23, 0, 46;
+
+  /* DARKEST COLORS */
+  --darkest-faviolet: 25, 0, 90;
+  --darkest-indigo-violet: 25, 0, 90;
+  --darkest-blue-violet: 25, 0, 90;
+  --darkest-violet: 10, 0, 33;
+  --darkest-purple: 16, 0, 30;
+  --darkest-fuchsia: 33, 0, 33;
+  --darkest-lavender: 80, 70, 115;
+  --darkest-pink: 105, 50, 40;
+  --darkest-magenta: 33, 0, 13;
+  --darkest-red-magenta: 95, 0, 0;
+  --darkest-crimson: 80, 0, 0;
+  --darkest-red: 33, 0, 0;
+  --darkest-vermillion: 27, 2, 1;
+  --darkest-coral: 33, 10, 3;
+  --darkest-orange: 33, 16, 0;
+  --darkest-amber: 33, 21, 0;
+  --darkest-tangerine: 30, 11, 0;
+  --darkest-yellow: 33, 33, 0;
+  --darkest-chartreuse: 10, 33, 0;
+  --darkest-green: 0, 33, 0;
+  --darkest-teal: 0, 10, 10;
+  --darkest-turquoise: 2, 27, 24;
+  --darkest-cyan: 0, 33, 33;
+  --darkest-blue-cyan: 10, 50, 80;
+  --darkest-cerulean: 0, 9, 17;
+  --darkest-blue: 0, 0, 33;
+  --darkest-indigo: 4, 0, 11;
+}
+
+@media print {
+  :root {
+    --background-primary: rgb(255, 255, 255);
+    --heading-color: rgb(0, 0, 0);
+  }
+  html {
+    --font-text-size: var(--pdf-text-size) !important;
+    font-size: var(--font-text-size) !important;
+  } 
+  body .markdown-preview-view {
+    --font-text-size: var(--pdf-text-size) !important;
+    font-size: var(--font-text-size);
+  } 
+  
+}
+
+/* FONT MANAGEMENT WIP
+
+body { font-family: "Play", "Ubuntu", "Inter"; }
+
+.cm-header-1,
+.cm-header-2,
+.cm-header-3,
+.cm-header-4,
+.cm-header-5,
+.cm-header-6,
+.markdown-preview-view h1,
+.markdown-preview-view h2,
+.markdown-preview-view h3,
+.markdown-preview-view h4,
+.markdown-preview-view h5,
+.markdown-preview-view h6 {
+    font-family: "Rowdies", "Nexa", "Inter";
+    font-weight: 300;
+}*/
+
+/* General Styling */
+
+body {
+  --background-primary: rgb(0, 0, 0);
+  --font-text-size: 1em;
+  --list-indent: 1em;
+  --obsidian-logo-small: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 512 512' width='8' height='8' fill='none' stroke='%23ffffff90' stroke-width='5%' stroke-linecap='round' stroke-linejoin='round' class='logo-wireframe'%3E%3Cpath d='M172.7 461.6c73.6-149.1 2.1-217-43.7-246.9m72 96.7c71.6-17.3 141-16.3 189.8 88.5m-114-96.3c-69.6-174 44.6-181 16.3-273.6m97.7 370c1.6-3 3.3-5.8 5.1-8.6 20-29.9 34.2-53.2 41.4-65.3a16 16 0 0 0-1.2-17.7 342.1 342.1 0 0 1-40.2-66.1c-10.9-26-12.5-66.5-12.6-86.2 0-7.4-2.4-14.7-7-20.6l-81.8-104a32 32 0 0 0-1.4-1.5m97.7 370a172.8 172.8 0 0 0-18 59c-2.9 21.5-24 38.4-45 32.6-30-8.3-64.5-21.1-95.7-23.5l-47.8-3.6c-7.7-.6-15-4-20.3-9.5l-82.3-84.8c-9-9.2-11.4-23-6.2-34.8 0 0 51-111.8 52.8-117.7l.7-3M293.1 30a31.5 31.5 0 0 0-44.4-2.3l-97.4 87.5c-5.4 5-9 11.5-10 18.8-3.7 24.5-9.7 68-12.3 80.7'%3E%3C/path%3E%3C/svg%3E");
+  --obsidian-logo-small-dark: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 512 512' width='8' height='8' fill='none' stroke='%2300000090' stroke-width='5%' stroke-linecap='round' stroke-linejoin='round' class='logo-wireframe'%3E%3Cpath d='M172.7 461.6c73.6-149.1 2.1-217-43.7-246.9m72 96.7c71.6-17.3 141-16.3 189.8 88.5m-114-96.3c-69.6-174 44.6-181 16.3-273.6m97.7 370c1.6-3 3.3-5.8 5.1-8.6 20-29.9 34.2-53.2 41.4-65.3a16 16 0 0 0-1.2-17.7 342.1 342.1 0 0 1-40.2-66.1c-10.9-26-12.5-66.5-12.6-86.2 0-7.4-2.4-14.7-7-20.6l-81.8-104a32 32 0 0 0-1.4-1.5m97.7 370a172.8 172.8 0 0 0-18 59c-2.9 21.5-24 38.4-45 32.6-30-8.3-64.5-21.1-95.7-23.5l-47.8-3.6c-7.7-.6-15-4-20.3-9.5l-82.3-84.8c-9-9.2-11.4-23-6.2-34.8 0 0 51-111.8 52.8-117.7l.7-3M293.1 30a31.5 31.5 0 0 0-44.4-2.3l-97.4 87.5c-5.4 5-9 11.5-10 18.8-3.7 24.5-9.7 68-12.3 80.7'%3E%3C/path%3E%3C/svg%3E");
+}
+
+body .markdown-preview-view {
+  --font-text-size: 1em;
+  --list-indent: 1em;
+}
+
+p,
+li,
+ul.contains-task-list,
+h5,
+h6 { /*WIP*/
+  margin-left: var(--h4-vertical-padding);
+}
+
+div.callout .callout-content p {
+  margin-left: 0rem;
+}
+
+.markdown-rendered ul > li {
+  margin-inline-start: 1.4rem;
+}
+
+p a.footnote-link {
+  color: hsla(var(--accent-h), var(--accent-s), var(--accent-l), 1);
+}
+
+sup, sub {
+  color: rgba(var(--text-color), 0.9);
+}
+
+
+ {
+  margin-left: var(--h4-vertical-padding);
+}
+
+/* Blockquote WIP*/
+.markdown-rendered blockquote {
+  --blockquote-background-color: var(--background-primary);
+  --blockquote-border-color: rgb(var(--heading-color));
+  background-color: var(--blockquote-background-color);
+  border-inline-start: var(--blockquote-border-thickness) solid var(--blockquote-border-color);
+  padding-left: 1.4rem;
+  /*
+  --blockquote-border-thickness: 2px;
+  --blockquote-border-color: var(--interactive-accent);
+  --blockquote-font-style: normal;
+  --blockquote-color: inherit;
+  --blockquote-background-color: transparent;
+  /*
+  color: var(--blockquote-color);
+  font-style: var(--blockquote-font-style);
+  background-color: var(--blockquote-background-color);
+  border-inline-start: var(--blockquote-border-thickness) solid var(--blockquote-border-color);
+  padding-top: 0;
+  padding-bottom: 0;
+  padding-inline-start: var(--size-4-6);
+  margin-inline-start: 0;
+  margin-inline-end: 0;*/
+}
+.markdown-rendered blockquote p {
+  margin-left: 0em;
+}
+
+@media print {
+  .markdown-rendered blockquote, blockquote {
+  --blockquote-background-color: white;
+  --blockquote-border-color: rgba(var(--text-color), 1);
+  background-color: var(--blockquote-background-color);
+  border-inline-start: var(--blockquote-border-thickness) solid var(--blockquote-border-color);
+  }
+}
+
+/* Image always displayed on full width unless specified differently */
+.markdown-preview-view img {
+  max-width: 100%;
+}
+
+img {
+  max-width: 100%;
+}
+
+/* Calender Title Font-Size */
+#calendar-container .title {
+  font-size: 1.1em;
+}
+
+/* Larger Popover Preview */
+.popover.hover-popover>.markdown-embed {
+  height: 100%;
+  max-height: 60vh;
+  max-width: 60vh;
+  overflow: scroll;
+}
+
+/* Hide Excalidraw Welcome */
+.welcome-screen-center__logo.virgil.welcome-screen-decor,
+.welcome-screen-center__heading.welcome-screen-decor.virgil,
+.welcome-screen-menu {
+  display: none !important;
+}
+
+/* No Status Bar Clutter */
+.status-bar-item.plugin-backlink.mod-clickable {
+  display: none;
+}
+
+.status-bar-item.plugin-properties.mod-clickable {
+  display: none;
+}
+
+/* Move Status Bar */
+.status-bar {
+  transform: translateX(0.15em);
+}
+
+/* Vertical Kanban */
+
+.kanban-plugin__placeholder {
+  flex-shrink: 1;
+}
+
+div.kanban-plugin__board>div {
+  flex-direction: column;
+  flex-grow: 1;
+}
+
+div.kanban-plugin__board .kanban-plugin__lane-wrapper {
+  max-height: 30vh;
+}
+
+div.kanban-plugin__board .kanban-plugin__lane-wrapper+.kanban-plugin__lane-wrapper {
+  margin-top: 0.25rem;
+  margin-right: 0;
+}
+
+div.kanban-plugin__board>div {
+  padding: 0.125rem;
+  padding-left: 1rem;
+  overflow-x: auto;
+}
+
+
+
+/* IDK YET 
+
+.workspace-tabs {
+  overflow: visible;
+}
+
+body.is-translucent:not(.is-fullscreen) {
+  --en-opacity: 0.5;
+  background-color: rgba(var(--grey-900-rgb), var(--en-opacity)) !important;
+}
+
+
+
+.mod-root .workspace-tab-container .workspace-leaf-content {
+  --en-opacity: 1;
+  background-color: rgba(255,255,255), var(--en-opacity);
+  border-radius: var(--tab-radius);
+}
+*/
+
+
+/* Horizontal Lines with Icon Styling 
+Based on Obsidian Encore Theme by Carbonateb
+GitHub: https://github.com/carbonateb/obsidian-encore-theme
+Link: https://lucaschampagne.dev/
+------------------------------*/
+
+hr {
+  margin-top: 2em;
+  margin-bottom: 1.7em;
+}
+
+body .markdown-rendered hr,
+body .cm-line.hr hr {
+  height: 1px;
+  background-image: linear-gradient(to right, transparent, rgba(255,255,255,0.5) 46.2%, transparent 46.2%, transparent 54%, rgba(255,255,255,0.5) 54%, transparent);
+  border: none;
+  position: relative;
+  overflow: visible;
+}
+
+body .markdown-source-view:not(.is-live-preview) .HyperMD-hr::after,
+body .markdown-rendered hr::after,
+body .cm-line.hr hr::after {
+  content: "";
+  position: absolute;
+  top: -12px;
+  left: 0;
+  right: 0;
+  height: 24px;
+  background-size: contain;
+  background-position: center;
+  background-repeat: no-repeat;
+  background-image: var(--obsidian-logo-small);
+}
+
+body .markdown-source-view:not(.is-live-preview) .HyperMD-hr {
+  position: relative;
+}
+
+body .markdown-source-view:not(.is-live-preview) .HyperMD-hr::before {
+  content: "";
+  position: absolute;
+  left: 0;
+  right: 0;
+  top: 13px;
+  height: 1px;
+  background-image: linear-gradient(to right, transparent 10%, var(--hr-color) 46.2%, transparent 46.2%, transparent 54%, var(--hr-color) 54%, transparent);
+}
+body .markdown-source-view:not(.is-live-preview) .HyperMD-hr::after {
+  top: 2px;
+}
+
+
+/* UNORDERED LIST STYLING 
+Based on Emacs bulletlist Snippet by Lilian POULIQUEN
+Based on: https://forum.obsidian.md/t/style-bullets-in-lists-by-level/46152
+Found here: https://www.reddit.com/r/ObsidianMD/comments/urhx0g/comment/kbyy6k7/
+With special thanks to:
+- wreckable (Reddit: https://www.reddit.com/user/wreckable/) for sharing it on Reddit
+- LukeSKY75_ (Reddit: https://www.reddit.com/user/LukeSKY75_/) for making it work in reading mode and improving the CSS 
+------------------------------*/
+
+/* LEVEL 1 - Bullet*/
+.markdown-reading-view ul > li > .list-bullet:after,
+.markdown-source-view.mod-cm6 .HyperMD-list-line-1 .list-bullet:after {
+  height: 7px;
+  width: 7px;
+  border-radius: 50%;
+} .markdown-source-view.mod-cm6 .HyperMD-list-line-1 .list-bullet:after {
+  margin-right: 1em;
+}
+
+
+/* LEVEL 2 - Hollow Bullet*/
+.markdown-reading-view ul > li > ul > li > .list-bullet:after,
+.markdown-source-view.mod-cm6 .HyperMD-list-line-2 .list-bullet:after {
+  height: 7px;
+  width: 7px;
+  background-color: transparent;
+  border-style: solid;
+  border-radius: 50%;
+  border-width: 1px;
+} .markdown-source-view.mod-cm6 .HyperMD-list-line-2 .list-bullet:after {
+  margin-right: 1em;
+}
+
+
+/* LEVEL 3 - Solid Square */
+.markdown-reading-view ul > li > ul > li > ul > li > .list-bullet:after,
+.markdown-source-view.mod-cm6 .HyperMD-list-line-3 .list-bullet:after {
+  height: 5px;
+  width: 5px;
+  border-radius: 0%;
+  background-color: rgb(89, 89, 89);
+}
+.markdown-source-view.mod-cm6 .HyperMD-list-line-3 .list-bullet:after {
+  height: 7px;
+  width: 7px;
+  border-radius: 0%;
+  background-color: rgb(89, 89, 89);
+  margin-right: 1em;
+}
+
+
+/* LEVEL 4 - Triangle*/
+.markdown-reading-view ul > li > ul > li > ul > li > ul > li >.list-bullet:after,
+.markdown-source-view.mod-cm6 .HyperMD-list-line-4 .list-bullet:after {
+  height: 0;
+  width: 0;
+  background-color: transparent;
+  border-radius: 0%;
+  border-top: 5px solid transparent;
+  border-bottom: 5px solid transparent;
+  border-left: 8px solid;
+  border-right: 0px solid;
+} .markdown-source-view.mod-cm6 .HyperMD-list-line-4 .list-bullet:after {
+  margin-right: 1em;
+}
+
+
+
+/* CALLOUT STYLING 
+Outlined Style inspired by Minimal Theme by @kepano
+GitHub: https://github.com/kepano/obsidian-minimal
+Link: https://twitter.com/kepano
+------------------------------*/
+
+div.callout {
+  --callout-border-width: 2px;
+  --callout-border-opacity: 1;
+  --callout-blend-mode: normal;
+  overflow: visible;
+  /*background: linear-gradient(to right, rgba(var(--callout-color), 0.02), rgba(var(--callout-color), 0));*/
+  background-color: hsla(var(--accent-h), var(--accent-s), var(--accent-l), 0);
+  border-color: hsla(var(--accent-h), var(--accent-s), var(--accent-l), 1);
+  margin-top: 1.35em;
+  padding-left: 1.4rem;
+  margin-bottom: 1.5em;
+}
+
+div.callout>.callout-title {
+  --callout-title-size: 1em;
+  color: hsla(var(--accent-h), var(--accent-s), var(--accent-l), 1);
+  background-color: var(--background-primary);
+  font-size: var(--callout-title-size);
+  margin-top: -24px;
+  z-index: 200;
+  width: fit-content;
+  padding: 0 0.7em;
+  margin-left: -0.75em;
+  letter-spacing: 0.07em;
+  font-variant-caps: all-small-caps;
+  font-size: var(--callout-title-size);
+  font-variant-caps: normal;
+  border-radius: 0.5em;
+}
+
+div.callout>.callout-title>.callout-title-inner {
+  --callout-title-size: 1em;
+  font-size: var(--callout-title-size);
+  font-family: var(--h2-font);
+  font-weight: 800;
+}
+
+.cm-embed-block.cm-callout {
+  padding-top: 12px;
+  padding-bottom: 12px;
+}
+
+div.callout>.callout-title>.callout-icon {
+  margin-right: 0.4em;
+  margin-top: -0.05em;
+}
+
+div.callout>.callout-title>.callout-icon .svg-icon {
+  color: hsla(var(--accent-h), var(--accent-s), var(--accent-l), 1);
+}
+
+/* In case someone adds a list element to the callout title */
+
+div.callout>.callout-title>.callout-title-inner>ul, div.callout>.callout-title>.callout-title-inner>ol {
+  margin-top: 0em;
+  margin-bottom: 0em;
+}
+
+div.callout>.callout-title>.callout-title-inner>ol>li {
+  margin-left: 1.5em;
+  margin-top: -0.1em;
+}
+div.callout>.callout-title>.callout-title-inner>ul>li {
+  margin-left: 1.5em;
+  margin-top: -0.1em;
+}
+
+
+@media print {
+  div.callout>.callout-title {
+    background-color: rgb(255, 255, 255);
+  }
+
+  .callout {
+    background-color: white;
+  }
+
+  .callout-icon .svg-icon {
+    --icon-color: rgb(var(--callout-color));
+    color: var(--icon-color);
+  }
+}
+
+/* Quote & Cite Callout */
+
+svg.svg-icon {
+  --icon-size: 1.05em;
+}
+
+div.callout[data-callout="quote"],
+.callout[data-callout="cite"] {
+  display: flex;
+  flex-direction: column-reverse;
+  padding-bottom: 1.5em;
+  border-image: var(--callout-quote-gradient);
+  padding-top: 0.5em;
+  --callout-color: var(--callout-quote);
+  --callout-icon: quote-glyph;
+  margin-bottom: 2em;
+}
+
+div.callout[data-callout="quote"]>.callout-title,
+.callout[data-callout="cite"]>.callout-title {
+  margin-bottom: -2.3em;
+  margin-top: 0em;
+  color: var(--callout-quote);
+}
+
+div.callout[data-callout="cite"] {
+  border-image: var(--hr-gradient);
+  border-left: none;
+  border-right: none;
+  background-color: var(--background-primary);
+}
+
+div[data-callout="quote"].callout>.callout-title>.callout-icon .svg-icon,
+div[data-callout="cite"].callout>.callout-title>.callout-icon .svg-icon {
+  color: var(--callout-quote);
+}
+
+div.callout[data-callout*="quote"]>.callout-title>.callout-icon,
+div.callout[data-callout="cite"]>.callout-title>.callout-icon {
+  transform: scale(-1, 1);
+}
+
+div.callout[data-callout="cite"]>.callout-title>.callout-icon {
+  --icon-color: rgb(100, 100, 100);
+}
+@media print {
+  div.callout[data-callout="quote"] {
+    border-image: var(--pdf-callout-quote-gradient);
+  }
+  div.callout[data-callout="cite"] {
+    border-image: var(--pdf-hr-gradient);
+    background-color: rgb(255, 255, 255);
+  }
+}
+
+/* Warning Callout */
+
+div.callout[data-callout="warning"] {
+  border-color: rgb(var(--callout-color));
+}
+
+div[data-callout="warning"].callout>.callout-title>.callout-icon .svg-icon {
+  color: rgb(var(--callout-warning));
+}
+
+div[data-callout="warning"].callout>.callout-title>.callout-title-inner {
+  color: rgb(var(--callout-warning));
+}
+
+div.callout[data-callout="warning"]>.callout-title>.callout-icon {
+  margin-top: 0em;
+}
+
+/* Bug Callout */
+
+div.callout[data-callout="bug"] {
+  border-color: rgb(var(--callout-color));
+}
+
+div[data-callout="bug"].callout>.callout-title>.callout-icon .svg-icon {
+  color: rgb(var(--callout-bug));
+}
+
+div[data-callout="bug"].callout>.callout-title>.callout-title-inner {
+  color: rgb(var(--callout-bug));
+}
+
+
+
+/* HEADINGS */
+
+h1,
+.HyperMD-header.HyperMD-header-1.cm-line,
+.markdown-preview-view h1,
+.markdown-rendered h1 {
+  --h1-color: rgb(var(--heading-color));
+  --h1-size: 3rem;
+  text-align: center;
+  letter-spacing: var(--big-heading-letter-spacing);
+  --h1-weight: 800;
+}
+
+
+h1 a.internal-link.is-unresolved,
+.HyperMD-header.HyperMD-header-1 a.internal-link.is-unresolved,
+h1 a.internal-link,
+.HyperMD-header.HyperMD-header-1 a.internal-link {
+  color: rgb(var(--heading-color));
+  opacity: 100%;
+  filter: none;
+}
+
+.cm-header.cm-header-1.cm-hmd-internal-link {
+  color: rgb(var(--heading-color));
+}
+
+h2,
+.HyperMD-header.HyperMD-header-2.cm-line,
+.markdown-preview-view h2,
+.markdown-rendered h2 {
+  color: rgb(var(--heading-color));
+  --h2-size: 2.2rem;
+  padding: 0;
+  border-bottom: 1px solid var(--background-modifier-border);
+  width: 100%;
+  padding-bottom: 0px;
+  border-image: linear-gradient(to right, rgba(90, 90, 90, 0), rgba(125, 125, 125, 1), rgba(90, 90, 90, 0)) 1;
+  border-left: none;
+  border-right: none;
+  border-top: none;
+  letter-spacing: var(--medium-heading-letter-spacing);
+  --h2-weight: 800;
+}
+
+
+h2 a.internal-link.is-unresolved,
+.HyperMD-header.HyperMD-header-2 a.internal-link.is-unresolved,
+h2 a.internal-link,
+.HyperMD-header.HyperMD-header-2 a.internal-link {
+  color: rgb(var(--heading-color));
+  opacity: 100%;
+  filter: none;
+}
+
+.cm-header.cm-header-2.cm-hmd-internal-link {
+  color: rgb(var(--heading-color));
+}
+
+h3,
+.HyperMD-header.HyperMD-header-3.cm-line,
+.markdown-preview-view h3,
+.markdown-rendered h3 {
+  color: rgb(var(--heading-color));
+  --h3-size: 2rem;
+  margin-bottom: 0px;
+  padding-top: 0px;
+  margin-top: 25px;
+  margin-left: 0em;
+  padding-bottom: 0px;
+  letter-spacing: var(--medium-heading-letter-spacing);
+  --h3-weight: 800;
+}
+
+
+h3 a.internal-link.is-unresolved,
+.HyperMD-header.HyperMD-header-3 a.internal-link.is-unresolved,
+h3 a.internal-link,
+.HyperMD-header.HyperMD-header-3 a.internal-link {
+  color: rgb(var(--heading-color));
+  opacity: 100%;
+  filter: none;
+}
+
+.cm-header.cm-header-3.cm-hmd-internal-link {
+  color: rgb(var(--heading-color));
+}
+
+h4,
+.HyperMD-header.HyperMD-header-4.cm-line,
+.markdown-preview-view h4,
+.markdown-rendered h4 {
+  background-color: rgba(var(--white), 0.9);
+  color: var(--background-primary);
+  font-weight: 900;
+  padding-top: 0px;
+  --h4-size: 1.6rem;
+  width: fit-content;
+  padding-left: var(--h4-vertical-padding);
+  padding-right: var(--h4-vertical-padding);
+  border-radius: 0.2rem;
+  word-wrap: normal;
+  letter-spacing: var(--medium-heading-letter-spacing);
+  --h4-weight: 700;
+}
+
+h4 a.internal-link.is-unresolved,
+.HyperMD-header.HyperMD-header-4 a.internal-link.is-unresolved,
+h4 a.internal-link,
+.HyperMD-header.HyperMD-header-4 a.internal-link {
+  color: rgb(var(--heading-color));
+  background-color: rgb(0, 0, 0);
+  opacity: 100%;
+  filter: none;
+}
+
+.cm-header.cm-header-4.cm-hmd-internal-link {
+  color: rgb(0, 0, 0);
+}
+
+h4.chat-view-header {
+  color: rgb(var(--heading-color));
+  background-color: rgb(0, 0, 0);
+  opacity: 100%;
+  filter: none;
+  font-size: 22px;
+  margin: 0px;
+  padding: 0px;
+}
+
+
+@media print {
+  h4.chat-view-header {
+    color: rgb(0, 0, 0);
+    background-color: rgb(237, 237, 237);
+    opacity: 100%;
+    filter: none;
+    font-size: 22px;
+    margin: 0px;
+    padding: 0px;
+  }
+}
+
+h5,
+.HyperMD-header.HyperMD-header-5.cm-line,
+.markdown-preview-view h5,
+.markdown-rendered h5 {
+  color: rgb(245, 245, 245);
+  --h5-size: 1.3rem;
+  padding: var(--h4-vertical-padding) 0em;
+  margin-top: 0px;
+  margin-bottom: 0px;
+  letter-spacing: var(--small-heading-letter-spacing);
+  --h5-weight: 600;
+}
+
+h6,
+.HyperMD-header.HyperMD-header-6.cm-line,
+.markdown-preview-view h6,
+.markdown-rendered h6 {
+  color: rgb(225, 225, 225);
+  --h6-size: 1.05rem;
+  padding-top: 0px;
+  padding-bottom: 0px;
+  margin-top: 0px;
+  margin-bottom: 0px;
+  letter-spacing: var(--small-heading-letter-spacing);
+  --h6-weight: 600;
+}
+
+@media print {
+  a.footnote-link {
+    color: var(--background-primary);
+  }
+
+  h2,
+  .HyperMD-header.HyperMD-header-2,
+  .markdown-preview-view h2 {
+    color: rgb(0, 0, 0);
+  }
+
+  h4,
+  .HyperMD-header.HyperMD-header-4 {
+    background-color: var(--background-primary) !important;
+    color: rgb(255,255,255) !important;
+  }
+
+  h5,
+  .HyperMD-header.HyperMD-header-5 {
+    color: var(--background-primary);
+  }
+
+  h6,
+  .HyperMD-header.HyperMD-header-6 {
+    color: rgb(0, 0, 0);
+  }
+
+  .pdf-ignore {
+    display: none;
+  }
+}
+
+
+/* HIGHLIGHT & MARK */
+
+.markdown-rendered mark,
+.cm-s-obsidian span.cm-formatting-highlight,
+.cm-s-obsidian span.cm-highlight,
+.search-result-file-matched-text,
+mark {
+  --text-highlight-bg: hsla(var(--accent-h), var(--accent-s), var(--accent-l), 0.1);
+  border: none;
+  color: hsla(var(--accent-h), var(--accent-s), var(--accent-l), 1);
+  padding: 0 0.15em;
+  border-radius: 0.05em;
+  outline: 2px solid hsla(var(--accent-h), var(--accent-s), var(--accent-l), 0.5);
+}
+
+
+
+
+/* NEW CHECKLIST STYLES 
+Based on Minimal Theme by @kepano
+GitHub: https://github.com/kepano/obsidian-minimal
+Link: https://twitter.com/kepano
+------------------------------*/
+
+input[data-task=">"]:checked,
+input[data-task="!"]:checked,
+input[data-task="-"]:checked,
+input[data-task="<"]:checked,
+input[data-task=l]:checked,
+input[data-task="*"]:checked,
+input[data-task=I]:checked,
+input[data-task=p]:checked,
+input[data-task=f]:checked,
+input[data-task=k]:checked,
+input[data-task=u]:checked,
+input[data-task=w]:checked,
+input[data-task=c]:checked,
+input[data-task=d]:checked,
+input[data-task=b]:checked,
+li[data-task=">"]>input:checked,
+li[data-task="!"]>input:checked,
+li[data-task="-"]>input:checked,
+li[data-task="<"]>input:checked,
+li[data-task=l]>input:checked,
+li[data-task="*"]>input:checked,
+li[data-task=I]>input:checked,
+li[data-task=p]>input:checked,
+li[data-task=f]>input:checked,
+li[data-task=k]>input:checked,
+li[data-task=u]>input:checked,
+li[data-task=d]>input:checked,
+li[data-task=w]>input:checked,
+li[data-task=c]>input:checked,
+li[data-task=b]>input:checked,
+li[data-task=">"]>p>input:checked,
+li[data-task="!"]>p>input:checked,
+li[data-task="-"]>p>input:checked,
+li[data-task="<"]>p>input:checked,
+li[data-task=l]>p>input:checked,
+li[data-task="*"]>p>input:checked,
+li[data-task=I]>p>input:checked,
+li[data-task=p]>p>input:checked,
+li[data-task=f]>p>input:checked,
+li[data-task=k]>p>input:checked,
+li[data-task=u]>p>input:checked,
+li[data-task=d]>p>input:checked,
+li[data-task=w]>p>input:checked,
+li[data-task=c]>p>input:checked,
+li[data-task=b]>p>input:checked {
+  --checkbox-marker-color: transparent;
+  border: none;
+  border-radius: 0;
+  background-image: none;
+  background-color: currentColor;
+  -webkit-mask-size: var(--checkbox-icon);
+  -webkit-mask-position: 50% 50%;
+}
+
+/* [>] Forwarded */
+input[data-task=">"]:checked,
+li[data-task=">"]>input:checked,
+li[data-task=">"]>p>input:checked {
+  color: var(--text-faint);
+  transform: rotate(90deg);
+  -webkit-mask-position: 50% 100%;
+  -webkit-mask-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' class='h-5 w-5' viewBox='0 0 20 20' fill='currentColor'%3E%3Cpath d='M10.894 2.553a1 1 0 00-1.788 0l-7 14a1 1 0 001.169 1.409l5-1.429A1 1 0 009 15.571V11a1 1 0 112 0v4.571a1 1 0 00.725.962l5 1.428a1 1 0 001.17-1.408l-7-14z' /%3E%3C/svg%3E");
+}
+
+/* [<] Schedule */
+input[data-task="<"]:checked,
+li[data-task="<"]>input:checked,
+li[data-task="<"]>p>input:checked {
+  color: var(--text-faint);
+  -webkit-mask-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' class='h-5 w-5' viewBox='0 0 20 20' fill='currentColor'%3E%3Cpath fill-rule='evenodd' d='M10 18a8 8 0 100-16 8 8 0 000 16zm1-12a1 1 0 10-2 0v4a1 1 0 00.293.707l2.828 2.829a1 1 0 101.415-1.415L11 9.586V6z' clip-rule='evenodd' /%3E%3C/svg%3E");
+  -webkit-mask-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' class='h-5 w-5' viewBox='0 0 20 20' fill='currentColor'%3E%3Cpath fill-rule='evenodd' d='M6 2a1 1 0 00-1 1v1H4a2 2 0 00-2 2v10a2 2 0 002 2h12a2 2 0 002-2V6a2 2 0 00-2-2h-1V3a1 1 0 10-2 0v1H7V3a1 1 0 00-1-1zm0 5a1 1 0 000 2h8a1 1 0 100-2H6z' clip-rule='evenodd' /%3E%3C/svg%3E");
+}
+
+/* [?] Question */
+input[data-task="?"]:checked,
+li[data-task="?"]>input:checked,
+li[data-task="?"]>p>input:checked {
+  --checkbox-marker-color: transparent;
+  background-color: var(--color-yellow);
+  border-color: var(--color-yellow);
+  background-position: 50% 50%;
+  background-size: 200% 90%;
+  background-image: url('data:image/svg+xml,%3Csvg xmlns="http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg" width="20" height="20" preserveAspectRatio="xMidYMid meet" viewBox="0 0 16 16"%3E%3Cpath fill="white" fill-rule="evenodd" d="M4.475 5.458c-.284 0-.514-.237-.47-.517C4.28 3.24 5.576 2 7.825 2c2.25 0 3.767 1.36 3.767 3.215c0 1.344-.665 2.288-1.79 2.973c-1.1.659-1.414 1.118-1.414 2.01v.03a.5.5 0 0 1-.5.5h-.77a.5.5 0 0 1-.5-.495l-.003-.2c-.043-1.221.477-2.001 1.645-2.712c1.03-.632 1.397-1.135 1.397-2.028c0-.979-.758-1.698-1.926-1.698c-1.009 0-1.71.529-1.938 1.402c-.066.254-.278.461-.54.461h-.777ZM7.496 14c.622 0 1.095-.474 1.095-1.09c0-.618-.473-1.092-1.095-1.092c-.606 0-1.087.474-1.087 1.091S6.89 14 7.496 14Z"%2F%3E%3C%2Fsvg%3E');
+}
+
+.theme-dark input[data-task="?"]:checked,
+.theme-dark li[data-task="?"]>input:checked,
+.theme-dark li[data-task="?"]>p>input:checked {
+  background-image: url('data:image/svg+xml,%3Csvg xmlns="http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg" width="20" height="20" preserveAspectRatio="xMidYMid meet" viewBox="0 0 16 16"%3E%3Cpath fill="black" fill-opacity="0.8" fill-rule="evenodd" d="M4.475 5.458c-.284 0-.514-.237-.47-.517C4.28 3.24 5.576 2 7.825 2c2.25 0 3.767 1.36 3.767 3.215c0 1.344-.665 2.288-1.79 2.973c-1.1.659-1.414 1.118-1.414 2.01v.03a.5.5 0 0 1-.5.5h-.77a.5.5 0 0 1-.5-.495l-.003-.2c-.043-1.221.477-2.001 1.645-2.712c1.03-.632 1.397-1.135 1.397-2.028c0-.979-.758-1.698-1.926-1.698c-1.009 0-1.71.529-1.938 1.402c-.066.254-.278.461-.54.461h-.777ZM7.496 14c.622 0 1.095-.474 1.095-1.09c0-.618-.473-1.092-1.095-1.092c-.606 0-1.087.474-1.087 1.091S6.89 14 7.496 14Z"%2F%3E%3C%2Fsvg%3E');
+}
+
+/* [/] Incomplete */
+input[data-task="/"]:checked,
+li[data-task="/"]>input:checked,
+li[data-task="/"]>p>input:checked {
+  background-image: none;
+  background-color: transparent;
+  position: relative;
+  overflow: hidden;
+}
+
+input[data-task="/"]:checked:after,
+li[data-task="/"]>input:checked:after,
+li[data-task="/"]>p>input:checked:after {
+  top: 0;
+  left: 0;
+  content: " ";
+  display: block;
+  position: absolute;
+  background-color: var(--background-modifier-accent);
+  width: calc(50% - 0.5px);
+  height: 100%;
+  -webkit-mask-image: none;
+}
+
+/* [!] Important */
+input[data-task="!"]:checked,
+li[data-task="!"]>input:checked,
+li[data-task="!"]>p>input:checked {
+  color: var(--color-orange);
+  -webkit-mask-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' class='h-5 w-5' viewBox='0 0 20 20' fill='currentColor'%3E%3Cpath fill-rule='evenodd' d='M8.257 3.099c.765-1.36 2.722-1.36 3.486 0l5.58 9.92c.75 1.334-.213 2.98-1.742 2.98H4.42c-1.53 0-2.493-1.646-1.743-2.98l5.58-9.92zM11 13a1 1 0 11-2 0 1 1 0 012 0zm-1-8a1 1 0 00-1 1v3a1 1 0 002 0V6a1 1 0 00-1-1z' clip-rule='evenodd' /%3E%3C/svg%3E");
+}
+
+/* ["] Quote */
+input[data-task=“]:checked,
+li[data-task=“]>input:checked,
+li[data-task=“]>p>input:checked,
+input[data-task='"']:checked,
+li[data-task='"']>input:checked,
+li[data-task='"']>p>input:checked {
+  --checkbox-marker-color: transparent;
+  background-position: 50% 50%;
+  background-color: var(--color-cyan);
+  border-color: var(--color-cyan);
+  background-size: 75%;
+  background-repeat: no-repeat;
+  background-image: url('data:image/svg+xml,%3Csvg xmlns="http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg" width="20" height="20" preserveAspectRatio="xMidYMid meet" viewBox="0 0 24 24"%3E%3Cpath fill="white" d="M6.5 10c-.223 0-.437.034-.65.065c.069-.232.14-.468.254-.68c.114-.308.292-.575.469-.844c.148-.291.409-.488.601-.737c.201-.242.475-.403.692-.604c.213-.21.492-.315.714-.463c.232-.133.434-.28.65-.35l.539-.222l.474-.197l-.485-1.938l-.597.144c-.191.048-.424.104-.689.171c-.271.05-.56.187-.882.312c-.318.142-.686.238-1.028.466c-.344.218-.741.4-1.091.692c-.339.301-.748.562-1.05.945c-.33.358-.656.734-.909 1.162c-.293.408-.492.856-.702 1.299c-.19.443-.343.896-.468 1.336c-.237.882-.343 1.72-.384 2.437c-.034.718-.014 1.315.028 1.747c.015.204.043.402.063.539l.025.168l.026-.006A4.5 4.5 0 1 0 6.5 10zm11 0c-.223 0-.437.034-.65.065c.069-.232.14-.468.254-.68c.114-.308.292-.575.469-.844c.148-.291.409-.488.601-.737c.201-.242.475-.403.692-.604c.213-.21.492-.315.714-.463c.232-.133.434-.28.65-.35l.539-.222l.474-.197l-.485-1.938l-.597.144c-.191.048-.424.104-.689.171c-.271.05-.56.187-.882.312c-.317.143-.686.238-1.028.467c-.344.218-.741.4-1.091.692c-.339.301-.748.562-1.05.944c-.33.358-.656.734-.909 1.162c-.293.408-.492.856-.702 1.299c-.19.443-.343.896-.468 1.336c-.237.882-.343 1.72-.384 2.437c-.034.718-.014 1.315.028 1.747c.015.204.043.402.063.539l.025.168l.026-.006A4.5 4.5 0 1 0 17.5 10z"%2F%3E%3C%2Fsvg%3E');
+}
+
+.theme-dark input[data-task=“]:checked,
+.theme-dark li[data-task=“]>input:checked,
+.theme-dark li[data-task=“]>p>input:checked,
+.theme-dark input[data-task='"']:checked,
+.theme-dark li[data-task='"']>input:checked,
+.theme-dark li[data-task='"']>p>input:checked {
+  background-image: url('data:image/svg+xml,%3Csvg xmlns="http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg" width="20" height="20" preserveAspectRatio="xMidYMid meet" viewBox="0 0 24 24"%3E%3Cpath fill="black" fill-opacity="0.7" d="M6.5 10c-.223 0-.437.034-.65.065c.069-.232.14-.468.254-.68c.114-.308.292-.575.469-.844c.148-.291.409-.488.601-.737c.201-.242.475-.403.692-.604c.213-.21.492-.315.714-.463c.232-.133.434-.28.65-.35l.539-.222l.474-.197l-.485-1.938l-.597.144c-.191.048-.424.104-.689.171c-.271.05-.56.187-.882.312c-.318.142-.686.238-1.028.466c-.344.218-.741.4-1.091.692c-.339.301-.748.562-1.05.945c-.33.358-.656.734-.909 1.162c-.293.408-.492.856-.702 1.299c-.19.443-.343.896-.468 1.336c-.237.882-.343 1.72-.384 2.437c-.034.718-.014 1.315.028 1.747c.015.204.043.402.063.539l.025.168l.026-.006A4.5 4.5 0 1 0 6.5 10zm11 0c-.223 0-.437.034-.65.065c.069-.232.14-.468.254-.68c.114-.308.292-.575.469-.844c.148-.291.409-.488.601-.737c.201-.242.475-.403.692-.604c.213-.21.492-.315.714-.463c.232-.133.434-.28.65-.35l.539-.222l.474-.197l-.485-1.938l-.597.144c-.191.048-.424.104-.689.171c-.271.05-.56.187-.882.312c-.317.143-.686.238-1.028.467c-.344.218-.741.4-1.091.692c-.339.301-.748.562-1.05.944c-.33.358-.656.734-.909 1.162c-.293.408-.492.856-.702 1.299c-.19.443-.343.896-.468 1.336c-.237.882-.343 1.72-.384 2.437c-.034.718-.014 1.315.028 1.747c.015.204.043.402.063.539l.025.168l.026-.006A4.5 4.5 0 1 0 17.5 10z"%2F%3E%3C%2Fsvg%3E');
+}
+
+/* [-] Canceled */
+input[data-task="-"]:checked,
+li[data-task="-"]>input:checked,
+li[data-task="-"]>p>input:checked {
+  color: var(--text-faint);
+  -webkit-mask-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' class='h-5 w-5' viewBox='0 0 20 20' fill='currentColor'%3E%3Cpath fill-rule='evenodd' d='M3 10a1 1 0 011-1h12a1 1 0 110 2H4a1 1 0 01-1-1z' clip-rule='evenodd' /%3E%3C/svg%3E");
+}
+
+body:not(.tasks) .markdown-source-view.mod-cm6 .HyperMD-task-line[data-task]:is([data-task="-"]),
+body:not(.tasks) .markdown-preview-view ul li[data-task="-"].task-list-item.is-checked,
+body:not(.tasks) li[data-task="-"].task-list-item.is-checked {
+  color: var(--text-faint);
+  text-decoration: line-through solid var(--text-faint) 1px;
+}
+
+/* [*] Star */
+input[data-task="*"]:checked,
+li[data-task="*"]>input:checked,
+li[data-task="*"]>p>input:checked {
+  color: var(--color-yellow);
+  -webkit-mask-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' class='h-5 w-5' viewBox='0 0 20 20' fill='currentColor'%3E%3Cpath d='M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z' /%3E%3C/svg%3E");
+}
+
+/* [l] Location */
+input[data-task=l]:checked,
+li[data-task=l]>input:checked,
+li[data-task=l]>p>input:checked {
+  color: var(--color-red);
+  -webkit-mask-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' class='h-5 w-5' viewBox='0 0 20 20' fill='currentColor'%3E%3Cpath fill-rule='evenodd' d='M5.05 4.05a7 7 0 119.9 9.9L10 18.9l-4.95-4.95a7 7 0 010-9.9zM10 11a2 2 0 100-4 2 2 0 000 4z' clip-rule='evenodd' /%3E%3C/svg%3E");
+}
+
+/* [i] Info */
+input[data-task=i]:checked,
+li[data-task=i]>input:checked,
+li[data-task=i]>p>input:checked {
+  --checkbox-marker-color: transparent;
+  background-color: var(--color-blue);
+  border-color: var(--color-blue);
+  background-position: 50%;
+  background-size: 100%;
+  background-image: url('data:image/svg+xml,%3Csvg xmlns="http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg" width="20" height="20" preserveAspectRatio="xMidYMid meet" viewBox="0 0 512 512"%3E%3Cpath fill="none" stroke="white" stroke-linecap="round" stroke-linejoin="round" stroke-width="40" d="M196 220h64v172"%2F%3E%3Cpath fill="none" stroke="white" stroke-linecap="round" stroke-miterlimit="10" stroke-width="40" d="M187 396h138"%2F%3E%3Cpath fill="white" d="M256 160a32 32 0 1 1 32-32a32 32 0 0 1-32 32Z"%2F%3E%3C%2Fsvg%3E');
+}
+
+.theme-dark input[data-task=i]:checked,
+.theme-dark li[data-task=i]>input:checked,
+.theme-dark li[data-task=i]>p>input:checked {
+  background-image: url('data:image/svg+xml,%3Csvg xmlns="http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg" width="20" height="20" preserveAspectRatio="xMidYMid meet" viewBox="0 0 512 512"%3E%3Cpath fill="none" stroke="black" stroke-opacity="0.8" stroke-linecap="round" stroke-linejoin="round" stroke-width="40" d="M196 220h64v172"%2F%3E%3Cpath fill="none" stroke="black" stroke-opacity="0.8" stroke-linecap="round" stroke-miterlimit="10" stroke-width="40" d="M187 396h138"%2F%3E%3Cpath fill="black" fill-opacity="0.8" d="M256 160a32 32 0 1 1 32-32a32 32 0 0 1-32 32Z"%2F%3E%3C%2Fsvg%3E');
+}
+
+/* [S] Amount/savings/money */
+input[data-task=S]:checked,
+li[data-task=S]>input:checked,
+li[data-task=S]>p>input:checked {
+  --checkbox-marker-color: transparent;
+  border-color: var(--color-green);
+  background-color: var(--color-green);
+  background-size: 100%;
+  background-image: url('data:image/svg+xml,%3Csvg xmlns="http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg" width="20" height="20" preserveAspectRatio="xMidYMid meet" viewBox="0 0 48 48"%3E%3Cpath fill="white" fill-rule="evenodd" d="M26 8a2 2 0 1 0-4 0v2a8 8 0 1 0 0 16v8a4.002 4.002 0 0 1-3.773-2.666a2 2 0 0 0-3.771 1.332A8.003 8.003 0 0 0 22 38v2a2 2 0 1 0 4 0v-2a8 8 0 1 0 0-16v-8a4.002 4.002 0 0 1 3.773 2.666a2 2 0 0 0 3.771-1.332A8.003 8.003 0 0 0 26 10V8Zm-4 6a4 4 0 0 0 0 8v-8Zm4 12v8a4 4 0 0 0 0-8Z" clip-rule="evenodd"%2F%3E%3C%2Fsvg%3E');
+}
+
+.theme-dark input[data-task=S]:checked,
+.theme-dark li[data-task=S]>input:checked,
+.theme-dark li[data-task=S]>p>input:checked {
+  background-image: url('data:image/svg+xml,%3Csvg xmlns="http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg" width="20" height="20" preserveAspectRatio="xMidYMid meet" viewBox="0 0 48 48"%3E%3Cpath fill-opacity="0.8" fill="black" fill-rule="evenodd" d="M26 8a2 2 0 1 0-4 0v2a8 8 0 1 0 0 16v8a4.002 4.002 0 0 1-3.773-2.666a2 2 0 0 0-3.771 1.332A8.003 8.003 0 0 0 22 38v2a2 2 0 1 0 4 0v-2a8 8 0 1 0 0-16v-8a4.002 4.002 0 0 1 3.773 2.666a2 2 0 0 0 3.771-1.332A8.003 8.003 0 0 0 26 10V8Zm-4 6a4 4 0 0 0 0 8v-8Zm4 12v8a4 4 0 0 0 0-8Z" clip-rule="evenodd"%2F%3E%3C%2Fsvg%3E');
+}
+
+/* [I] Idea/lightbulb */
+input[data-task=I]:checked,
+li[data-task=I]>input:checked,
+li[data-task=I]>p>input:checked {
+  color: var(--color-yellow);
+  -webkit-mask-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' class='h-5 w-5' viewBox='0 0 20 20' fill='currentColor'%3E%3Cpath d='M11 3a1 1 0 10-2 0v1a1 1 0 102 0V3zM15.657 5.757a1 1 0 00-1.414-1.414l-.707.707a1 1 0 001.414 1.414l.707-.707zM18 10a1 1 0 01-1 1h-1a1 1 0 110-2h1a1 1 0 011 1zM5.05 6.464A1 1 0 106.464 5.05l-.707-.707a1 1 0 00-1.414 1.414l.707.707zM5 10a1 1 0 01-1 1H3a1 1 0 110-2h1a1 1 0 011 1zM8 16v-1h4v1a2 2 0 11-4 0zM12 14c.015-.34.208-.646.477-.859a4 4 0 10-4.954 0c.27.213.462.519.476.859h4.002z' /%3E%3C/svg%3E");
+}
+
+/* [f] Fire */
+input[data-task=f]:checked,
+li[data-task=f]>input:checked,
+li[data-task=f]>p>input:checked {
+  color: var(--color-red);
+  -webkit-mask-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' class='h-5 w-5' viewBox='0 0 20 20' fill='currentColor'%3E%3Cpath fill-rule='evenodd' d='M12.395 2.553a1 1 0 00-1.45-.385c-.345.23-.614.558-.822.88-.214.33-.403.713-.57 1.116-.334.804-.614 1.768-.84 2.734a31.365 31.365 0 00-.613 3.58 2.64 2.64 0 01-.945-1.067c-.328-.68-.398-1.534-.398-2.654A1 1 0 005.05 6.05 6.981 6.981 0 003 11a7 7 0 1011.95-4.95c-.592-.591-.98-.985-1.348-1.467-.363-.476-.724-1.063-1.207-2.03zM12.12 15.12A3 3 0 017 13s.879.5 2.5.5c0-1 .5-4 1.25-4.5.5 1 .786 1.293 1.371 1.879A2.99 2.99 0 0113 13a2.99 2.99 0 01-.879 2.121z' clip-rule='evenodd' /%3E%3C/svg%3E");
+}
+
+/* [k] Key */
+input[data-task=k]:checked,
+li[data-task=k]>input:checked,
+li[data-task=k]>p>input:checked {
+  color: var(--color-yellow);
+  -webkit-mask-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' class='h-5 w-5' viewBox='0 0 20 20' fill='currentColor'%3E%3Cpath fill-rule='evenodd' d='M18 8a6 6 0 01-7.743 5.743L10 14l-1 1-1 1H6v2H2v-4l4.257-4.257A6 6 0 1118 8zm-6-4a1 1 0 100 2 2 2 0 012 2 1 1 0 102 0 4 4 0 00-4-4z' clip-rule='evenodd' /%3E%3C/svg%3E");
+}
+
+/* [u] Up */
+input[data-task=u]:checked,
+li[data-task=u]>input:checked,
+li[data-task=u]>p>input:checked {
+  color: var(--color-green);
+  -webkit-mask-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' class='h-5 w-5' viewBox='0 0 20 20' fill='currentColor'%3E%3Cpath fill-rule='evenodd' d='M12 7a1 1 0 110-2h5a1 1 0 011 1v5a1 1 0 11-2 0V8.414l-4.293 4.293a1 1 0 01-1.414 0L8 10.414l-4.293 4.293a1 1 0 01-1.414-1.414l5-5a1 1 0 011.414 0L11 10.586 14.586 7H12z' clip-rule='evenodd' /%3E%3C/svg%3E");
+}
+
+/* [d] Down */
+input[data-task=d]:checked,
+li[data-task=d]>input:checked,
+li[data-task=d]>p>input:checked {
+  color: var(--color-red);
+  -webkit-mask-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' class='h-5 w-5' viewBox='0 0 20 20' fill='currentColor'%3E%3Cpath fill-rule='evenodd' d='M12 13a1 1 0 100 2h5a1 1 0 001-1V9a1 1 0 10-2 0v2.586l-4.293-4.293a1 1 0 00-1.414 0L8 9.586 3.707 5.293a1 1 0 00-1.414 1.414l5 5a1 1 0 001.414 0L11 9.414 14.586 13H12z' clip-rule='evenodd' /%3E%3C/svg%3E");
+}
+
+/* [w] Win */
+input[data-task=w]:checked,
+li[data-task=w]>input:checked,
+li[data-task=w]>p>input:checked {
+  color: var(--color-purple);
+  -webkit-mask-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' class='h-5 w-5' viewBox='0 0 20 20' fill='currentColor'%3E%3Cpath fill-rule='evenodd' d='M6 3a1 1 0 011-1h.01a1 1 0 010 2H7a1 1 0 01-1-1zm2 3a1 1 0 00-2 0v1a2 2 0 00-2 2v1a2 2 0 00-2 2v.683a3.7 3.7 0 011.055.485 1.704 1.704 0 001.89 0 3.704 3.704 0 014.11 0 1.704 1.704 0 001.89 0 3.704 3.704 0 014.11 0 1.704 1.704 0 001.89 0A3.7 3.7 0 0118 12.683V12a2 2 0 00-2-2V9a2 2 0 00-2-2V6a1 1 0 10-2 0v1h-1V6a1 1 0 10-2 0v1H8V6zm10 8.868a3.704 3.704 0 01-4.055-.036 1.704 1.704 0 00-1.89 0 3.704 3.704 0 01-4.11 0 1.704 1.704 0 00-1.89 0A3.704 3.704 0 012 14.868V17a1 1 0 001 1h14a1 1 0 001-1v-2.132zM9 3a1 1 0 011-1h.01a1 1 0 110 2H10a1 1 0 01-1-1zm3 0a1 1 0 011-1h.01a1 1 0 110 2H13a1 1 0 01-1-1z' clip-rule='evenodd' /%3E%3C/svg%3E");
+}
+
+/* [p] Pros */
+input[data-task=p]:checked,
+li[data-task=p]>input:checked,
+li[data-task=p]>p>input:checked {
+  color: var(--color-green);
+  -webkit-mask-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' class='h-5 w-5' viewBox='0 0 20 20' fill='currentColor'%3E%3Cpath d='M2 10.5a1.5 1.5 0 113 0v6a1.5 1.5 0 01-3 0v-6zM6 10.333v5.43a2 2 0 001.106 1.79l.05.025A4 4 0 008.943 18h5.416a2 2 0 001.962-1.608l1.2-6A2 2 0 0015.56 8H12V4a2 2 0 00-2-2 1 1 0 00-1 1v.667a4 4 0 01-.8 2.4L6.8 7.933a4 4 0 00-.8 2.4z' /%3E%3C/svg%3E");
+}
+
+/* [c] Cons */
+input[data-task=c]:checked,
+li[data-task=c]>input:checked,
+li[data-task=c]>p>input:checked {
+  color: var(--color-orange);
+  -webkit-mask-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' class='h-5 w-5' viewBox='0 0 20 20' fill='currentColor'%3E%3Cpath d='M18 9.5a1.5 1.5 0 11-3 0v-6a1.5 1.5 0 013 0v6zM14 9.667v-5.43a2 2 0 00-1.105-1.79l-.05-.025A4 4 0 0011.055 2H5.64a2 2 0 00-1.962 1.608l-1.2 6A2 2 0 004.44 12H8v4a2 2 0 002 2 1 1 0 001-1v-.667a4 4 0 01.8-2.4l1.4-1.866a4 4 0 00.8-2.4z' /%3E%3C/svg%3E");
+}
+
+/* [b] Bookmark */
+input[data-task=b]:checked,
+li[data-task=b]>input:checked,
+li[data-task=b]>p>input:checked {
+  color: var(--color-orange);
+  -webkit-mask-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' class='h-5 w-5' viewBox='0 0 20 20' fill='currentColor'%3E%3Cpath d='M5 4a2 2 0 012-2h6a2 2 0 012 2v14l-5-2.5L5 18V4z' /%3E%3C/svg%3E");
+}
+
+
+
+
+/* WORKSPACE SECTIONS DIVIDER STYLING
+Inspired by Obsidian Encore Theme by Carbonateb
+GitHub: https://github.com/carbonateb/obsidian-encore-theme
+Link: https://lucaschampagne.dev/
+------------------------------*/
+
+.workspace-leaf-resize-handle {
+  border: none !important;
+  overflow: visible;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background-color: var(--background-primary) !important;
+  min-width: 1px;
+  min-height: 1px;
+  --divider-width-hover: 1px;
+}
+
+.workspace-leaf-resize-handle::after {
+  content: "";
+  position: absolute;
+  transition: var(--background-primary) 150ms ease-out;
+}
+
+.workspace-leaf-resize-handle:hover::after {
+  background-color: rgb(var(--heading-color)) !important;
+  /*WIP*/
+  min-width: 3px;
+  height: 70%;
+  width: 70%;
+  border-radius: 1em;
+}
+
+.workspace-split.mod-vertical.mod-root .workspace-leaf-resize-handle {
+  right: -6px;
+}
+
+.workspace-split.mod-vertical>.workspace-leaf-resize-handle,
+.mod-root .workspace-split.mod-horizontal :not(.mod-vertical) .workspace-leaf-resize-handle {
+  bottom: -6px;
+}
+
+
+
+/* MINIMIZE, FULLSCREEN, EXIT WINDOW ICON REPLACEMENT 
+Based on Obsidian Encore Theme by Carbonateb
+GitHub: https://github.com/carbonateb/obsidian-encore-theme
+Link: https://lucaschampagne.dev/
+------------------------------*/
+
+body {
+  --lucide-x: url("data:image/svg+xml;utf8,%3Csvg xmlns='http://www.w3.org/2000/svg' width='24' height='24' viewBox='0 0 24 24' fill='none' stroke='currentColor' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'%3E%3Cline x1='18' y1='6' x2='6' y2='18'%3E%3C/line%3E%3Cline x1='6' y1='6' x2='18' y2='18'%3E%3C/line%3E%3C/svg%3E");
+  --lucide-minus: url("data:image/svg+xml;utf8,%3Csvg xmlns='http://www.w3.org/2000/svg' width='24' height='24' viewBox='0 0 24 24' fill='none' stroke='currentColor' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'%3E%3Cline x1='5' y1='12' x2='19' y2='12'%3E%3C/line%3E%3C/svg%3E");
+  --lucide-maximize: url("data:image/svg+xml;utf8,%3Csvg xmlns='http://www.w3.org/2000/svg' width='24' height='24' viewBox='0 0 24 24' fill='none' stroke='currentColor' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpath d='M8 3H5a2 2 0 0 0-2 2v3'%3E%3C/path%3E%3Cpath d='M21 8V5a2 2 0 0 0-2-2h-3'%3E%3C/path%3E%3Cpath d='M3 16v3a2 2 0 0 0 2 2h3'%3E%3C/path%3E%3Cpath d='M16 21h3a2 2 0 0 0 2-2v-3'%3E%3C/path%3E%3C/svg%3E");
+  --lucide-minimize: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='24' height='24' viewBox='0 0 24 24' fill='none' stroke='currentColor' stroke-width='2' stroke-linecap='round' stroke-linejoin='round' class='lucide lucide-minimize'%3E%3Cpath d='M8 3v3a2 2 0 0 1-2 2H3'/%3E%3Cpath d='M21 8h-3a2 2 0 0 1-2-2V3'/%3E%3Cpath d='M3 16h3a2 2 0 0 1 2 2v3'/%3E%3Cpath d='M16 21v-3a2 2 0 0 1 2-2h3'/%3E%3C/svg%3E");
+}
+
+:is(.mod-linux, .mod-windows) .titlebar-button:not(.mod-logo) svg {
+  -webkit-mask-size: cover;
+  background-color: var(--icon-color);
+  color: transparent;
+  width: var(--icon-s);
+  height: var(--icon-s);
+}
+
+:is(.mod-linux, .mod-windows) .titlebar-button:not(.mod-logo) {
+  padding: 0 var(--size-4-3);
+}
+
+:is(.mod-linux, .mod-windows) .titlebar-button.mod-minimize svg {
+  -webkit-mask-image: var(--lucide-minus);
+}
+
+:is(.mod-linux, .mod-windows) .titlebar-button.mod-maximize svg {
+  -webkit-mask-image: var(--lucide-maximize);
+}
+
+.is-maximized:is(.mod-linux, .mod-windows) .titlebar-button.mod-maximize svg {
+  -webkit-mask-image: var(--lucide-minimize);
+}
+
+:is(.mod-linux, .mod-windows) .titlebar-button.mod-close svg {
+  -webkit-mask-image: var(--lucide-x);
+}
+
+
+
+/* MAKE UI TRANSPARENT TO ADAPT TO BACKGROUND
+Based on Obsidian Encore Theme by Carbonateb
+GitHub: https://github.com/carbonateb/obsidian-encore-theme
+Link: https://lucaschampagne.dev/
+------------------------------*/
+
+.view-content,
+.view-header,
+.workspace,
+.workspace-ribbon,
+.workspace-ribbon.mod-left.is-collapsed,
+.workspace-split.mod-root,
+.workspace-tabs,
+.workspace-tab-header.is-active,
+.workspace-tab-header-container,
+.workspace-tabs .workspace-leaf,
+.mod-root .workspace-tabs:not(.mod-top) .workspace-tab-header-container,
+.mod-root .workspace-tabs .workspace-leaf,
+.mod-right-split,
+.mod-left-split,
+.workspace-split.mod-root .view-content,
+.mod-root .workspace-split.mod-horizontal>div:not(:first-of-type),
+.is-focused .workspace-leaf.mod-active .view-header,
+.sidebar-toggle-button {
+  background-color: transparent;
+  border: none;
+  box-shadow: none;
+}
+
+.titlebar {
+  background-color: transparent;
+}
+
+.workspace-ribbon.mod-left:before {
+  content: none;
+}
+
+.workspace-tab-header-container {
+  border: none;
+}
+
+.is-hidden-frameless:not(.is-fullscreen) .titlebar-button-container.mod-right {
+  background-color: transparent;
+}
+
+.workspace-tab-header::before,
+.workspace-tab-header::after {
+  display: none;
+}
+
+.mod-root .workspace-tab-header-container-inner {
+  padding: 0;
+  margin: 0;
+}
+
+.workspace .mod-root .workspace-tab-header {
+  padding: 0;
+}
+
+.view-header-title-container:not(.mod-at-end):after {
+  display: none;
+}
+
+.workspace-split:not(.mod-root) .graph-controls.is-close {
+  background-color: var(--background-modifier-hover);
+}
+
+body {
+  --tab-container-background: transparent;
+}
+
+/* END OF DOCUMENT */

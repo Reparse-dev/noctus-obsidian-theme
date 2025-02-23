@@ -22,6 +22,7 @@ Contact: shaydedg@gmail.com
   --heading-color: 225, 225, 225;
   --text-color: 230, 230, 230;
   --pdf-text-size: 12pt;
+  --font-text: "Ubuntu", "Play", "Inter";
   --h1-font: "Onest", "Rowdies", "Nexa", "Inter";
   --h2-font: "Onest", "Rowdies", "Nexa", "Inter";
   --h3-font: "Onest", "Rowdies", "Nexa", "Inter";
@@ -38,221 +39,6 @@ Contact: shaydedg@gmail.com
   --tab-radius: 0.5em;
 
   --hex-violet: #7f00ff;
-
-  /* MONOCHROME COLORS */
-  --white: 255, 255, 255;
-  --lightest-grey: 223, 223, 223;
-  --lighter-grey: 190, 190, 190;
-  --light-grey: 159, 159, 159;
-  --grey: 127, 127, 127;
-  --dark-grey: 95, 95, 95;
-  --darker-grey: 64, 64, 64;
-  --darkest-grey: 31, 31, 31;
-  --black: 0, 0, 0;
-
-  /* BASE COLORS */
-  --blue-violet: 135, 45, 225;
-  --violet: 127, 0, 255;
-  --purple: 160, 32, 240;
-  --fuchsia: 255, 0, 255;
-  --lavender: 195, 130, 255;
-  /* My #2 favorite color!*/
-  --pink: 255, 150, 200;
-  --magenta: 255, 0, 144;
-  --red-magenta: 255, 50, 100;
-  --crimson: 220, 20, 60;
-  --red: 255, 0, 0;
-  --vermillion: 227, 66, 52;
-  --coral: 255, 127, 80;
-  --orange: 255, 187, 103;
-  --amber: 255, 191, 0;
-  --tangerine: 243, 133, 0;
-  --yellow: 255, 255, 0;
-  --chartreuse: 127, 255, 0;
-  --brown: 150, 75, 0;
-  --green: 0, 255, 0;
-  --teal: 0, 128, 128;
-  --turquoise: 64, 224, 208;
-  --cyan: 0, 255, 255;
-  --blue-cyan: 70, 177, 235;
-  --cerulean: 0, 123, 167;
-  --blue: 0, 0, 255;
-  --indigo: 75, 0, 130;
-  /* My #3 favorite color! */
-
-  /* LIGHT COLORS */
-  --light-faviolet: 165, 80, 255;
-  --light-indigo-violet: 165, 80, 255;
-  --light-blue-violet: 165, 100, 255;
-  --light-violet: 183, 159, 255;
-  --light-purple: 182, 107, 248;
-  --light-fuchsia: 255, 112, 255;
-  --light-lavender: 234, 217, 255;
-  --light-pink: 255, 190, 200;
-  --light-magenta: 255, 105, 170;
-  --light-red-magenta: 255, 100, 150;
-  --light-crimson: 236, 102, 107;
-  --light-red: 255, 106, 88;
-  --light-vermillion: 239, 120, 105;
-  --light-coral: 255, 161, 126;
-  --light-orange: 255, 210, 158;
-  --light-amber: 255, 207, 108;
-  --light-tangerine: 249, 165, 97;
-  --light-yellow: 254, 255, 119;
-  --light-chartreuse: 164, 255, 113;
-  --light-green: 120, 255, 112;
-  --light-teal: 90, 159, 158;
-  --light-turquoise: 130, 233, 220;
-  --light-cyan: 124, 255, 255;
-  --light-blue-cyan: 100, 205, 255;
-  --light-cerulean: 88, 155, 189;
-  --light-blue: 48, 107, 255;
-  --light-indigo: 115, 78, 163;
-
-  /* LIGHTER COLORS */
-  --lighter-faviolet: 200, 140, 255;
-  --lighter-indigo-violet: 200, 140, 255;
-  --lighter-blue-violet: 200, 160, 255;
-  --lighter-violet: 183, 159, 255;
-  --lighter-purple: 206, 160, 253;
-  --lighter-fuchsia: 255, 166, 255;
-  --lighter-lavender: 255, 240, 255;
-  --lighter-pink: 255, 220, 230;
-  --lighter-magenta: 255, 160, 198;
-  --lighter-red-magenta: 255, 150, 200;
-  --lighter-crimson: 255, 120, 130;
-  --lighter-red: 255, 161, 145;
-  --lighter-vermillion: 249, 167, 155;
-  --lighter-coral: 255, 192, 170;
-  --lighter-orange: 255, 233, 206;
-  --lighter-amber: 255, 224, 162;
-  --lighter-tangerine: 253, 195, 153;
-  --lighter-yellow: 254, 255, 171;
-  --lighter-chartreuse: 195, 255, 167;
-  --lighter-green: 172, 255, 166;
-  --lighter-teal: 147, 189, 189;
-  --lighter-turquoise: 176, 241, 231;
-  --lighter-cyan: 176, 255, 255;
-  --lighter-blue-cyan: 150, 235, 255;
-  --lighter-cerulean: 146, 187, 211;
-  --lighter-blue: 115, 163, 255;
-  --lighter-indigo: 159, 136, 195;
-
-  /* LIGHTEST COLORS */
-  --lightest-faviolet: 230, 190, 255;
-  --lightest-indigo-violet: 230, 190, 255;
-  --lightest-blue-violet: 230, 210, 255;
-  --lightest-violet: 218, 207, 255;
-  --lightest-purple: 206, 160, 253;
-  --lightest-fuchsia: 255, 211, 255;
-  --lightest-lavender: 255, 250, 255;
-  --lightest-pink: 255, 240, 245;
-  --lightest-magenta: 255, 208, 227;
-  --lightest-red-magenta: 255, 200, 220;
-  --lightest-crimson: 255, 180, 190;
-  --lightest-red: 255, 208, 199;
-  --lightest-vermillion: 254, 210, 203;
-  --lightest-coral: 255, 224, 211;
-  --lightest-orange: 255, 233, 206;
-  --lightest-amber: 255, 240, 210;
-  --lightest-tangerine: 255, 226, 203;
-  --lightest-yellow: 254, 255, 216;
-  --lightest-chartreuse: 226, 255, 212;
-  --lightest-green: 216, 255, 211;
-  --lightest-teal: 200, 222, 222;
-  --lightest-turquoise: 217, 248, 243;
-  --lightest-cyan: 218, 255, 255;
-  --lightest-blue-cyan: 200, 250, 255;
-  --lightest-cerulean: 199, 221, 234;
-  --lightest-blue: 183, 209, 255;
-  --lightest-indigo: 206, 194, 226;
-
-  /* DARK COLORS */
-  --dark-faviolet: 105, 30, 205;
-  --dark-indigo-violet: 105, 30, 205;
-  --dark-blue-violet: 105, 50, 205;
-  --dark-violet: 84, 0, 173;
-  --dark-purple: 106, 17, 163;
-  --dark-fuchsia: 173, 0, 173;
-  --dark-lavender: 170, 150, 205;
-  --dark-pink: 195, 130, 140;
-  --dark-magenta: 173, 0, 96;
-  --dark-red-magenta: 185, 0, 50;
-  --dark-crimson: 170, 0, 10;
-  --dark-red: 173, 0, 0;
-  --dark-vermillion: 154, 43, 32;
-  --dark-coral: 173, 84, 52;
-  --dark-orange: 173, 109, 0;
-  --dark-amber: 173, 130, 0;
-  --dark-tangerine: 165, 88, 0;
-  --dark-yellow: 173, 173, 0;
-  --dark-chartreuse: 84, 173, 0;
-  --dark-green: 0, 173, 0;
-  --dark-teal: 0, 85, 85;
-  --dark-turquoise: 39, 153, 141;
-  --dark-cyan: 0, 173, 173;
-  --dark-blue-cyan: 30, 140, 170;
-  --dark-cerulean: 0, 81, 112;
-  --dark-blue: 0, 0, 173;
-  --dark-indigo: 48, 0, 86;
-
-  /* DARKER COLORS */
-  --darker-faviolet: 65, 0, 145;
-  --darker-indigo-violet: 65, 0, 145;
-  --darker-blue-violet: 65, 20, 145;
-  --darker-violet: 45, 0, 98;
-  --darker-purple: 59, 5, 92;
-  --darker-fuchsia: 98, 0, 98;
-  --darker-lavender: 120, 100, 155;
-  --darker-pink: 145, 80, 90;
-  --darker-magenta: 98, 0, 53;
-  --darker-red-magenta: 135, 0, 10;
-  --darker-crimson: 120, 0, 0;
-  --darker-red: 98, 0, 0;
-  --darker-vermillion: 86, 19, 13;
-  --darker-coral: 98, 45, 25;
-  --darker-orange: 98, 61, 0;
-  --darker-amber: 98, 73, 0;
-  --darker-tangerine: 93, 48, 0;
-  --darker-yellow: 98, 98, 0;
-  --darker-chartreuse: 45, 98, 0;
-  --darker-green: 0, 98, 0;
-  --darker-teal: 0, 46, 46;
-  --darker-turquoise: 18, 85, 79;
-  --darker-cyan: 0, 98, 98;
-  --darker-blue-cyan: 20, 90, 120;
-  --darker-cerulean: 0, 43, 63;
-  --darker-blue: 0, 0, 98;
-  --darker-indigo: 23, 0, 46;
-
-  /* DARKEST COLORS */
-  --darkest-faviolet: 25, 0, 90;
-  --darkest-indigo-violet: 25, 0, 90;
-  --darkest-blue-violet: 25, 0, 90;
-  --darkest-violet: 10, 0, 33;
-  --darkest-purple: 16, 0, 30;
-  --darkest-fuchsia: 33, 0, 33;
-  --darkest-lavender: 80, 70, 115;
-  --darkest-pink: 105, 50, 40;
-  --darkest-magenta: 33, 0, 13;
-  --darkest-red-magenta: 95, 0, 0;
-  --darkest-crimson: 80, 0, 0;
-  --darkest-red: 33, 0, 0;
-  --darkest-vermillion: 27, 2, 1;
-  --darkest-coral: 33, 10, 3;
-  --darkest-orange: 33, 16, 0;
-  --darkest-amber: 33, 21, 0;
-  --darkest-tangerine: 30, 11, 0;
-  --darkest-yellow: 33, 33, 0;
-  --darkest-chartreuse: 10, 33, 0;
-  --darkest-green: 0, 33, 0;
-  --darkest-teal: 0, 10, 10;
-  --darkest-turquoise: 2, 27, 24;
-  --darkest-cyan: 0, 33, 33;
-  --darkest-blue-cyan: 10, 50, 80;
-  --darkest-cerulean: 0, 9, 17;
-  --darkest-blue: 0, 0, 33;
-  --darkest-indigo: 4, 0, 11;
 }
 
 @media print {
@@ -302,16 +88,23 @@ body {
 }
 
 body .markdown-preview-view {
-  --font-text-size: 1em;
   --list-indent: 1em;
 }
 
 p,
 li,
-ul.contains-task-list,
+ul,
 h5,
 h6 { /*WIP*/
   margin-left: var(--h4-vertical-padding);
+}
+
+ul.contains-task-list {
+  margin-left: var(--h4-vertical-padding);
+}
+
+ul.contains-task-list>li.task-list-item {
+  margin-left: 1.2em;
 }
 
 div.callout .callout-content p {
@@ -319,7 +112,7 @@ div.callout .callout-content p {
 }
 
 .markdown-rendered ul > li {
-  margin-inline-start: 1.4rem;
+  margin-inline-start: 1rem;
 }
 
 p a.footnote-link {
@@ -331,7 +124,7 @@ sup, sub {
 }
 
 
- {
+.markdown-rendered blockquote {
   margin-left: var(--h4-vertical-padding);
 }
 
@@ -341,7 +134,7 @@ sup, sub {
   --blockquote-border-color: rgb(var(--heading-color));
   background-color: var(--blockquote-background-color);
   border-inline-start: var(--blockquote-border-thickness) solid var(--blockquote-border-color);
-  padding-left: 1.4rem;
+  padding-left: 1rem;
   /*
   --blockquote-border-thickness: 2px;
   --blockquote-border-color: var(--interactive-accent);
@@ -415,7 +208,7 @@ img {
   transform: translateX(0.15em);
 }
 
-/* Vertical Kanban */
+/* Vertical Kanban 
 
 .kanban-plugin__placeholder {
   flex-shrink: 1;
@@ -455,13 +248,41 @@ body.is-translucent:not(.is-fullscreen) {
 }
 
 
-
+*/
 .mod-root .workspace-tab-container .workspace-leaf-content {
   --en-opacity: 1;
-  background-color: rgba(255,255,255), var(--en-opacity);
+  background-color: var(--background-primary);
   border-radius: var(--tab-radius);
 }
-*/
+
+
+
+/* PLUGIN STYLING - DATAVIEW */ /* WIP */
+
+.dataview.inline-field-standalone-value {
+  padding-left: 0.1em;
+  padding-right: 0.1em;
+  font-family: var(--font-text);
+  background-color: var(--background-primary);
+  outline: 2px solid var(--background-primary-alt);
+  color: rgb(200,200,200);
+}
+
+.dataview.inline-field-key {
+  padding-left: 0.1em;
+  padding-right: 0.2em;
+  font-family: var(--font-monospace);
+  background-color: var(--background-primary-alt);
+  color: var(--text-nav-selected);
+}
+
+.dataview.inline-field-value {
+  padding-left: 0.2em;
+  padding-right: 0.1em;
+  font-family: var(--font-monospace);
+  background-color: var(--background-secondary-alt);
+  color: var(--text-nav-selected);
+}
 
 
 /* Horizontal Lines with Icon Styling 
@@ -597,7 +418,7 @@ div.callout {
   --callout-blend-mode: normal;
   overflow: visible;
   /*background: linear-gradient(to right, rgba(var(--callout-color), 0.02), rgba(var(--callout-color), 0));*/
-  background-color: hsla(var(--accent-h), var(--accent-s), var(--accent-l), 0);
+  background-color: hsla(var(--accent-h), var(--accent-s), var(--accent-l), 0); /*WIP*/
   border-color: hsla(var(--accent-h), var(--accent-s), var(--accent-l), 1);
   margin-top: 1.35em;
   padding-left: 1.4rem;
@@ -983,6 +804,13 @@ mark {
 
 
 
+/* CANVAS STYLING */
+
+div.canvas-wrapper {
+  background-color: var(--background-primary);
+}
+
+
 
 /* NEW CHECKLIST STYLES 
 Based on Minimal Theme by @kepano
@@ -1366,7 +1194,7 @@ body {
 
 
 
-/* MAKE UI TRANSPARENT TO ADAPT TO BACKGROUND
+/* MAKE UI BACKGROUND TRANSPARENT
 Based on Obsidian Encore Theme by Carbonateb
 GitHub: https://github.com/carbonateb/obsidian-encore-theme
 Link: https://lucaschampagne.dev/
@@ -1376,7 +1204,7 @@ Link: https://lucaschampagne.dev/
 .view-header,
 .workspace,
 .workspace-ribbon,
-.workspace-ribbon.mod-left.is-collapsed,
+.workspace-ribbon.mod-left.is-collapsed, 
 .workspace-split.mod-root,
 .workspace-tabs,
 .workspace-tab-header.is-active,
@@ -1394,6 +1222,7 @@ Link: https://lucaschampagne.dev/
   border: none;
   box-shadow: none;
 }
+
 
 .titlebar {
   background-color: transparent;
@@ -1436,5 +1265,6 @@ Link: https://lucaschampagne.dev/
 body {
   --tab-container-background: transparent;
 }
+
 
 /* END OF DOCUMENT */

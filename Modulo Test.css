@@ -5,6 +5,7 @@ Contact: shaydedg@gmail.com
 -----------------------------------*/
 
 /* To-do: 
+- REDO THE ENTIRE COLOR SYSTEM FOR ***EVERY*** ELEMENT. oklch() & oklab() are superior for modular intentions!!!!
 - Consider numbered lists and alike for callout titles, prevent breakage.
 - Continue gathering code from Encore
 */
@@ -15,10 +16,14 @@ Contact: shaydedg@gmail.com
 
 @charset "UTF-8";
 
-:root {
+body {
   --big-heading-letter-spacing: 0.07em;
   --medium-heading-letter-spacing: 0.06em;
   --small-heading-letter-spacing: 0.04em;
+  --secondary-accent-h: 348;
+  --secondary-accent-s: 83%;
+  --secondary-accent-l: 47%;
+  --primary-accent-color: hsl(var(--accent-h), var(--accent-s), var(--accent-l));
   --heading-color: 225, 225, 225;
   --text-color: 230, 230, 230;
   --pdf-text-size: 12pt;
@@ -37,6 +42,7 @@ Contact: shaydedg@gmail.com
   --hr-gradient: linear-gradient(to right, rgba(var(--hr-color),0), rgba(var(--hr-color),0.4), rgba(var(--hr-color),0)) 1;  
   --hr-color: 255, 255, 255;
   --tab-radius: 0.5em;
+  --text-color: red;
 
   --hex-violet: #7f00ff;
 }
@@ -128,6 +134,27 @@ sup, sub {
   margin-left: var(--h4-vertical-padding);
 }
 
+
+/* LINKS */
+
+/* Wiki-Links */
+.markdown-rendered a.internal-link.is-unresolved, span.is-unresolved {
+  --link-unresolved-color: hsl(var(--secondary-accent-h), var(--secondary-accent-s), var(--secondary-accent-l));
+  --link-unresolved-decoration-color: var(--link-unresolved-color);
+  --link-unresolved-opacity: 0.8;
+  text-decoration: none;
+}
+
+@media print {
+  .markdown-rendered a.internal-link.is-unresolved {
+    --link-unresolved-color: hsl(var(--accent-h), var(--accent-s), var(--accent-l));
+    --link-unresolved-decoration-color: hsl(var(--accent-h), var(--accent-s), var(--accent-l));
+    --link-unresolved-opacity: 1;
+    text-decoration: none;
+    font-weight: 900;
+  }
+}
+
 /* Blockquote WIP*/
 .markdown-rendered blockquote {
   --blockquote-background-color: var(--background-primary);
@@ -158,10 +185,10 @@ sup, sub {
 
 @media print {
   .markdown-rendered blockquote, blockquote {
-  --blockquote-background-color: white;
-  --blockquote-border-color: rgba(var(--text-color), 1);
-  background-color: var(--blockquote-background-color);
-  border-inline-start: var(--blockquote-border-thickness) solid var(--blockquote-border-color);
+    --blockquote-background-color: white;
+    --blockquote-border-color: rgba(0,0,0, 1);
+    background-color: var(--blockquote-background-color);
+    border-inline-start: var(--blockquote-border-thickness) solid var(--blockquote-border-color);
   }
 }
 
@@ -305,6 +332,31 @@ body .cm-line.hr hr {
   overflow: visible;
 }
 
+@media print {
+  body .markdown-rendered hr,
+  body .cm-line.hr hr {
+    height: 1px;
+    background-image: linear-gradient(to right, transparent, rgba(0,0,0,0.5) 46.2%, transparent 46.2%, transparent 54%, rgba(0,0,0,0.5) 54%, transparent);
+    border: none;
+    position: relative;
+    overflow: visible;
+  }
+  body .markdown-source-view:not(.is-live-preview) .HyperMD-hr::after,
+  body .markdown-rendered hr::after,
+  body .cm-line.hr hr::after {
+  content: "";
+  position: absolute;
+  top: -12px;
+  left: 0;
+  right: 0;
+  height: 24px;
+  background-size: contain;
+  background-position: center;
+  background-repeat: no-repeat;
+  background-image: var(--obsidian-logo-small);
+  }
+}
+
 body .markdown-source-view:not(.is-live-preview) .HyperMD-hr::after,
 body .markdown-rendered hr::after,
 body .cm-line.hr hr::after {
@@ -416,18 +468,20 @@ div.callout {
   --callout-border-width: 2px;
   --callout-border-opacity: 1;
   --callout-blend-mode: normal;
+  --callout-color: hsla(var(--accent-h), var(--accent-s), var(--accent-l), 1);
+  --callout-title-color: var(--callout-color);
   overflow: visible;
   /*background: linear-gradient(to right, rgba(var(--callout-color), 0.02), rgba(var(--callout-color), 0));*/
   background-color: hsla(var(--accent-h), var(--accent-s), var(--accent-l), 0); /*WIP*/
   border-color: hsla(var(--accent-h), var(--accent-s), var(--accent-l), 1);
-  margin-top: 1.35em;
+  margin-top: 1.7em;
   padding-left: 1.4rem;
   margin-bottom: 1.5em;
 }
 
 div.callout>.callout-title {
   --callout-title-size: 1em;
-  color: hsla(var(--accent-h), var(--accent-s), var(--accent-l), 1);
+  color: var(--callout-color);
   background-color: var(--background-primary);
   font-size: var(--callout-title-size);
   margin-top: -24px;
@@ -463,7 +517,19 @@ div.callout>.callout-title>.callout-icon .svg-icon {
   color: hsla(var(--accent-h), var(--accent-s), var(--accent-l), 1);
 }
 
-/* In case someone adds a list element to the callout title */
+/* Elements in Callout */
+
+.markdown-source-view .cm-em, .markdown-rendered em,
+.markdown-source-view .cm-strong, .markdown-rendered strong/*,
+.markdown-source-view .cm-u, .markdown-rendered u */{ color: rgba(var(--callout-color), 1); }
+
+div.callout a.footnote-link { 
+  color: rgba(var(--callout-color), 0.75);
+  font-weight: 900;
+}
+
+div.callout a.internal-link { color: rgba(var(--callout-color), 1); }/*
+div.callout a.internal-link.is-unresolved { color: rgba(var(--callout-color), 0.9); }*/
 
 div.callout>.callout-title>.callout-title-inner>ul, div.callout>.callout-title>.callout-title-inner>ol {
   margin-top: 0em;
@@ -480,12 +546,16 @@ div.callout>.callout-title>.callout-title-inner>ul>li {
 }
 
 
+div.callout svg.svg-icon {
+  --icon-stroke: 3px;
+}
+
 @media print {
   div.callout>.callout-title {
     background-color: rgb(255, 255, 255);
   }
 
-  .callout {
+  div.callout {
     background-color: white;
   }
 
@@ -493,6 +563,10 @@ div.callout>.callout-title>.callout-title-inner>ul>li {
     --icon-color: rgb(var(--callout-color));
     color: var(--icon-color);
   }
+
+  /*div.callout svg.svg-icon {
+    --icon-stroke: 3px;
+  }*/
 }
 
 /* Quote & Cite Callout */
@@ -817,6 +891,51 @@ Based on Minimal Theme by @kepano
 GitHub: https://github.com/kepano/obsidian-minimal
 Link: https://twitter.com/kepano
 ------------------------------*/
+
+/* Total */
+input[data-task="€"]:checked.task-list-item-checkbox,
+li[data-task="€"]>input:checked, li[data-task="€"]>p>input:checked{
+  display: none;
+}
+li[data-task="€"].task-list-item.is-checked {
+  font-weight: 900;
+  margin-left: 0em;
+  text-decoration: underline;
+  margin-top: 1em;
+}
+.markdown-source-view.mod-cm6 
+.task-list-label input[data-task="€"].task-list-item-checkbox 
+{
+  display: none;
+  padding: 1em;
+  content: "€" !important;
+  top: 0em;
+  vertical-align: middle;
+  margin-inline-start: 0em;
+  margin-inline-end: 0em;
+  width: fit-content;
+  height: fit-content;
+}
+
+.markdown-source-view.mod-cm6 
+.task-list-label:has(.task-list-item-checkbox[data-task="€"])::after {
+  content: "€";
+  font-size: 16px;
+  font-weight: bold;
+  color: rgb(232, 230, 227);
+  margin-left: 5px;
+}
+
+/* input[data-task="?"]:checked,
+li[data-task="?"]>input:checked,
+li[data-task="?"]>p>input:checked {
+  --checkbox-marker-color: transparent;
+  background-color: var(--color-yellow);
+  border-color: var(--color-yellow);
+  background-position: 50% 50%;
+  background-size: 200% 90%;
+  background-image: url('data:image/svg+xml,%3Csvg xmlns="http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg" width="20" height="20" preserveAspectRatio="xMidYMid meet" viewBox="0 0 16 16"%3E%3Cpath fill="white" fill-rule="evenodd" d="M4.475 5.458c-.284 0-.514-.237-.47-.517C4.28 3.24 5.576 2 7.825 2c2.25 0 3.767 1.36 3.767 3.215c0 1.344-.665 2.288-1.79 2.973c-1.1.659-1.414 1.118-1.414 2.01v.03a.5.5 0 0 1-.5.5h-.77a.5.5 0 0 1-.5-.495l-.003-.2c-.043-1.221.477-2.001 1.645-2.712c1.03-.632 1.397-1.135 1.397-2.028c0-.979-.758-1.698-1.926-1.698c-1.009 0-1.71.529-1.938 1.402c-.066.254-.278.461-.54.461h-.777ZM7.496 14c.622 0 1.095-.474 1.095-1.09c0-.618-.473-1.092-1.095-1.092c-.606 0-1.087.474-1.087 1.091S6.89 14 7.496 14Z"%2F%3E%3C%2Fsvg%3E');
+}*/
 
 input[data-task=">"]:checked,
 input[data-task="!"]:checked,

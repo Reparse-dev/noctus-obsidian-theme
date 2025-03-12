@@ -5,10 +5,11 @@ Contact: shaydedg@gmail.com
 -----------------------------------*/
 
 /* To-do: 
-- Brightness: dark levels vs. base-number levels
+- Brightness: Add inversion option for both light-theme & pdf independently.
 */
 
-/* Ressources: https://oklch.com/
+/* Ressources: 
+- https://oklch.com/
 */
 
 @import 'mobile/mobile';
@@ -27,19 +28,29 @@ body {
   --background-primary: oklch(0% 0 0);
 
   /* Primary Accent
-  For the Accent color I use color-mix to convert it to oklch. For darker variations I make independent variables */
+  For the Accent color I use color-mix to convert it to oklch. For darker variations I make independent variables; 
+  Sadly, as the accent is in hsl, the darkness variations won't be as accurate */
+  --lightest-obsidian-accent-color: hsl(var(--accent-h),var(--accent-s),var(--lightest));
+  --lighter-obsidian-accent-color: hsl(var(--accent-h),var(--accent-s),var(--lighter));
+  --light-obsidian-accent-color: hsl(var(--accent-h),var(--accent-s),var(--light));
   --obsidian-accent-color: hsl(var(--accent-h),var(--accent-s),var(--accent-l));
-  --dark-obsidian-accent-color: hsla(var(--accent-h),var(--accent-s),var(--accent-l),0.8);
+  --dark-obsidian-accent-color: hsla(var(--accent-h),var(--accent-s),var(--dark));
+  --darker-obsidian-accent-color: hsla(var(--accent-h),var(--accent-s),var(--darker));
+  --darkest-obsidian-accent-color: hsla(var(--accent-h),var(--accent-s),var(--darkest));
 
+  --lightest-primary-accent-color: color-mix(in oklch, var(--lightest-obsidian-accent-color) 100%, white 0%);
+  --lighter-primary-accent-color: color-mix(in oklch, var(--lighter-obsidian-accent-color) 100%, white 0%);
+  --light-primary-accent-color: color-mix(in oklch, var(--light-obsidian-accent-color) 100%, white 0%);
   --primary-accent-color: color-mix(in oklch, var(--obsidian-accent-color) 100%, white 0%);
   --dark-primary-accent-color: color-mix(in oklch, var(--dark-obsidian-accent-color) 100%, white 0%);
-  color: var(--primary-accent-color);
+  --darker-primary-accent-color: color-mix(in oklch, var(--darker-obsidian-accent-color) 100%, white 0%);
+  --darkest-primary-accent-color: color-mix(in oklch, var(--darkest-obsidian-accent-color) 100%, white 0%);
 
   /* Secondary Accent: oklch(57.12% 0.2219 20.09) aka. Crimson (rgb(220,20,60)) */
-  --secondary-accent-l: 57.12%;
-  --secondary-accent-c: 0.2219;
-  --secondary-accent-h: 20.09;
-  --secondary-accent-color: oklch(var(--secondary-accent-l) var(--secondary-accent-c) var(--secondary-accent-h));
+  --secondary-accent-lightness: 57.12%;
+  --secondary-accent-chroma: 0.2219;
+  --secondary-accent-hue: 20.09;
+  --secondary-accent-color: oklch(var(--secondary-accent-lightness) var(--secondary-accent-chroma) var(--secondary-accent-hue));
 
   /* Brightness Levels (l) */
   --white: 100%;
@@ -53,13 +64,16 @@ body {
   --black: 0%;
   /* Or I could go with: base-10, base-20, base-30, base-40, base-50, etc. */
 
-  /* Alpha Levels (a) */
-  --opaque: 1;
-  --faint: 0.8;
-  --fainter: 0.6;
+  /* Alpha Levels (a) */ /*"--true" & "--false" made by Zohiu*/
+  --opaque: 1; --true: 1; /*WIP: Keep the true & false or nah? */
+  --strongest: 0.9;
+  --stronger: 0.8;
+  --strong: 0.7;
+  --faint: 0.6;
+  --fainter: 0.5;
   --faintest: 0.4;
   --translucent: 0.2;
-  --transparent: 0;
+  --transparent: 0; --false: 0;
 
   /* Indigo for testing */
 
@@ -73,11 +87,14 @@ body {
   --link-unresolved-opacity: var(--faint);
 
   /* Callouts */
-  --callout-blend-mode: normal;
-  --callout-border-width: 2px;
-  --callout-border-opacity: var(--opaque);
   --callout-color: hsla(var(--accent-h), var(--accent-s), var(--accent-l), 1);
   --callout-title-color: var(--callout-color);
+  --callout-opacity: var(--opaque);
+  --callout-border-opacity: var(--opaque);
+  --callout-title-size: 1em;
+  --callout-blend-mode: normal;
+  --callout-border-width: 2px;
+  --callout-quote-gradient: linear-gradient(to right, rgba(var(--hr-color),0.4), rgba(var(--hr-color),0.3), rgba(var(--hr-color),0.2)) 1;
 }
 
 /* Obsidian internal color set:
@@ -99,6 +116,32 @@ body {
   --color-pink: #fa99cd;
 */
 
+svg.svg-icon {
+  --icon-size: 1.05em;
+}
+
+/* INDENTATION 
+I indent ALL elements but Callouts and similar to 1st make the headings clearer and 2nd make the padding in H4 seem natural and fitting.
+*/
+
+body .markdown-preview-view {
+  --list-indent: 1em;
+}
+
+p, li, ul, h5, h6 { /*WIP: Better padding variable*/
+  margin-left: var(--h4-vertical-padding);
+}
+
+ul.contains-task-list { /*WIP: Better padding variable*/
+  margin-left: var(--h4-vertical-padding);
+}
+
+ul.contains-task-list>li.task-list-item { margin-left: 1.2em; }
+
+div.callout .callout-content p { margin-left: 0rem; }
+
+.markdown-rendered ul > li { margin-inline-start: 1rem; }
+
 
 /* CALLOUT STYLING 
 All done by me.
@@ -107,14 +150,15 @@ GitHub: https://github.com/kepano/obsidian-minimal
 Link: https://twitter.com/kepano
 ------------------------------*/
 
-div.callout .callout-content p {
-  margin-left: 0rem;
-}
+/* THE MOST IMPORTANT CALLOUT CHANGE: */
+div.callout { --callout-color: var(--base) var(--callout-chroma) var(--callout-hue); }
+
 
 div.callout {
+  --callout-title-color: oklch(var(--callout-color) / var(--callout-opacity)); /*WIP: Figure out why you can not define it in body.*/
   overflow: visible;
   /*background: linear-gradient(to right, rgba(var(--callout-color), 0.02), rgba(var(--callout-color), 0));*/
-  background-color: hsla(var(--accent-h),var(--accent-s),var(--accent-l),var(--transparent));
+  background-color: oklch(var(--callout-color) / var(--transparent));
   border-color: oklch(var(--callout-color) / var(--callout-border-opacity));
   margin-top: 1.7em;
   padding-left: 1.4rem;
@@ -122,26 +166,17 @@ div.callout {
 }
 
 div.callout>.callout-title {
-  --callout-title-size: 1em;
-  --callout-title-color: var(--callout-color);
-  color: oklch(var(--callout-title-color));
-  background-color: oklch(0% 0 0 / 1); /*WIP*/
-  font-size: var(--callout-title-size);
-  margin-top: -24px;
   z-index: 200;
   width: fit-content;
-  padding: 0 0.7em;
-  margin-left: -0.75em;
-  letter-spacing: 0.07em;
-  font-variant-caps: all-small-caps;
-  font-size: var(--callout-title-size);
   font-variant-caps: normal;
+  font-size: var(--callout-title-size);
+  letter-spacing: 0.07em;
+  color: var(--callout-title-color);
+  background-color: oklch(0% 0 0 / 1); /*WIP*/
+  margin-top: -24px;
+  margin-left: -0.75em;
+  padding: 0 0.7em;
   border-radius: 0.5em;
-}
-
-.cm-embed-block.cm-callout {
-  padding-top: 12px;
-  padding-bottom: 12px;
 }
 
 div.callout>.callout-title>.callout-icon {
@@ -149,39 +184,148 @@ div.callout>.callout-title>.callout-icon {
   margin-top: -0.05em;
 }
 
-div.callout>.callout-title>.callout-icon .svg-icon {
-  color: oklch(var(--callout-title-color));
+div.callout>.callout-title>.callout-icon .svg-icon { color: var(--callout-title-color); --icon-stroke: 3px; }
+
+/* INNER CALLOUT ELEMENTS */
+
+.markdown-source-view .cm-em, .markdown-rendered em,
+.markdown-source-view .cm-strong, .markdown-rendered strong/*,
+.markdown-source-view .cm-u, .markdown-rendered u */{ color: oklch(var(--callout-color) / var(--opaque)); }
+
+div.callout a.footnote-link { color: oklch(var(--callout-color) / var(--faint)); }
+
+.markdown-source-view .cm-em, .markdown-rendered em,
+.markdown-source-view .cm-strong, .markdown-rendered strong,
+/*.markdown-source-view .cm-u, .markdown-rendered u,*/
+div.callout a.internal-link { color: oklch(var(--callout-color) / var(--callout-opacity)); }/*
+div.callout a.internal-link.is-unresolved { color: rgba(var(--callout-color), 0.9); }*/
+
+div.callout > .callout-title > .callout-title-inner :is(
+  ol, ul, .markdown-rendered ol, .markdown-rendered ul.has-list-bullet) {
+  margin: 0;
 }
 
+div.callout > .callout-title > .callout-title-inner :is(
+  ol, ul, .markdown-rendered ol, .markdown-rendered ul.has-list-bullet) > li {
+  margin-left: 1.5em;
+  margin-top: -0.1em;
+}
+
+/* SPECIAL CALLOUTS */
+
+/* Primary Accent 
+This one needs to utilize HSL as that is how the primary color is usually set in Obsidian. 
+Thus I redid every aspects regarding color for these ones. */
+div.callout[data-callout*="primary-accent"], div.callout[data-callout*="note"], div.callout[data-callout*="callout"] { 
+  --callout-color: hsla(var(--accent-h), var(--accent-s), var(--accent-l), var(--callout-opacity)); 
+  --callout-title-color: var(--callout-color); 
+  border-color: var(--callout-color); 
+}
+/* As it utilizes HSL I needed to redo this: */
+div.callout[data-callout^="l"]:is([data-callout*="primary-accent"], [data-callout*="note"], [data-callout*="callout"]) { 
+  --callout-color: hsla(var(--accent-h), var(--accent-s), var(--light), var(--callout-opacity)); } 
+div.callout[data-callout^="ll"]:is([data-callout*="primary-accent"], [data-callout*="note"], [data-callout*="callout"]) { 
+  --callout-color: hsla(var(--accent-h), var(--accent-s), var(--lighter), var(--callout-opacity)); } 
+div.callout[data-callout^="lll"]:is([data-callout*="primary-accent"], [data-callout*="note"], [data-callout*="callout"]) { 
+  --callout-color: hsla(var(--accent-h), var(--accent-s), var(--lightest), var(--callout-opacity)); }
+
+div.callout[data-callout^="d"]:is(
+[data-callout*="primary-accent"], [data-callout*="note"], [data-callout*="callout"]) { 
+  --callout-color: hsla(var(--accent-h), var(--accent-s), var(--dark), var(--callout-opacity)); } 
+div.callout[data-callout^="dd"]:is(
+[data-callout*="primary-accent"], [data-callout*="note"], [data-callout*="callout"]) { 
+  --callout-color: hsla(var(--accent-h), var(--accent-s), var(--darker), var(--callout-opacity)); } 
+div.callout[data-callout^="ddd"]:is(
+[data-callout*="primary-accent"], [data-callout*="note"], [data-callout*="callout"]) {
+  --callout-color: hsla(var(--accent-h), var(--accent-s), var(--darkest), var(--callout-opacity)); }
+
+/*
+div.callout[data-callout*="primary-accent"] .markdown-source-view .cm-em, div.callout[data-callout*="primary-accent"] .markdown-rendered em,
+div.callout[data-callout*="primary-accent"] .markdown-source-view .cm-strong, div.callout[data-callout*="primary-accent"] .markdown-rendered strong { color: oklch(var(--callout-color) / var(--opaque)); }
+*/
+
+div.callout:is([data-callout*="primary-accent"], [data-callout*="note"]) :is(.markdown-source-view .cm-em, 
+.markdown-rendered em, .markdown-source-view .cm-strong, .markdown-rendered strong) {
+    color: var(--callout-color);
+}
+
+div.callout:is([data-callout*="primary-accent"], [data-callout*="note"], [data-callout*="callout"]) 
+a.footnote-link { color: var(--callout-color); }
+
+div.callout:is([data-callout*="primary-accent"], [data-callout*="note"], [data-callout*="callout"]) :is(.markdown-source-view .cm-em, .markdown-rendered em,
+.markdown-source-view .cm-strong, .markdown-rendered strong, a.internal-link) { 
+  color: var(--callout-color); }
+
+/* div.callout a.internal-link.is-unresolved { color: rgba(var(--callout-color), 0.9); } WIP: Remove or keep?*/
+
+/* Secondary Accent */
+div.callout[data-callout*="secondary-accent"] {
+  --callout-chroma: var(--secondary-accent-chroma);
+  --callout-hue: var(--secondary-accent-hue);
+}
+
+/* Quote & Cite */
+
+div.callout[data-callout="quote"],
+.callout[data-callout="cite"] {
+  display: flex;
+  flex-direction: column-reverse;
+  padding-bottom: 1.5em;
+  border-image: var(--callout-quote-gradient);
+  padding-top: 0.5em;
+  --callout-chroma: 0;
+  --callout-hue: 0;
+  --callout-icon: quote-glyph;
+  margin-bottom: 2em;
+}
+
+div.callout[data-callout="quote"]>.callout-title,
+.callout[data-callout="cite"]>.callout-title {
+  margin-bottom: -2.3em;
+  margin-top: 0em;
+}
+
+div.callout[data-callout="cite"] {
+  border-image: var(--hr-gradient);
+  border-left: none;
+  border-right: none;
+  border-radius: 0px;
+  background-color: var(--background-primary);
+}
+
+div.callout:is([data-callout*="quote"], [data-callout*="cite"])>.callout-title>.callout-icon {
+  transform: scale(-1, 1);
+}
+
+div.callout[data-callout="cite"]>.callout-title>.callout-icon {
+  --icon-color: oklch(var(--callout-color));
+}
+
+
+/* MODULAR CALLOUT COLORS */
+div.callout[data-callout^="l"] { --callout-color: var(--light) var(--callout-chroma) var(--callout-hue); }
+div.callout[data-callout^="ll"] { --callout-color: var(--lighter) var(--callout-chroma) var(--callout-hue); }
+div.callout[data-callout^="lll"] { --callout-color: var(--lightest) var(--callout-chroma) var(--callout-hue); }
+
+div.callout[data-callout^="d"] { --callout-color: var(--dark) var(--callout-chroma) var(--callout-hue); }
+div.callout[data-callout^="dd"] { --callout-color: var(--darker) var(--callout-chroma) var(--callout-hue); }
+div.callout[data-callout^="ddd"] { --callout-color: var(--darkest) var(--callout-chroma) var(--callout-hue); }
+
+div.callout[data-callout-metadata^="opaque"] { --callout-opacity: var(--opaque); --callout-border-opacity: var(--callout-opacity)}
+
+div.callout[data-callout-metadata^="s"] { --callout-opacity: var(--strong); --callout-border-opacity: var(--callout-opacity)}
+div.callout[data-callout-metadata^="ss"] { --callout-opacity: var(--stronger); --callout-border-opacity: var(--callout-opacity)}
+div.callout[data-callout-metadata^="sss"] { --callout-opacity: var(--strongest); --callout-border-opacity: var(--callout-opacity)}
+
+div.callout[data-callout-metadata^="f"] { --callout-opacity: var(--faint); --callout-border-opacity: var(--callout-opacity)}
+div.callout[data-callout-metadata^="ff"] { --callout-opacity: var(--fainter); --callout-border-opacity: var(--callout-opacity)}
+div.callout[data-callout-metadata^="fff"] { --callout-opacity: var(--faintest); --callout-border-opacity: var(--callout-opacity)}
+
+div.callout[data-callout-metadata^="translucent"] { --callout-opacity: var(--translucent); --callout-border-opacity: var(--callout-opacity)}
+div.callout[data-callout-metadata^="ffffuck you"] { --callout-opacity: var(--transparent); --callout-border-opacity: var(--callout-opacity)} /*This line made by Zohiu*/ /*WIP: Wanna keep it?*/
+
+/* Indigo for test */
 div.callout[data-callout*="indigo"] {
   --callout-chroma: var(--indigo-chroma);
   --callout-hue: var(--indigo-hue);
-}
-
-div.callout {
-  --callout-color: var(--base) var(--callout-chroma) var(--callout-hue);
-}
-
-div.callout[data-callout^="l"] {
-  --callout-color: var(--light) var(--callout-chroma) var(--callout-hue);
-}
-
-div.callout[data-callout^="ll"] {
-  --callout-color: var(--lighter) var(--callout-chroma) var(--callout-hue);
-}
-
-div.callout[data-callout^="lll"] {
-  --callout-color: var(--lightest) var(--callout-chroma) var(--callout-hue);
-}
-
-div.callout[data-callout^="d"] {
-  --callout-color: var(--dark) var(--callout-chroma) var(--callout-hue);
-}
-
-div.callout[data-callout^="dd"] {
-  --callout-color: var(--darker) var(--callout-chroma) var(--callout-hue);
-}
-
-div.callout[data-callout^="ddd"] {
-  --callout-color: var(--darkest) var(--callout-chroma) var(--callout-hue);
 }

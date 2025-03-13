@@ -6,6 +6,8 @@ Contact: shaydedg@gmail.com
 
 /* To-do: 
 - Brightness: Add inversion option for both light-theme & pdf independently.
+- Opacity: Make text have lower opacity as well!
+- Renaming: Consider making d & l -> -l & l, and s & f -> a (opaque) & -a (times how much less opaque)
 */
 
 /* Ressources: 
@@ -52,15 +54,17 @@ body {
   --secondary-accent-hue: 20.09;
   --secondary-accent-color: oklch(var(--secondary-accent-lightness) var(--secondary-accent-chroma) var(--secondary-accent-hue));
 
-  /* Brightness Levels (l) */
+  /* Lightness Levels (l) */
   --white: 100%;
-  --lightest: 80%;
+  --lightest: 90%;
+  --super-light: 80%;
   --lighter: 70%;
   --light: 60%;
   --base: 50%;
   --dark: 40%;
   --darker: 30%;
-  --darkest: 20%;
+  --super-dark: 20%;
+  --darkest: 10%;
   --black: 0%;
   /* Or I could go with: base-10, base-20, base-30, base-40, base-50, etc. */
 
@@ -87,17 +91,20 @@ body {
   --link-unresolved-opacity: var(--faint);
 
   /* Callouts */
-  --callout-color: hsla(var(--accent-h), var(--accent-s), var(--accent-l), 1);
+  --callout-hue: 0;
+  --callout-chroma: 0;
+  --callout-lightness: var(--base);
   --callout-title-color: var(--callout-color);
   --callout-opacity: var(--opaque);
   --callout-border-opacity: var(--opaque);
   --callout-title-size: 1em;
   --callout-blend-mode: normal;
   --callout-border-width: 2px;
-  --callout-quote-gradient: linear-gradient(to right, rgba(var(--hr-color),0.4), rgba(var(--hr-color),0.3), rgba(var(--hr-color),0.2)) 1;
+  --callout-quote-gradient: linear-gradient(to right, oklch(100% 0 0 / 0), oklch(100% 0 0 / 0.4), oklch(100% 0 0 / 0.5), oklch(100% 0 0 / 0.4), oklch(100% 0 0 / 0)) 1;
+  --callout-quote-lightness: var(--lightest);
 }
 
-/* Obsidian internal color set:
+/* WIP: Obsidian internal color set:
   --color-red-rgb: 251, 70, 76;
   --color-red: #fb464c;
   --color-orange-rgb: 233, 151, 63;
@@ -143,18 +150,16 @@ div.callout .callout-content p { margin-left: 0rem; }
 .markdown-rendered ul > li { margin-inline-start: 1rem; }
 
 
-/* CALLOUT STYLING 
+
+/* GENERAL CALLOUT STYLING 
 All done by me.
 Outlined Style inspired by Minimal Theme by @kepano
 GitHub: https://github.com/kepano/obsidian-minimal
 Link: https://twitter.com/kepano
 ------------------------------*/
 
-/* THE MOST IMPORTANT CALLOUT CHANGE: */
-div.callout { --callout-color: var(--base) var(--callout-chroma) var(--callout-hue); }
-
-
 div.callout {
+  --callout-color: var(--callout-lightness) var(--callout-chroma) var(--callout-hue);
   --callout-title-color: oklch(var(--callout-color) / var(--callout-opacity)); /*WIP: Figure out why you can not define it in body.*/
   overflow: visible;
   /*background: linear-gradient(to right, rgba(var(--callout-color), 0.02), rgba(var(--callout-color), 0));*/
@@ -173,7 +178,7 @@ div.callout>.callout-title {
   letter-spacing: 0.07em;
   color: var(--callout-title-color);
   background-color: oklch(0% 0 0 / 1); /*WIP*/
-  margin-top: -24px;
+  margin-top: -1.5em;
   margin-left: -0.75em;
   padding: 0 0.7em;
   border-radius: 0.5em;
@@ -186,7 +191,11 @@ div.callout>.callout-title>.callout-icon {
 
 div.callout>.callout-title>.callout-icon .svg-icon { color: var(--callout-title-color); --icon-stroke: 3px; }
 
-/* INNER CALLOUT ELEMENTS */
+.cm-embed-block.cm-callout { padding-top: 1em; }
+
+
+
+/* GENERAL INNER CALLOUT ELEMENT STYLING */
 
 .markdown-source-view .cm-em, .markdown-rendered em,
 .markdown-source-view .cm-strong, .markdown-rendered strong/*,
@@ -202,7 +211,7 @@ div.callout a.internal-link.is-unresolved { color: rgba(var(--callout-color), 0.
 
 div.callout > .callout-title > .callout-title-inner :is(
   ol, ul, .markdown-rendered ol, .markdown-rendered ul.has-list-bullet) {
-  margin: 0;
+  margin: 0em;
 }
 
 div.callout > .callout-title > .callout-title-inner :is(
@@ -210,6 +219,8 @@ div.callout > .callout-title > .callout-title-inner :is(
   margin-left: 1.5em;
   margin-top: -0.1em;
 }
+
+
 
 /* SPECIAL CALLOUTS */
 
@@ -221,53 +232,59 @@ div.callout[data-callout*="primary-accent"], div.callout[data-callout*="note"], 
   --callout-title-color: var(--callout-color); 
   border-color: var(--callout-color); 
 }
-/* As it utilizes HSL I needed to redo this: */
-div.callout[data-callout^="l"]:is([data-callout*="primary-accent"], [data-callout*="note"], [data-callout*="callout"]) { 
-  --callout-color: hsla(var(--accent-h), var(--accent-s), var(--light), var(--callout-opacity)); } 
-div.callout[data-callout^="ll"]:is([data-callout*="primary-accent"], [data-callout*="note"], [data-callout*="callout"]) { 
-  --callout-color: hsla(var(--accent-h), var(--accent-s), var(--lighter), var(--callout-opacity)); } 
-div.callout[data-callout^="lll"]:is([data-callout*="primary-accent"], [data-callout*="note"], [data-callout*="callout"]) { 
-  --callout-color: hsla(var(--accent-h), var(--accent-s), var(--lightest), var(--callout-opacity)); }
-
-div.callout[data-callout^="d"]:is(
-[data-callout*="primary-accent"], [data-callout*="note"], [data-callout*="callout"]) { 
-  --callout-color: hsla(var(--accent-h), var(--accent-s), var(--dark), var(--callout-opacity)); } 
-div.callout[data-callout^="dd"]:is(
-[data-callout*="primary-accent"], [data-callout*="note"], [data-callout*="callout"]) { 
-  --callout-color: hsla(var(--accent-h), var(--accent-s), var(--darker), var(--callout-opacity)); } 
-div.callout[data-callout^="ddd"]:is(
-[data-callout*="primary-accent"], [data-callout*="note"], [data-callout*="callout"]) {
-  --callout-color: hsla(var(--accent-h), var(--accent-s), var(--darkest), var(--callout-opacity)); }
-
-/*
-div.callout[data-callout*="primary-accent"] .markdown-source-view .cm-em, div.callout[data-callout*="primary-accent"] .markdown-rendered em,
-div.callout[data-callout*="primary-accent"] .markdown-source-view .cm-strong, div.callout[data-callout*="primary-accent"] .markdown-rendered strong { color: oklch(var(--callout-color) / var(--opaque)); }
-*/
 
 div.callout:is([data-callout*="primary-accent"], [data-callout*="note"]) :is(.markdown-source-view .cm-em, 
-.markdown-rendered em, .markdown-source-view .cm-strong, .markdown-rendered strong) {
-    color: var(--callout-color);
-}
+.markdown-rendered em, .markdown-source-view .cm-strong, .markdown-rendered strong) 
+{ color: var(--callout-color); }
 
 div.callout:is([data-callout*="primary-accent"], [data-callout*="note"], [data-callout*="callout"]) 
 a.footnote-link { color: var(--callout-color); }
 
 div.callout:is([data-callout*="primary-accent"], [data-callout*="note"], [data-callout*="callout"]) :is(.markdown-source-view .cm-em, .markdown-rendered em,
-.markdown-source-view .cm-strong, .markdown-rendered strong, a.internal-link) { 
-  color: var(--callout-color); }
+.markdown-source-view .cm-strong, .markdown-rendered strong, a.internal-link) 
+{ color: var(--callout-color); }
 
-/* div.callout a.internal-link.is-unresolved { color: rgba(var(--callout-color), 0.9); } WIP: Remove or keep?*/
+/* As it utilizes HSL I needed to redo this: */
+div.callout[data-callout^="l"]:is([data-callout*="primary-accent"], [data-callout*="note"], [data-callout*="callout"]) 
+{ --accent-l: var(--light); } 
+div.callout[data-callout^="ll"]:is([data-callout*="primary-accent"], [data-callout*="note"], [data-callout*="callout"]) 
+{ --accent-l: var(--lighter); } 
+div.callout[data-callout^="lll"]:is([data-callout*="primary-accent"], [data-callout*="note"], [data-callout*="callout"]) 
+{ --accent-l: var(--super-light); }
+div.callout[data-callout^="llll"]:is([data-callout*="primary-accent"], [data-callout*="note"], [data-callout*="callout"]) 
+{ --accent-l: var(--lightest); }
+
+div.callout[data-callout^="b"]:is([data-callout*="primary-accent"], [data-callout*="note"], [data-callout*="callout"]) 
+{ --accent-l: var(--base); } 
+
+div.callout[data-callout^="d"]:is([data-callout*="primary-accent"], [data-callout*="note"], [data-callout*="callout"]) 
+{ --accent-l: var(--dark); }
+div.callout[data-callout^="dd"]:is([data-callout*="primary-accent"], [data-callout*="note"], [data-callout*="callout"]) 
+{ --accent-l: var(--darker); } 
+div.callout[data-callout^="ddd"]:is([data-callout*="primary-accent"], [data-callout*="note"], [data-callout*="callout"]) 
+{ --accent-l: var(--super-dark); }
+div.callout[data-callout^="dddd"]:is([data-callout*="primary-accent"], [data-callout*="note"], [data-callout*="callout"]) 
+{ --accent-l: var(--darkest); }
+
 
 /* Secondary Accent */
 div.callout[data-callout*="secondary-accent"] {
+  --callout-lightness: var(--secondary-accent-lightness);
   --callout-chroma: var(--secondary-accent-chroma);
   --callout-hue: var(--secondary-accent-hue);
 }
 
-/* Quote & Cite */
 
-div.callout[data-callout="quote"],
-.callout[data-callout="cite"] {
+/* Quote & Cite */
+.cm-embed-block.cm-callout div.callout:is([data-callout*="quote"],[data-callout*="cite"]) {
+  margin-top: 0em;
+  margin-bottom: 0.8em;
+}
+
+div.callout[data-callout*="quote"],
+.callout[data-callout*="cite"] {
+  --callout-lightness: var(--callout-quote-lightness);
+  --callout-color: var(--callout-lightness) var(--callout-chroma) var(--callout-hue);
   display: flex;
   flex-direction: column-reverse;
   padding-bottom: 1.5em;
@@ -279,14 +296,13 @@ div.callout[data-callout="quote"],
   margin-bottom: 2em;
 }
 
-div.callout[data-callout="quote"]>.callout-title,
-.callout[data-callout="cite"]>.callout-title {
+div.callout[data-callout*="quote"]>.callout-title,
+.callout[data-callout*="cite"]>.callout-title {
   margin-bottom: -2.3em;
   margin-top: 0em;
 }
 
-div.callout[data-callout="cite"] {
-  border-image: var(--hr-gradient);
+div.callout[data-callout*="cite"] {
   border-left: none;
   border-right: none;
   border-radius: 0px;
@@ -297,35 +313,45 @@ div.callout:is([data-callout*="quote"], [data-callout*="cite"])>.callout-title>.
   transform: scale(-1, 1);
 }
 
-div.callout[data-callout="cite"]>.callout-title>.callout-icon {
+div.callout[data-callout*="cite"]>.callout-title>.callout-icon {
   --icon-color: oklch(var(--callout-color));
 }
 
 
-/* MODULAR CALLOUT COLORS */
-div.callout[data-callout^="l"] { --callout-color: var(--light) var(--callout-chroma) var(--callout-hue); }
-div.callout[data-callout^="ll"] { --callout-color: var(--lighter) var(--callout-chroma) var(--callout-hue); }
-div.callout[data-callout^="lll"] { --callout-color: var(--lightest) var(--callout-chroma) var(--callout-hue); }
 
-div.callout[data-callout^="d"] { --callout-color: var(--dark) var(--callout-chroma) var(--callout-hue); }
-div.callout[data-callout^="dd"] { --callout-color: var(--darker) var(--callout-chroma) var(--callout-hue); }
-div.callout[data-callout^="ddd"] { --callout-color: var(--darkest) var(--callout-chroma) var(--callout-hue); }
+/* MODULAR CALLOUT COLORING */
 
-div.callout[data-callout-metadata^="opaque"] { --callout-opacity: var(--opaque); --callout-border-opacity: var(--callout-opacity)}
+/* Lightness/Darkness (l - b - d) */
+div.callout[data-callout^="l"] { --callout-lightness: var(--light); }
+div.callout[data-callout^="ll"] { --callout-lightness: var(--lighter); }
+div.callout[data-callout^="lll"] { --callout-lightness: var(--super-light); }
+div.callout[data-callout^="llll"] { --callout-lightness: var(--lightest); }
+div.callout[data-callout^="lllll"] { --callout-lightness: var(--white); }
 
+div.callout[data-callout^="b"] { --callout-lightness: var(--base); }
+
+div.callout[data-callout^="d"] { --callout-lightness: var(--dark); }
+div.callout[data-callout^="dd"] { --callout-lightness: var(--darker); }
+div.callout[data-callout^="ddd"] { --callout-lightness: var(--super-dark); }
+div.callout[data-callout^="dddd"] { --callout-lightness: var(--darkest); }
+div.callout[data-callout^="ddddd"] { --callout-lightness: var(--black); }
+
+/* Alpha/Opacity (s - f) */
 div.callout[data-callout-metadata^="s"] { --callout-opacity: var(--strong); --callout-border-opacity: var(--callout-opacity)}
 div.callout[data-callout-metadata^="ss"] { --callout-opacity: var(--stronger); --callout-border-opacity: var(--callout-opacity)}
 div.callout[data-callout-metadata^="sss"] { --callout-opacity: var(--strongest); --callout-border-opacity: var(--callout-opacity)}
+div.callout:is([data-callout-metadata^="ssss"], [data-callout-metadata^="opaque"]) { --callout-opacity: var(--opaque); --callout-border-opacity: var(--callout-opacity)}
 
 div.callout[data-callout-metadata^="f"] { --callout-opacity: var(--faint); --callout-border-opacity: var(--callout-opacity)}
 div.callout[data-callout-metadata^="ff"] { --callout-opacity: var(--fainter); --callout-border-opacity: var(--callout-opacity)}
 div.callout[data-callout-metadata^="fff"] { --callout-opacity: var(--faintest); --callout-border-opacity: var(--callout-opacity)}
+div.callout:is([data-callout-metadata^="ffff"], [data-callout-metadata^="translucent"]) { --callout-opacity: var(--translucent); --callout-border-opacity: var(--callout-opacity)}
 
-div.callout[data-callout-metadata^="translucent"] { --callout-opacity: var(--translucent); --callout-border-opacity: var(--callout-opacity)}
-div.callout[data-callout-metadata^="ffffuck you"] { --callout-opacity: var(--transparent); --callout-border-opacity: var(--callout-opacity)} /*This line made by Zohiu*/ /*WIP: Wanna keep it?*/
+div.callout[data-callout-metadata^="fffffuck you"] { --callout-opacity: var(--transparent); --callout-border-opacity: var(--callout-opacity)} /*This line made by Zohiu*/ /*WIP: Wanna keep it?*/
 
-/* Indigo for test */
+/* Colors */
 div.callout[data-callout*="indigo"] {
   --callout-chroma: var(--indigo-chroma);
   --callout-hue: var(--indigo-hue);
 }
+

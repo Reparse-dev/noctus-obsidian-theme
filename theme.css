@@ -6,24 +6,23 @@ Contact: shaydedg@gmail.com
 
 /* To-do: 
 - Brightness: Add inversion option for both light-theme & pdf independently.
+- Brightness: Make an option to decrease lightness for text as well (callout-metadata)
 - Opacity: Make text have lower opacity as well!
-- Renaming: Consider making d & l -> -l & l, and s & f -> a (opaque) & -a (times how much less opaque)
+- Heading styles & PDF export!
+- Unless used, remove the oklch primary accents.
 */
 
 /* Ressources: 
 - https://oklch.com/
 */
 
+@charset "UTF-8";
+
 @import 'mobile/mobile';
 @import 'mobile/ios';
 @import 'mobile/toolbar';
 
-@charset "UTF-8";
-
-/* REDEFINE ALL COLOR VARIABLES */
-
 body {
-
   /* General */
   --obsidian-logo-small: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 512 512' width='8' height='8' fill='none' stroke='%23ffffff90' stroke-width='5%' stroke-linecap='round' stroke-linejoin='round' class='logo-wireframe'%3E%3Cpath d='M172.7 461.6c73.6-149.1 2.1-217-43.7-246.9m72 96.7c71.6-17.3 141-16.3 189.8 88.5m-114-96.3c-69.6-174 44.6-181 16.3-273.6m97.7 370c1.6-3 3.3-5.8 5.1-8.6 20-29.9 34.2-53.2 41.4-65.3a16 16 0 0 0-1.2-17.7 342.1 342.1 0 0 1-40.2-66.1c-10.9-26-12.5-66.5-12.6-86.2 0-7.4-2.4-14.7-7-20.6l-81.8-104a32 32 0 0 0-1.4-1.5m97.7 370a172.8 172.8 0 0 0-18 59c-2.9 21.5-24 38.4-45 32.6-30-8.3-64.5-21.1-95.7-23.5l-47.8-3.6c-7.7-.6-15-4-20.3-9.5l-82.3-84.8c-9-9.2-11.4-23-6.2-34.8 0 0 51-111.8 52.8-117.7l.7-3M293.1 30a31.5 31.5 0 0 0-44.4-2.3l-97.4 87.5c-5.4 5-9 11.5-10 18.8-3.7 24.5-9.7 68-12.3 80.7'%3E%3C/path%3E%3C/svg%3E");
   --obsidian-logo-small-dark: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 512 512' width='8' height='8' fill='none' stroke='%2300000090' stroke-width='5%' stroke-linecap='round' stroke-linejoin='round' class='logo-wireframe'%3E%3Cpath d='M172.7 461.6c73.6-149.1 2.1-217-43.7-246.9m72 96.7c71.6-17.3 141-16.3 189.8 88.5m-114-96.3c-69.6-174 44.6-181 16.3-273.6m97.7 370c1.6-3 3.3-5.8 5.1-8.6 20-29.9 34.2-53.2 41.4-65.3a16 16 0 0 0-1.2-17.7 342.1 342.1 0 0 1-40.2-66.1c-10.9-26-12.5-66.5-12.6-86.2 0-7.4-2.4-14.7-7-20.6l-81.8-104a32 32 0 0 0-1.4-1.5m97.7 370a172.8 172.8 0 0 0-18 59c-2.9 21.5-24 38.4-45 32.6-30-8.3-64.5-21.1-95.7-23.5l-47.8-3.6c-7.7-.6-15-4-20.3-9.5l-82.3-84.8c-9-9.2-11.4-23-6.2-34.8 0 0 51-111.8 52.8-117.7l.7-3M293.1 30a31.5 31.5 0 0 0-44.4-2.3l-97.4 87.5c-5.4 5-9 11.5-10 18.8-3.7 24.5-9.7 68-12.3 80.7'%3E%3C/path%3E%3C/svg%3E");  
@@ -68,7 +67,7 @@ body {
   --black: 0%;
   /* Or I could go with: base-10, base-20, base-30, base-40, base-50, etc. */
 
-  /* Alpha Levels (a) */ /*"--true" & "--false" made by Zohiu*/
+  /* Alpha Levels (a) */ /* "--true" & "--false" made by Zohiu */
   --opaque: 1; --true: 1; /*WIP: Keep the true & false or nah? */
   --strongest: 0.9;
   --stronger: 0.8;
@@ -80,12 +79,10 @@ body {
   --transparent: 0; --false: 0;
 
   /* Indigo for testing */
-
   --indigo-chroma: 0.1793;
   --indigo-hue: 301.68;
 
   /* Link Colors */
-
   --link-unresolved-color: var(--secondary-accent-color);
   --link-unresolved-decoration-color: var(--link-unresolved-color);
   --link-unresolved-opacity: var(--faint);
@@ -100,7 +97,6 @@ body {
   --callout-title-size: 1em;
   --callout-blend-mode: normal;
   --callout-border-width: 2px;
-  --callout-quote-gradient: linear-gradient(to right, oklch(100% 0 0 / 0), oklch(100% 0 0 / 0.4), oklch(100% 0 0 / 0.5), oklch(100% 0 0 / 0.4), oklch(100% 0 0 / 0)) 1;
   --callout-quote-lightness: var(--lightest);
 }
 
@@ -122,6 +118,23 @@ body {
   --color-pink-rgb: 250, 153, 205;
   --color-pink: #fa99cd;
 */
+
+@media print {
+  body {
+    --background-primary: oklch(100% 0 0);
+    --white: 0%;
+    --lightest: 10%;
+    --super-light: 20%;
+    --lighter: 30%;
+    --light: 40%;
+    --base: 50%;
+    --dark: 60%;
+    --darker: 70%;
+    --super-dark: 80%;
+    --darkest: 90%;
+    --black: 100%;
+  }
+}
 
 svg.svg-icon {
   --icon-size: 1.05em;
@@ -177,7 +190,7 @@ div.callout>.callout-title {
   font-size: var(--callout-title-size);
   letter-spacing: 0.07em;
   color: var(--callout-title-color);
-  background-color: oklch(0% 0 0 / 1); /*WIP*/
+  background-color: var(--background-primary); /*WIP*/
   margin-top: -1.5em;
   margin-left: -0.75em;
   padding: 0 0.7em;
@@ -198,21 +211,15 @@ div.callout>.callout-title>.callout-icon .svg-icon { color: var(--callout-title-
 /* GENERAL INNER CALLOUT ELEMENT STYLING */
 
 .markdown-source-view .cm-em, .markdown-rendered em,
-.markdown-source-view .cm-strong, .markdown-rendered strong/*,
-.markdown-source-view .cm-u, .markdown-rendered u */{ color: oklch(var(--callout-color) / var(--opaque)); }
+.markdown-source-view .cm-strong, .markdown-rendered strong { color: oklch(var(--callout-color) / var(--opaque)); }
 
 div.callout a.footnote-link { color: oklch(var(--callout-color) / var(--faint)); }
 
 .markdown-source-view .cm-em, .markdown-rendered em,
 .markdown-source-view .cm-strong, .markdown-rendered strong,
-/*.markdown-source-view .cm-u, .markdown-rendered u,*/
-div.callout a.internal-link { color: oklch(var(--callout-color) / var(--callout-opacity)); }/*
-div.callout a.internal-link.is-unresolved { color: rgba(var(--callout-color), 0.9); }*/
-
+div.callout a.internal-link { color: oklch(var(--callout-color) / var(--callout-opacity)); }
 div.callout > .callout-title > .callout-title-inner :is(
-  ol, ul, .markdown-rendered ol, .markdown-rendered ul.has-list-bullet) {
-  margin: 0em;
-}
+  ol, ul, .markdown-rendered ol, .markdown-rendered ul.has-list-bullet) {  margin: 0em; }
 
 div.callout > .callout-title > .callout-title-inner :is(
   ol, ul, .markdown-rendered ol, .markdown-rendered ul.has-list-bullet) > li {
@@ -245,26 +252,30 @@ div.callout:is([data-callout*="primary-accent"], [data-callout*="note"], [data-c
 { color: var(--callout-color); }
 
 /* As it utilizes HSL I needed to redo this: */
-div.callout[data-callout^="l"]:is([data-callout*="primary-accent"], [data-callout*="note"], [data-callout*="callout"]) 
+div.callout[data-callout^="+l"]:is([data-callout*="primary-accent"], [data-callout*="note"], [data-callout*="callout"]) 
 { --accent-l: var(--light); } 
-div.callout[data-callout^="ll"]:is([data-callout*="primary-accent"], [data-callout*="note"], [data-callout*="callout"]) 
+div.callout[data-callout^="+ll"]:is([data-callout*="primary-accent"], [data-callout*="note"], [data-callout*="callout"]) 
 { --accent-l: var(--lighter); } 
-div.callout[data-callout^="lll"]:is([data-callout*="primary-accent"], [data-callout*="note"], [data-callout*="callout"]) 
+div.callout[data-callout^="+lll"]:is([data-callout*="primary-accent"], [data-callout*="note"], [data-callout*="callout"]) 
 { --accent-l: var(--super-light); }
-div.callout[data-callout^="llll"]:is([data-callout*="primary-accent"], [data-callout*="note"], [data-callout*="callout"]) 
+div.callout[data-callout^="+llll"]:is([data-callout*="primary-accent"], [data-callout*="note"], [data-callout*="callout"]) 
 { --accent-l: var(--lightest); }
+div.callout[data-callout^="+lllll"]:is([data-callout*="primary-accent"], [data-callout*="note"], [data-callout*="callout"]) 
+{ --accent-l: var(--white); }
 
-div.callout[data-callout^="b"]:is([data-callout*="primary-accent"], [data-callout*="note"], [data-callout*="callout"]) 
+div.callout[data-callout^="l"]:is([data-callout*="primary-accent"], [data-callout*="note"], [data-callout*="callout"]) 
 { --accent-l: var(--base); } 
 
-div.callout[data-callout^="d"]:is([data-callout*="primary-accent"], [data-callout*="note"], [data-callout*="callout"]) 
+div.callout[data-callout^="-l"]:is([data-callout*="primary-accent"], [data-callout*="note"], [data-callout*="callout"]) 
 { --accent-l: var(--dark); }
-div.callout[data-callout^="dd"]:is([data-callout*="primary-accent"], [data-callout*="note"], [data-callout*="callout"]) 
+div.callout[data-callout^="-ll"]:is([data-callout*="primary-accent"], [data-callout*="note"], [data-callout*="callout"]) 
 { --accent-l: var(--darker); } 
-div.callout[data-callout^="ddd"]:is([data-callout*="primary-accent"], [data-callout*="note"], [data-callout*="callout"]) 
+div.callout[data-callout^="-lll"]:is([data-callout*="primary-accent"], [data-callout*="note"], [data-callout*="callout"]) 
 { --accent-l: var(--super-dark); }
-div.callout[data-callout^="dddd"]:is([data-callout*="primary-accent"], [data-callout*="note"], [data-callout*="callout"]) 
+div.callout[data-callout^="-llll"]:is([data-callout*="primary-accent"], [data-callout*="note"], [data-callout*="callout"]) 
 { --accent-l: var(--darkest); }
+div.callout[data-callout^="-lllll"]:is([data-callout*="primary-accent"], [data-callout*="note"], [data-callout*="callout"]) 
+{ --accent-l: var(--black); }
 
 
 /* Secondary Accent */
@@ -288,7 +299,7 @@ div.callout[data-callout*="quote"],
   display: flex;
   flex-direction: column-reverse;
   padding-bottom: 1.5em;
-  border-image: var(--callout-quote-gradient);
+  border-image: linear-gradient(to right, oklch(var(--callout-color) / 0.5), oklch(var(--callout-color) / 0.4), oklch(var(--callout-color) / 0.2)) 1;
   padding-top: 0.5em;
   --callout-chroma: 0;
   --callout-hue: 0;
@@ -306,7 +317,7 @@ div.callout[data-callout*="cite"] {
   border-left: none;
   border-right: none;
   border-radius: 0px;
-  background-color: var(--background-primary);
+  border-image: linear-gradient(to right, oklch(var(--callout-color) / 0), oklch(var(--callout-color) / 0.4), oklch(var(--callout-color) / 0.5), oklch(var(--callout-color) / 0.4), oklch(var(--callout-color) / 0)) 1;
 }
 
 div.callout:is([data-callout*="quote"], [data-callout*="cite"])>.callout-title>.callout-icon {
@@ -321,33 +332,31 @@ div.callout[data-callout*="cite"]>.callout-title>.callout-icon {
 
 /* MODULAR CALLOUT COLORING */
 
-/* Lightness/Darkness (l - b - d) */
-div.callout[data-callout^="l"] { --callout-lightness: var(--light); }
-div.callout[data-callout^="ll"] { --callout-lightness: var(--lighter); }
-div.callout[data-callout^="lll"] { --callout-lightness: var(--super-light); }
-div.callout[data-callout^="llll"] { --callout-lightness: var(--lightest); }
-div.callout[data-callout^="lllll"] { --callout-lightness: var(--white); }
+/* Lightness/Darkness (l) */
+div.callout[data-callout^="+l"] { --callout-lightness: var(--light); }
+div.callout[data-callout^="+ll"] { --callout-lightness: var(--lighter); }
+div.callout[data-callout^="+lll"] { --callout-lightness: var(--super-light); }
+div.callout[data-callout^="+llll"] { --callout-lightness: var(--lightest); }
+div.callout[data-callout^="+lllll"] { --callout-lightness: var(--white); }
 
-div.callout[data-callout^="b"] { --callout-lightness: var(--base); }
+div.callout[data-callout^="l"] { --callout-lightness: var(--base); }
 
-div.callout[data-callout^="d"] { --callout-lightness: var(--dark); }
-div.callout[data-callout^="dd"] { --callout-lightness: var(--darker); }
-div.callout[data-callout^="ddd"] { --callout-lightness: var(--super-dark); }
-div.callout[data-callout^="dddd"] { --callout-lightness: var(--darkest); }
-div.callout[data-callout^="ddddd"] { --callout-lightness: var(--black); }
+div.callout[data-callout^="-l"] { --callout-lightness: var(--dark); }
+div.callout[data-callout^="-ll"] { --callout-lightness: var(--darker); }
+div.callout[data-callout^="-lll"] { --callout-lightness: var(--super-dark); }
+div.callout[data-callout^="-llll"] { --callout-lightness: var(--darkest); }
+div.callout[data-callout^="-lllll"] { --callout-lightness: var(--black); }
 
-/* Alpha/Opacity (s - f) */
-div.callout[data-callout-metadata^="s"] { --callout-opacity: var(--strong); --callout-border-opacity: var(--callout-opacity)}
-div.callout[data-callout-metadata^="ss"] { --callout-opacity: var(--stronger); --callout-border-opacity: var(--callout-opacity)}
-div.callout[data-callout-metadata^="sss"] { --callout-opacity: var(--strongest); --callout-border-opacity: var(--callout-opacity)}
-div.callout:is([data-callout-metadata^="ssss"], [data-callout-metadata^="opaque"]) { --callout-opacity: var(--opaque); --callout-border-opacity: var(--callout-opacity)}
-
-div.callout[data-callout-metadata^="f"] { --callout-opacity: var(--faint); --callout-border-opacity: var(--callout-opacity)}
-div.callout[data-callout-metadata^="ff"] { --callout-opacity: var(--fainter); --callout-border-opacity: var(--callout-opacity)}
-div.callout[data-callout-metadata^="fff"] { --callout-opacity: var(--faintest); --callout-border-opacity: var(--callout-opacity)}
-div.callout:is([data-callout-metadata^="ffff"], [data-callout-metadata^="translucent"]) { --callout-opacity: var(--translucent); --callout-border-opacity: var(--callout-opacity)}
-
-div.callout[data-callout-metadata^="fffffuck you"] { --callout-opacity: var(--transparent); --callout-border-opacity: var(--callout-opacity)} /*This line made by Zohiu*/ /*WIP: Wanna keep it?*/
+/* Alpha (a) */
+div.callout[data-callout-metadata^="a"] { --callout-opacity: var(--opaque); --callout-border-opacity: var(--callout-opacity)}
+div.callout[data-callout-metadata^="-a"] { --callout-opacity: var(--strongest); --callout-border-opacity: var(--callout-opacity)}
+div.callout[data-callout-metadata^="-aa"] { --callout-opacity: var(--stronger); --callout-border-opacity: var(--callout-opacity)}
+div.callout[data-callout-metadata^="-aaa"] { --callout-opacity: var(--strong); --callout-border-opacity: var(--callout-opacity)}
+div.callout[data-callout-metadata^="-aaaa"] { --callout-opacity: var(--faint); --callout-border-opacity: var(--callout-opacity)}
+div.callout[data-callout-metadata^="-aaaaa"] { --callout-opacity: var(--fainter); --callout-border-opacity: var(--callout-opacity)}
+div.callout[data-callout-metadata^="-aaaaaa"] { --callout-opacity: var(--faintest); --callout-border-opacity: var(--callout-opacity)}
+div.callout[data-callout-metadata^="-aaaaaaa"] { --callout-opacity: var(--translucent); --callout-border-opacity: var(--callout-opacity)}
+div.callout[data-callout-metadata^="-aaaaaaaa"] { --callout-opacity: var(--transparent); --callout-border-opacity: var(--callout-opacity)}
 
 /* Colors */
 div.callout[data-callout*="indigo"] {
@@ -355,3 +364,128 @@ div.callout[data-callout*="indigo"] {
   --callout-hue: var(--indigo-hue);
 }
 
+
+/* Timeline Callout
+Made by harr (insider), forum.obsidian.md
+link: https://forum.obsidian.md/t/css-snippet-timeline-as-callout/93652
+*/
+
+.callout[data-callout="timeline"] {
+    
+  --callout-color: var(--callout-info);
+  --callout-icon: clock;
+
+  /* links */
+  
+  & a {
+    color: inherit;
+    font-weight: inherit;
+    text-decoration: none; 
+    font-style: inherit;   
+    background: none;
+    padding-inline: 0;
+
+    /* hashtags */
+
+    &[href^="#"]{
+      text-decoration: none;
+      padding-inline: .4rem;
+    }
+
+    /* show links on hover */
+
+    &:hover {
+      text-decoration: underline solid;
+      color: inherit;
+    }
+  } 
+  
+  /* content */ 
+
+  & .callout-content {
+
+    background-color: none;
+    padding: 2rem 0;
+
+    /* H1 as horizontal line */
+
+    & h1 {
+      font-weight: var(--font-normal);
+      font-size: var(--font-text-size);
+      color: var(--text-normal) !important;
+      padding: 0 !important;
+      margin-right: 1rem !important;
+      text-align: right;
+      border-top: dotted .1rem;
+      padding-top: 0.3em !important;
+    }
+
+    /* H2 as box */
+      
+    & h2 {
+      font-weight: var(--font-normal) !important;
+      font-size: var(--font-text-size);
+      color: var(--text-muted);
+      text-align: left !important;
+      margin: 0 1rem;
+      padding: .2rem 1rem .2rem 1rem;
+      border: solid .1rem;
+      border-radius: .4rem;
+      display: inline-block;
+    }  
+
+   /* vertical line */
+
+    & :is(h1, h3, p, ul, ol) {
+      margin: 0 0 0 3.2rem;
+      border-left: solid .1rem;
+      padding: 0 1rem;
+      border-color: var(--text-muted);
+      font-weight: var(--font-normal);
+      color: var(--text-normal);
+      font-size: var(--font-text-size);
+
+      /* space before H1 */      
+      &:has(+ h1) {
+        padding-bottom: 1rem;
+      }        
+
+      /* space before H2 */
+      &:has(+ h2) {
+        padding-bottom: 1.5rem;
+      } 
+    }
+
+    /* H3 as bullet */
+       
+    & h3::before {
+        border: .4rem solid;
+        border-radius: .4rem;
+        border-color: var(--text-muted);
+        content: "";
+        display: block;
+        height: 0;
+        left: -1.45rem;
+        position: relative;
+        top: 1rem;
+        width: 0;
+        z-index: 1;
+    }    
+
+    & h3 {
+      color: var(--text-normal);
+    }
+
+    /* text */
+
+    & :is(p, ol, ul, li) {
+      color: var(--text-faint);
+    }
+
+    /* images */
+    
+    & img {
+      padding: 1rem;
+    }
+  }
+}

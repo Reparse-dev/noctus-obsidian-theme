@@ -91,6 +91,7 @@ body {
   --callout-hue: 0;
   --callout-chroma: 0;
   --callout-lightness: var(--base);
+  --callout-color: var(--callout-lightness) var(--callout-chroma) var(--callout-hue);
   --callout-title-color: var(--callout-color);
   --callout-opacity: var(--opaque);
   --callout-border-opacity: var(--opaque);
@@ -98,6 +99,29 @@ body {
   --callout-blend-mode: normal;
   --callout-border-width: 2px;
   --callout-quote-lightness: var(--lightest);
+
+
+  --text-normal-lightness: var(--white);
+  --text-normal-chroma: 0;
+  --text-normal-hue: 0;
+
+  --bold-color: oklch(var(--text-normal-lightness) var(var(--text-normal-chroma)) var(var(--text-normal-hue)));
+
+  --font-text: "Ubuntu", "Play", "Inter";
+  --h1-font: "Onest", "Rowdies", "Nexa", "Inter";
+  --h2-font: "Onest", "Rowdies", "Nexa", "Inter";
+  --h3-font: "Onest", "Rowdies", "Nexa", "Inter";
+  --h4-font: "Onest", "Rowdies", "Nexa", "Inter";
+  --h5-font: "Onest", "Rowdies", "Nexa", "Inter";
+  --h6-font: "Onest", "Rowdies", "Nexa", "Inter";
+
+  --tab-radius: 0.5em;
+  --big-heading-letter-spacing: 0.07em;
+  --medium-heading-letter-spacing: 0.06em;
+  --small-heading-letter-spacing: 0.04em;
+  --pdf-text-size: 12pt;
+
+  --h4-vertical-padding: 0.4rem; /* Better padding variable */
 }
 
 /* WIP: Obsidian internal color set:
@@ -134,6 +158,14 @@ body {
     --darkest: 90%;
     --black: 100%;
   }
+  html {
+    --font-text-size: var(--pdf-text-size) !important;
+    font-size: var(--font-text-size) !important;
+  } 
+  body .markdown-preview-view {
+    --font-text-size: var(--pdf-text-size) !important;
+    font-size: var(--font-text-size);
+  } 
 }
 
 svg.svg-icon {
@@ -143,6 +175,10 @@ svg.svg-icon {
 /* INDENTATION 
 I indent ALL elements but Callouts and similar to 1st make the headings clearer and 2nd make the padding in H4 seem natural and fitting.
 */
+
+body p {
+  color: oklch(var(--text-normal-lightness) var(--text-normal-chroma) var(--text-normal-hue))
+}
 
 body .markdown-preview-view {
   --list-indent: 1em;
@@ -162,6 +198,90 @@ div.callout .callout-content p { margin-left: 0rem; }
 
 .markdown-rendered ul > li { margin-inline-start: 1rem; }
 
+/* RANDOM FROM OLD THEME */ /* WIP: Put elsewhere and revaluate */
+
+p a.footnote-link {
+  color: hsla(var(--accent-h), var(--accent-s), var(--accent-l), 1);
+}
+
+sup, sub {
+  color: oklch( var(--text-normal-lightness) var(--text-normal-chroma) var(--text-normal-hue) / 0.9);
+}
+
+
+.markdown-rendered blockquote {
+  margin-left: var(--h4-vertical-padding);
+}
+
+.mod-root .workspace-tab-container .workspace-leaf-content {
+  --en-opacity: 1;
+  background-color: var(--background-primary);
+  border-radius: var(--tab-radius);
+}
+
+
+/* UNORDERED LIST STYLING 
+Based on Emacs bulletlist Snippet by Lilian POULIQUEN
+Based on: https://forum.obsidian.md/t/style-bullets-in-lists-by-level/46152
+Found here: https://www.reddit.com/r/ObsidianMD/comments/urhx0g/comment/kbyy6k7/
+With special thanks to:
+- wreckable (Reddit: https://www.reddit.com/user/wreckable/) for sharing it on Reddit
+- LukeSKY75_ (Reddit: https://www.reddit.com/user/LukeSKY75_/) for making it work in reading mode and improving the CSS 
+------------------------------*/
+
+/* LEVEL 1 - Bullet*/
+.markdown-reading-view ul > li > .list-bullet:after,
+.markdown-source-view.mod-cm6 .HyperMD-list-line-1 .list-bullet:after {
+  height: 7px;
+  width: 7px;
+  border-radius: 50%;
+} .markdown-source-view.mod-cm6 .HyperMD-list-line-1 .list-bullet:after {
+  margin-right: 1em;
+}
+
+/* LEVEL 2 - Hollow Bullet*/
+.markdown-reading-view ul > li > ul > li > .list-bullet:after,
+.markdown-source-view.mod-cm6 .HyperMD-list-line-2 .list-bullet:after {
+  height: 7px;
+  width: 7px;
+  background-color: transparent;
+  border-style: solid;
+  border-radius: 50%;
+  border-width: 1px;
+} .markdown-source-view.mod-cm6 .HyperMD-list-line-2 .list-bullet:after {
+  margin-right: 1em;
+}
+
+/* LEVEL 3 - Solid Square */
+.markdown-reading-view ul > li > ul > li > ul > li > .list-bullet:after,
+.markdown-source-view.mod-cm6 .HyperMD-list-line-3 .list-bullet:after {
+  height: 5px;
+  width: 5px;
+  border-radius: 0%;
+  background-color: rgb(89, 89, 89);
+}
+.markdown-source-view.mod-cm6 .HyperMD-list-line-3 .list-bullet:after {
+  height: 7px;
+  width: 7px;
+  border-radius: 0%;
+  background-color: rgb(89, 89, 89);
+  margin-right: 1em;
+}
+
+/* LEVEL 4 - Triangle*/
+.markdown-reading-view ul > li > ul > li > ul > li > ul > li >.list-bullet:after,
+.markdown-source-view.mod-cm6 .HyperMD-list-line-4 .list-bullet:after {
+  height: 0;
+  width: 0;
+  background-color: transparent;
+  border-radius: 0%;
+  border-top: 5px solid transparent;
+  border-bottom: 5px solid transparent;
+  border-left: 8px solid;
+  border-right: 0px solid;
+} .markdown-source-view.mod-cm6 .HyperMD-list-line-4 .list-bullet:after {
+  margin-right: 1em;
+}
 
 
 /* GENERAL CALLOUT STYLING 
@@ -210,14 +330,14 @@ div.callout>.callout-title>.callout-icon .svg-icon { color: var(--callout-title-
 
 /* GENERAL INNER CALLOUT ELEMENT STYLING */
 
-.markdown-source-view .cm-em, .markdown-rendered em,
-.markdown-source-view .cm-strong, .markdown-rendered strong { color: oklch(var(--callout-color) / var(--opaque)); }
+/* 
+.markdown-source-view :is(.cm-em .cm-strong), .markdown-rendered :is(em, strong) */
 
-div.callout a.footnote-link { color: oklch(var(--callout-color) / var(--faint)); }
+.markdown-source-view :is(.cm-em .cm-strong), .markdown-rendered :is(em, strong)
+{ color: oklch(var(--callout-lightness) var(--callout-chroma) var(--callout-hue) / var(--callout-opacity)); }
 
-.markdown-source-view .cm-em, .markdown-rendered em,
-.markdown-source-view .cm-strong, .markdown-rendered strong,
-div.callout a.internal-link { color: oklch(var(--callout-color) / var(--callout-opacity)); }
+div.callout a.footnote-link { color: oklch(var(--callout-color) / var(--strongest)); }
+
 div.callout > .callout-title > .callout-title-inner :is(
   ol, ul, .markdown-rendered ol, .markdown-rendered ul.has-list-bullet) {  margin: 0em; }
 
@@ -292,8 +412,7 @@ div.callout[data-callout*="secondary-accent"] {
   margin-bottom: 0.8em;
 }
 
-div.callout[data-callout*="quote"],
-.callout[data-callout*="cite"] {
+div.callout:is([data-callout*="quote"], [data-callout*="cite"]) {
   --callout-lightness: var(--callout-quote-lightness);
   --callout-color: var(--callout-lightness) var(--callout-chroma) var(--callout-hue);
   display: flex;
@@ -307,8 +426,7 @@ div.callout[data-callout*="quote"],
   margin-bottom: 2em;
 }
 
-div.callout[data-callout*="quote"]>.callout-title,
-.callout[data-callout*="cite"]>.callout-title {
+div.callout:is([data-callout*="quote"], [data-callout*="cite"])>.callout-title {
   margin-bottom: -2.3em;
   margin-top: 0em;
 }
@@ -328,51 +446,12 @@ div.callout[data-callout*="cite"]>.callout-title>.callout-icon {
   --icon-color: oklch(var(--callout-color));
 }
 
-
-
-/* MODULAR CALLOUT COLORING */
-
-/* Lightness/Darkness (l) */
-div.callout[data-callout^="+l"] { --callout-lightness: var(--light); }
-div.callout[data-callout^="+ll"] { --callout-lightness: var(--lighter); }
-div.callout[data-callout^="+lll"] { --callout-lightness: var(--super-light); }
-div.callout[data-callout^="+llll"] { --callout-lightness: var(--lightest); }
-div.callout[data-callout^="+lllll"] { --callout-lightness: var(--white); }
-
-div.callout[data-callout^="l"] { --callout-lightness: var(--base); }
-
-div.callout[data-callout^="-l"] { --callout-lightness: var(--dark); }
-div.callout[data-callout^="-ll"] { --callout-lightness: var(--darker); }
-div.callout[data-callout^="-lll"] { --callout-lightness: var(--super-dark); }
-div.callout[data-callout^="-llll"] { --callout-lightness: var(--darkest); }
-div.callout[data-callout^="-lllll"] { --callout-lightness: var(--black); }
-
-/* Alpha (a) */
-div.callout[data-callout-metadata^="a"] { --callout-opacity: var(--opaque); --callout-border-opacity: var(--callout-opacity)}
-div.callout[data-callout-metadata^="-a"] { --callout-opacity: var(--strongest); --callout-border-opacity: var(--callout-opacity)}
-div.callout[data-callout-metadata^="-aa"] { --callout-opacity: var(--stronger); --callout-border-opacity: var(--callout-opacity)}
-div.callout[data-callout-metadata^="-aaa"] { --callout-opacity: var(--strong); --callout-border-opacity: var(--callout-opacity)}
-div.callout[data-callout-metadata^="-aaaa"] { --callout-opacity: var(--faint); --callout-border-opacity: var(--callout-opacity)}
-div.callout[data-callout-metadata^="-aaaaa"] { --callout-opacity: var(--fainter); --callout-border-opacity: var(--callout-opacity)}
-div.callout[data-callout-metadata^="-aaaaaa"] { --callout-opacity: var(--faintest); --callout-border-opacity: var(--callout-opacity)}
-div.callout[data-callout-metadata^="-aaaaaaa"] { --callout-opacity: var(--translucent); --callout-border-opacity: var(--callout-opacity)}
-div.callout[data-callout-metadata^="-aaaaaaaa"] { --callout-opacity: var(--transparent); --callout-border-opacity: var(--callout-opacity)}
-
-/* Colors */
-div.callout[data-callout*="indigo"] {
-  --callout-chroma: var(--indigo-chroma);
-  --callout-hue: var(--indigo-hue);
-}
-
-
 /* Timeline Callout
 Made by harr (insider), forum.obsidian.md
 link: https://forum.obsidian.md/t/css-snippet-timeline-as-callout/93652
 */
 
-.callout[data-callout="timeline"] {
-    
-  --callout-color: var(--callout-info);
+.callout[data-callout*="timeline"] {
   --callout-icon: clock;
 
   /* links */
@@ -412,7 +491,7 @@ link: https://forum.obsidian.md/t/css-snippet-timeline-as-callout/93652
     & h1 {
       font-weight: var(--font-normal);
       font-size: var(--font-text-size);
-      color: var(--text-normal) !important;
+      color: oklch(var(--callout-color)) !important;
       padding: 0 !important;
       margin-right: 1rem !important;
       text-align: right;
@@ -425,7 +504,7 @@ link: https://forum.obsidian.md/t/css-snippet-timeline-as-callout/93652
     & h2 {
       font-weight: var(--font-normal) !important;
       font-size: var(--font-text-size);
-      color: var(--text-muted);
+      color: oklch(var(--callout-color));
       text-align: left !important;
       margin: 0 1rem;
       padding: .2rem 1rem .2rem 1rem;
@@ -440,9 +519,8 @@ link: https://forum.obsidian.md/t/css-snippet-timeline-as-callout/93652
       margin: 0 0 0 3.2rem;
       border-left: solid .1rem;
       padding: 0 1rem;
-      border-color: var(--text-muted);
+      border-color: oklch(var(--callout-color));
       font-weight: var(--font-normal);
-      color: var(--text-normal);
       font-size: var(--font-text-size);
 
       /* space before H1 */      
@@ -461,7 +539,7 @@ link: https://forum.obsidian.md/t/css-snippet-timeline-as-callout/93652
     & h3::before {
         border: .4rem solid;
         border-radius: .4rem;
-        border-color: var(--text-muted);
+        border-color: oklch(var(--callout-color));
         content: "";
         display: block;
         height: 0;
@@ -473,13 +551,14 @@ link: https://forum.obsidian.md/t/css-snippet-timeline-as-callout/93652
     }    
 
     & h3 {
-      color: var(--text-normal);
+
+      color: oklch(var(--text-normal-lightness) var(--text-normal-chroma) var(--text-normal-hue) / var(--stronger));
     }
 
     /* text */
 
     & :is(p, ol, ul, li) {
-      color: var(--text-faint);
+      color: oklch(var(--text-normal-lightness) var(--text-normal-chroma) var(--text-normal-hue) / var(--fainter));
     }
 
     /* images */
@@ -488,4 +567,39 @@ link: https://forum.obsidian.md/t/css-snippet-timeline-as-callout/93652
       padding: 1rem;
     }
   }
+}
+
+
+/* MODULAR CALLOUT COLORING */
+
+/* Lightness/Darkness (l) */
+div.callout[data-callout^="+l"] { --callout-lightness: var(--light); }
+div.callout[data-callout^="+ll"] { --callout-lightness: var(--lighter); }
+div.callout[data-callout^="+lll"] { --callout-lightness: var(--super-light); }
+div.callout[data-callout^="+llll"] { --callout-lightness: var(--lightest); }
+div.callout[data-callout^="+lllll"] { --callout-lightness: var(--white); }
+
+div.callout[data-callout^="l"] { --callout-lightness: var(--base); }
+
+div.callout[data-callout^="-l"] { --callout-lightness: var(--dark); }
+div.callout[data-callout^="-ll"] { --callout-lightness: var(--darker); }
+div.callout[data-callout^="-lll"] { --callout-lightness: var(--super-dark); }
+div.callout[data-callout^="-llll"] { --callout-lightness: var(--darkest); }
+div.callout[data-callout^="-lllll"] { --callout-lightness: var(--black); }
+
+/* Alpha (a) */
+div.callout[data-callout-metadata^="a"] { --callout-opacity: var(--opaque); --callout-border-opacity: var(--callout-opacity)}
+div.callout[data-callout-metadata^="-a"] { --callout-opacity: var(--strongest); --callout-border-opacity: var(--callout-opacity)}
+div.callout[data-callout-metadata^="-aa"] { --callout-opacity: var(--stronger); --callout-border-opacity: var(--callout-opacity)}
+div.callout[data-callout-metadata^="-aaa"] { --callout-opacity: var(--strong); --callout-border-opacity: var(--callout-opacity)}
+div.callout[data-callout-metadata^="-aaaa"] { --callout-opacity: var(--faint); --callout-border-opacity: var(--callout-opacity)}
+div.callout[data-callout-metadata^="-aaaaa"] { --callout-opacity: var(--fainter); --callout-border-opacity: var(--callout-opacity)}
+div.callout[data-callout-metadata^="-aaaaaa"] { --callout-opacity: var(--faintest); --callout-border-opacity: var(--callout-opacity)}
+div.callout[data-callout-metadata^="-aaaaaaa"] { --callout-opacity: var(--translucent); --callout-border-opacity: var(--callout-opacity)}
+div.callout[data-callout-metadata^="-aaaaaaaa"] { --callout-opacity: var(--transparent); --callout-border-opacity: var(--callout-opacity)}
+
+/* Colors */
+div.callout[data-callout*="indigo"] {
+  --callout-chroma: var(--indigo-chroma);
+  --callout-hue: var(--indigo-hue);
 }

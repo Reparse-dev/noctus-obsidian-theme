@@ -5,6 +5,7 @@ Contact: shaydedg@gmail.com
 -----------------------------------*/
 
 /* To-do: 
+- Put the color chromas and hues into color named variables.
 - Brightness: Add inversion option for both light-theme & pdf independently.
 - Brightness: Make an option to decrease lightness for text as well (callout-metadata)
 - Opacity: Make text have lower opacity as well!
@@ -77,10 +78,6 @@ body {
   --faintest: 0.4;
   --translucent: 0.2;
   --transparent: 0; --false: 0;
-
-  /* Indigo for testing */
-  --indigo-chroma: 0.1793;
-  --indigo-hue: 301.68;
 
   /* Link Colors */
   --link-unresolved-color: var(--secondary-accent-color);
@@ -295,7 +292,6 @@ div.callout {
   --callout-color: var(--callout-lightness) var(--callout-chroma) var(--callout-hue);
   --callout-title-color: oklch(var(--callout-color) / var(--callout-opacity)); /*WIP: Figure out why you can not define it in body.*/
   overflow: visible;
-  /*background: linear-gradient(to right, rgba(var(--callout-color), 0.02), rgba(var(--callout-color), 0));*/
   background-color: oklch(var(--callout-color) / var(--transparent));
   border-color: oklch(var(--callout-color) / var(--callout-border-opacity));
   margin-top: 1.7em;
@@ -453,9 +449,9 @@ link: https://forum.obsidian.md/t/css-snippet-timeline-as-callout/93652
 
 .callout[data-callout*="timeline"] {
   --callout-icon: clock;
+  --callout-lightness: var(--white);
 
   /* links */
-  
   & a {
     color: inherit;
     font-weight: inherit;
@@ -465,14 +461,12 @@ link: https://forum.obsidian.md/t/css-snippet-timeline-as-callout/93652
     padding-inline: 0;
 
     /* hashtags */
-
     &[href^="#"]{
       text-decoration: none;
       padding-inline: .4rem;
     }
 
     /* show links on hover */
-
     &:hover {
       text-decoration: underline solid;
       color: inherit;
@@ -480,14 +474,11 @@ link: https://forum.obsidian.md/t/css-snippet-timeline-as-callout/93652
   } 
   
   /* content */ 
-
   & .callout-content {
-
     background-color: none;
     padding: 2rem 0;
 
     /* H1 as horizontal line */
-
     & h1 {
       font-weight: var(--font-normal);
       font-size: var(--font-text-size);
@@ -499,8 +490,7 @@ link: https://forum.obsidian.md/t/css-snippet-timeline-as-callout/93652
       padding-top: 0.3em !important;
     }
 
-    /* H2 as box */
-      
+    /* H2 as box */ 
     & h2 {
       font-weight: var(--font-normal) !important;
       font-size: var(--font-text-size);
@@ -514,7 +504,6 @@ link: https://forum.obsidian.md/t/css-snippet-timeline-as-callout/93652
     }  
 
    /* vertical line */
-
     & :is(h1, h3, p, ul, ol) {
       margin: 0 0 0 3.2rem;
       border-left: solid .1rem;
@@ -535,7 +524,6 @@ link: https://forum.obsidian.md/t/css-snippet-timeline-as-callout/93652
     }
 
     /* H3 as bullet */
-       
     & h3::before {
         border: .4rem solid;
         border-radius: .4rem;
@@ -555,14 +543,10 @@ link: https://forum.obsidian.md/t/css-snippet-timeline-as-callout/93652
       color: oklch(var(--text-normal-lightness) var(--text-normal-chroma) var(--text-normal-hue) / var(--stronger));
     }
 
-    /* text */
-
     & :is(p, ol, ul, li) {
       color: oklch(var(--text-normal-lightness) var(--text-normal-chroma) var(--text-normal-hue) / var(--fainter));
     }
 
-    /* images */
-    
     & img {
       padding: 1rem;
     }
@@ -598,8 +582,202 @@ div.callout[data-callout-metadata^="-aaaaaa"] { --callout-opacity: var(--faintes
 div.callout[data-callout-metadata^="-aaaaaaa"] { --callout-opacity: var(--translucent); --callout-border-opacity: var(--callout-opacity)}
 div.callout[data-callout-metadata^="-aaaaaaaa"] { --callout-opacity: var(--transparent); --callout-border-opacity: var(--callout-opacity)}
 
-/* Colors */
-div.callout[data-callout*="indigo"] {
-  --callout-chroma: var(--indigo-chroma);
-  --callout-hue: var(--indigo-hue);
+/* Modular Colors */
+
+div.callout:is([data-callout*="grey"], [data-callout*="gray"]) {
+  --callout-chroma: 0;
+  --callout-hue: 0;
 }
+
+div.callout[data-callout*="rhodamine"] {
+  --callout-chroma: 0.35;
+  --callout-hue: 0;
+}
+
+div.callout[data-callout*="rose-red"] {
+  --callout-chroma: 0.25;
+  --callout-hue: 7;
+}
+
+div.callout[data-callout*="crimson"] {
+  --callout-chroma: 0.25;
+  --callout-hue: 12;
+}
+
+div.callout[data-callout*="scarlet"] {
+  --callout-chroma: 0.28;
+  --callout-hue: 25;
+}
+
+div.callout[data-callout*="red"] {
+  --callout-chroma: 0.25;
+  --callout-hue: 30;
+}
+
+div.callout[data-callout*="brown"] {
+  --callout-chroma: 0.1;
+  --callout-hue: 40;
+}
+
+div.callout[data-callout*="gold"] {
+  --callout-chroma: 0.15;
+  --callout-hue: 80;
+}
+
+div.callout[data-callout*="amber"] {
+  --callout-chroma: 0.5;
+  --callout-hue: 100;
+}
+
+div.callout[data-callout*="chartreuse"] {
+  --callout-chroma: 0.5;
+  --callout-hue: 115;
+}
+
+div.callout[data-callout*="olive"] {
+  --callout-chroma: 0.13;
+  --callout-hue: 120;
+}
+
+div.callout[data-callout*="green"] {
+  --callout-chroma: 0.3;
+  --callout-hue: 140;
+}
+
+div.callout[data-callout*="teal"] {
+  --callout-chroma: 0.15;
+  --callout-hue: 175;
+}
+
+div.callout[data-callout*="turquoise"] {
+  --callout-chroma: 0.12;
+  --callout-hue: 195;
+}
+
+div.callout[data-callout*="cerulean"] {
+  --callout-chroma: 0.1;
+  --callout-hue: 230;
+}
+
+div.callout[data-callout*="blue"] {
+  --callout-chroma: 0.25;
+  --callout-hue: 270;
+}
+
+div.callout[data-callout*="indigo"] {
+  --callout-chroma: 0.2;
+  --callout-hue: 280;
+}
+
+div.callout[data-callout*="lapis"] { /*Also known as Ultramarine-Violet*/
+  --callout-chroma: 0.3;
+  --callout-hue: 280;
+}
+
+div.callout[data-callout*="violet"] {
+  --callout-chroma: 0.3;
+  --callout-hue: 290;
+}
+
+div.callout[data-callout*="purple"] {
+  --callout-chroma: 0.3;
+  --callout-hue: 300;
+}
+
+div.callout[data-callout*="fuchsia"] {
+  --callout-chroma: 0.3;
+  --callout-hue: 330;
+}
+
+div.callout[data-callout*="magenta"] {
+  --callout-chroma: 0.3;
+  --callout-hue: 340;
+}
+
+/* Fixed Colors
+These colors are basically shortcuts to specific colors 
+which you'd usually only achieve by taking one of the modular colors and making it lighter or darker.
+*/
+
+div.callout[data-callout*="yellow"] {
+  --callout-lightness: var(--white);
+  --callout-chroma: 0.25;
+  --callout-hue: 100;
+}
+
+div.callout[data-callout*="tangerine"] {
+  --callout-lightness: var(--super-light);
+  --callout-chroma: 0.2;
+  --callout-hue: 53;
+}
+
+div.callout[data-callout*="orange"] {
+  --callout-lightness: var(--light);
+  --callout-chroma: 0.5;
+  --callout-hue: 100;
+}
+
+div.callout[data-callout*="vermillion"] {
+  --callout-lightness: var(--light);
+  --callout-chroma: 0.25;
+  --callout-hue: 30;
+}
+
+div.callout:is([data-callout*="sanguine"],[data-callout*="blood"]) {
+  --callout-lightness: 37.5%;
+  --callout-chroma: 0.5;
+  --callout-hue: 100;
+}
+
+div.callout[data-callout*="coral"] {
+  --callout-lightness: var(--lighter);
+  --callout-chroma: 0.15;
+  --callout-hue: 10;
+}
+
+div.callout[data-callout*="lavender"] {
+  --callout-lightness: var(--lightest);
+  --callout-chroma: 0.3;
+  --callout-hue: 285;
+}
+
+div.callout[data-callout*="pink"] {
+  --callout-lightness: var(--lightest);
+  --callout-chroma: 0.25;
+  --callout-hue: 300;
+}
+
+div.callout[data-callout*="cyan"] {
+  --callout-lightness: var(--lightest);
+  --callout-chroma: 0.13;
+  --callout-hue: 185;
+}
+
+div.callout[data-callout*="white"] {
+  --callout-lightness: var(--white);
+  --callout-chroma: 0;
+  --callout-hue: 0;
+}
+
+div.callout[data-callout*="black"] {
+  --callout-lightness: var(--black);
+  --callout-chroma: 0;
+  --callout-hue: 0;
+}
+
+@media print { /*WIP: Should only apply for darkmode users!*/
+  div.callout[data-callout*="black"] {
+    --callout-lightness: var(--white);
+  }
+  div.callout[data-callout*="white"] {
+    --callout-lightness: var(--black);
+  }
+}
+
+/* Chroma (c) */
+div.callout[data-callout-metadata$="c"] { --callout-chroma: 0; }
+div.callout[data-callout-metadata$="+c"] { --callout-chroma: 0.1; }
+div.callout[data-callout-metadata$="+cc"] { --callout-chroma: 0.2; }
+div.callout[data-callout-metadata$="+ccc"] { --callout-chroma: 0.3; }
+div.callout[data-callout-metadata$="+cccc"] { --callout-chroma: 0.4; }
+div.callout[data-callout-metadata$="+ccccc"] { --callout-chroma: 0.5; }

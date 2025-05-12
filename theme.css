@@ -10,6 +10,18 @@ Contact: shaydedg@gmail.com
 @import 'mobile/ios';
 @import 'mobile/toolbar';
 
+/* ALL COLOR MUST WORK LIKE THIS:
+--color-lightness: val;
+--color-chroma: val;
+--color-hue: val;
+--color-opacity: val;
+--color: var(--color-lightness) var(--color-chroma) var (--color-hue);
+element {
+  color: oklch(var(--color) / var(--color-opacity));
+}
+/* That serves the purpose of making it easier to use the same color without the same opacity!
+*/
+
 body {
   /* General */
   --obsidian-logo-small: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 512 512' width='8' height='8' fill='none' stroke='%23ffffff90' stroke-width='5%' stroke-linecap='round' stroke-linejoin='round' class='logo-wireframe'%3E%3Cpath d='M172.7 461.6c73.6-149.1 2.1-217-43.7-246.9m72 96.7c71.6-17.3 141-16.3 189.8 88.5m-114-96.3c-69.6-174 44.6-181 16.3-273.6m97.7 370c1.6-3 3.3-5.8 5.1-8.6 20-29.9 34.2-53.2 41.4-65.3a16 16 0 0 0-1.2-17.7 342.1 342.1 0 0 1-40.2-66.1c-10.9-26-12.5-66.5-12.6-86.2 0-7.4-2.4-14.7-7-20.6l-81.8-104a32 32 0 0 0-1.4-1.5m97.7 370a172.8 172.8 0 0 0-18 59c-2.9 21.5-24 38.4-45 32.6-30-8.3-64.5-21.1-95.7-23.5l-47.8-3.6c-7.7-.6-15-4-20.3-9.5l-82.3-84.8c-9-9.2-11.4-23-6.2-34.8 0 0 51-111.8 52.8-117.7l.7-3M293.1 30a31.5 31.5 0 0 0-44.4-2.3l-97.4 87.5c-5.4 5-9 11.5-10 18.8-3.7 24.5-9.7 68-12.3 80.7'%3E%3C/path%3E%3C/svg%3E");
@@ -20,13 +32,13 @@ body {
   --primary-accent-lightness: 58%;
   --primary-accent-chroma: 0.27;
   --primary-accent-hue: 300.03;
-  --primary-accent-color: oklch(var(--primary-accent-lightness) var(--primary-accent-chroma) var(--primary-accent-hue));
+  --primary-accent-color: var(--primary-accent-lightness) var(--primary-accent-chroma) var(--primary-accent-hue);
   
   /* Secondary Accent */
   --secondary-accent-lightness: 57.12%;
   --secondary-accent-chroma: 0.2219;
   --secondary-accent-hue: 20.09;
-  --secondary-accent-color: oklch(var(--secondary-accent-lightness) var(--secondary-accent-chroma) var(--secondary-accent-hue));
+  --secondary-accent-color: var(--secondary-accent-lightness) var(--secondary-accent-chroma) var(--secondary-accent-hue);
   
   --graph-primary: #dedede;
   --graph-secondary: #a083ff;
@@ -117,69 +129,19 @@ body {
   --translucent: 0.2;
   --transparent: 0;
 
-  /* Link Colors */  
-  --link-hover-lightness: var(--lightest);
-  --link-lightness: var(--primary-accent-lightness);
-  --link-chroma: var(--primary-accent-chroma);
-  --link-hue: var(--primary-accent-hue);
-  --link-opacity: 1;
-  --link-color: oklch(var(--link-lightness) var(--link-chroma) var(--link-hue) / var(--link-opacity));
-  --link-color-hover: oklch(var(--link-hover-lightness) var(--link-chroma) var(--link-hue) / var(--link-opacity));
-
-  --link-hover-external-lightness: var(--lightest);
-  --link-external-lightness: var(--primary-accent-lightness);
-  --link-external-chroma: var(--primary-accent-chroma);
-  --link-external-hue: var(--primary-accent-hue);
-  --link-external-opacity: 1;
-  --link-external-color: oklch(var(--link-external-lightness) var(--link-external-chroma) var(--link-external-hue) / var(--link-external-opacity));
-  --link-external-color-hover: oklch(var(--link-hover-external-lightness) var(--link-external-chroma) var(--link-external-hue) / var(--link-external-opacity));
-
-  --link-unresolved-chroma: var(--secondary-accent-chroma);
-  --link-unresolved-hue: var(--secondary-accent-hue);
-  --link-unresolved-opacity: 0.7;
-  --link-unresolved-color: oklch(var(--link-unresolved-lightness) var(--link-unresolved-chroma) var(--link-unresolved-hue) / var(--link-unresolved-opacity));
-  --link-unresolved-decoration-color: var(--link-unresolved-color);
-  --link-unresolved-opacity: var(--faint);
-
-  /* Callouts */
-  --callout-lightness: var(--lighter);
-  --callout-chroma: 0;
-  --callout-hue: 0;
-  --callout-opacity: 1;
-  --callout-color: var(--callout-lightness) var(--callout-chroma) var(--callout-hue) / var(--callout-opacity);
-
-  --callout-title-lightness: var(--callout-lightness);
-  --callout-title-chroma: var(--callout-chroma);
-  --callout-title-hue: var(--callout-hue);
-  --callout-title-opacity: var(--callout-opacity);
-  --callout-title-color: var(--callout-title-lightness) var(--callout-title-chroma) var(--callout-title-hue) / var(--callout-title-opacity);
-  --callout-title-size: 1em;
-
-  --callout-opacity: var(--opaque);
-  --callout-blend-mode: normal;
-  --callout-border-opacity: var(--opaque);
-  --callout-border-width: .2em;
-  --callout-double-border-width: .3em;
-
-  --callout-quote-lightness: var(--lightest);
-
-
+  /* Text Colors */
   --text-lightness: var(--white);
   --text-chroma: 0;
   --text-hue: 0;
   --text-opacity: 1;
-  --text-color: oklch(var(--text-lightness) var(--text-chroma) var(--text-hue) / var(--text-opacity));
-  --text-normal-color: oklch(var(--text-lightness) var(--text-chroma) var(--text-hue) / var(--text-opacity));
+  --text-color: var(--text-lightness) var(--text-chroma) var(--text-hue);
+  --text-normal-color: var(--text-lightness) var(--text-chroma) var(--text-hue);
 
-  --bold-color: oklch(var(--text-normal-lightness) var(var(--text-normal-chroma)) var(var(--text-normal-hue)));
+  --bold-color: var(--text-normal-lightness) var(--text-normal-chroma) var(--text-normal-hue);
 
   --font-text: "Ubuntu", "Play", "Inter";
-  --h1-font: "Onest", "Rowdies", "Nexa", "Inter";
-  --h2-font: "Onest", "Rowdies", "Nexa", "Inter";
-  --h3-font: "Onest", "Rowdies", "Nexa", "Inter";
-  --h4-font: "Onest", "Rowdies", "Nexa", "Inter";
-  --h5-font: "Onest", "Rowdies", "Nexa", "Inter";
-  --h6-font: "Onest", "Rowdies", "Nexa", "Inter";
+
+  --hr-color: 100% 0 0;
 
   --tab-radius: 0.5em;
   --big-heading-letter-spacing: 0.07em;
@@ -189,6 +151,31 @@ body {
 
   --h4-vertical-padding: 0.4rem; /* Better padding variable */
   --titlebar-background-focused: oklch(0% 0 0);
+  --blockquote-border-color: var(--text-color);
+
+  /* Link Colors */  
+  --link-hover-lightness: var(--lightest);
+  --link-lightness: var(--primary-accent-lightness);
+  --link-chroma: var(--primary-accent-chroma);
+  --link-hue: var(--primary-accent-hue);
+  --link-opacity: 1;
+  --link-color: var(--link-lightness) var(--link-chroma) var(--link-hue);
+  --link-color-hover: var(--link-hover-lightness) var(--link-chroma) var(--link-hue);
+
+  --link-hover-external-lightness: var(--lightest);
+  --link-external-lightness: var(--primary-accent-lightness);
+  --link-external-chroma: var(--primary-accent-chroma);
+  --link-external-hue: var(--primary-accent-hue);
+  --link-external-opacity: 1;
+  --link-external-color: var(--link-external-lightness) var(--link-external-chroma) var(--link-external-hue);
+  --link-external-color-hover: var(--link-hover-external-lightness) var(--link-external-chroma) var(--link-external-hue);
+
+  --link-unresolved-chroma: var(--secondary-accent-chroma);
+  --link-unresolved-hue: var(--secondary-accent-hue);
+  --link-unresolved-opacity: 0.7;
+  --link-unresolved-color: var(--link-unresolved-lightness) var(--link-unresolved-chroma) var(--link-unresolved-hue);
+  --link-unresolved-decoration-color: var(--link-unresolved-color);
+  --link-unresolved-opacity: var(--faint);
 }
 
 
@@ -379,10 +366,6 @@ I indent ALL elements but Callouts and similar to 1st make the headings clearer 
 2nd make the padding in H4 seem natural and fitting, instead of weirdly pushing it to the side.
 */
 
-body p {
-  color: oklch(var(--text-normal-lightness) var(--text-normal-chroma) var(--text-normal-hue))
-}
-
 body .markdown-preview-view {
   --list-indent: 1em;
 }
@@ -403,104 +386,18 @@ div.callout .callout-content p { margin-left: 0rem; }
 
 
 
-/* MISCALLENOUS 
-Minor Changes and compatibilities
-*/
-
-/* Hide Excalidraw Welcome */
-.welcome-screen-center__logo.virgil.welcome-screen-decor,
-.welcome-screen-center__heading.welcome-screen-decor.virgil,
-.welcome-screen-menu {
-  display: none !important;
+/* HOLISTIC OKLCH */
+body :is(p, li, li.task-list-item.is-checked, th, tr, code, span.cm-inline-code, div.cm-line, 
+.HyperMD-codeblock.HyperMD-codeblock-bg.cm-line.cmd-hmd-codeblock) {
+  color: oklch(var(--text-color) / var(--text-opacity));
 }
 
-/* No Status Bar Clutter */
-.status-bar-item {
-  &.plugin-backlink.mod-clickable {
-    display: none;
-  }
-  &.plugin-properties.mod-clickable {
-    display: none;
-  }
-}
-
-/* Move Status Bar */
-.status-bar {
-  transform: translateX(0.15em);
-}
-
-/* Image always displayed on full width unless specified differently */
-img, .markdown-preview-view img {
-  max-width: 100%;
-}
-
-/* Larger Popover Preview */
-.popover.hover-popover>.markdown-embed {
-  height: 100%;
-  max-height: 60vh;
-  max-width: 60vh;
-  overflow: scroll;
-}
-
-/* CODE BLOCK STYLING */
-
-.markdown-rendered pre.language-md {
-  border: solid oklch(var(--base) 0 0);
-}
-
-.markdown-rendered button.copy-code-button {
-  background-color: oklch(var(--base) 0 0 / 0.4);
+body li.task-list-item.is-checked[data-task="x"] {
+  --text-lightness: var(--light);
+  --text-color: oklch(var(--text-lightness) var(--text-chroma) var(--text-hue) / var(--text-opacity));
 }
 
 
-/* RANDOM FROM OLD THEME */ /* WIP: Put elsewhere and/or revaluate */
-
-p a.footnote-link {
-  color: oklch( var(--lightest) var(--text-normal-chroma) var(--text-normal-hue) / 0.9);
-}
-
-p a.footnote-link:hover {
-  color: hsla(var(--accent-h), var(--accent-s), var(--accent-l), 1);
-}
-
-sup, sub {
-  color: oklch( var(--lightest) var(--text-normal-chroma) var(--text-normal-hue) / 0.9);
-}
-
-.markdown-rendered blockquote {
-  margin-left: var(--h4-vertical-padding);
-}
-
-.mod-root .workspace-tab-container .workspace-leaf-content {
-  --en-opacity: 1;
-  background-color: var(--background-primary);
-  border-radius: var(--tab-radius);
-}
-
-/* BLOCKQUOTE STYLING */
-.markdown-rendered blockquote {
-  --blockquote-background-color: var(--background-primary);
-  --blockquote-border-color: oklch(var(--lightest) 0 0);
-  background-color: var(--blockquote-background-color);
-  border-inline-start: var(--blockquote-border-thickness) solid var(--blockquote-border-color);
-  padding-left: 1rem;
-  p {
-  margin-left: 0em;
-  }
-}
-
-.markdown-source-view.mod-cm6.is-live-preview .HyperMD-quote:before, .markdown-source-view.mod-cm6 .cm-blockquote-border:before {
-    --blockquote-border-color: oklch(var(--lightest) 0 0);
-}
-
-@media print {
-  .markdown-rendered blockquote, blockquote {
-    --blockquote-background-color: var(--background-primary);
-    --blockquote-border-color: rgba(0,0,0, 1);
-    background-color: var(--blockquote-background-color);
-    border-inline-start: var(--blockquote-border-thickness) solid var(--blockquote-border-color);
-  }
-}
 
 /* WORKSPACE SECTIONS DIVIDER STYLING
 Inspired by Obsidian Encore Theme by Carbonateb
@@ -548,178 +445,101 @@ Link: https://lucaschampagne.dev/
 
 /* HEADINGS */
 
-h1, /* REWORK */
-.HyperMD-header.HyperMD-header-1.cm-line,
-.markdown-preview-view h1,
-.markdown-rendered h1 {
-  --h1-color: rgb(var(--heading-color));
-  --h1-size: 3rem;
-  text-align: center;
-  letter-spacing: var(--big-heading-letter-spacing);
+h1, .markdown-rendered h1, .HyperMD-header.HyperMD-header-1.cm-line, span.cm-header.cm-header-1 {
+  --h1-font: "Onest", "Rowdies", "Nexa", "Inter";
+  --h1-size: 3rem;  
   --h1-weight: 800;
+  --h1-lightness: 50%;
+  --h1-chroma: 0.5;
+  --h1-hue: 200;
+  --h1-opacity: 1;
+  --h1-color: var(--h1-lightness) var(--h1-chroma) var(--h1-hue);
+  color: oklch(var(--h1-color) / var(--h1-opacity));
+  letter-spacing: var(--h1-letter-spacing);
+  text-align: center;
 }
 
-
-h1 a.internal-link.is-unresolved,
-.HyperMD-header.HyperMD-header-1 a.internal-link.is-unresolved,
-h1 a.internal-link,
-.HyperMD-header.HyperMD-header-1 a.internal-link {
-  color: rgb(var(--heading-color));
-  opacity: 100%;
-  filter: none;
-}
-
-.cm-header.cm-header-1.cm-hmd-internal-link {
-  color: rgb(var(--heading-color));
-}
-
-h2,
-.HyperMD-header.HyperMD-header-2.cm-line,
-.markdown-preview-view h2,
-.markdown-rendered h2 {
-  color: rgb(var(--heading-color));
+h2, .markdown-rendered h2, .HyperMD-header.HyperMD-header-2.cm-line, span.cm-header.cm-header-2 {
+  --h2-font: "Onest", "Rowdies", "Nexa", "Inter";
   --h2-size: 2.2rem;
-  padding: 0;
+  --h2-weight: 800;
+  --h2-lightness: var(--text-lightness);
+  --h2-chroma: var(--text-chroma);
+  --h2-hue: var(--text-chroma);
+  --h2-opacity: 1;
+  --h2-color: var(--h2-lightness) var(--h2-chroma) var(--h2-hue);
+  color: oklch(var(--h2-color) / var(--h2-opacity));
+  letter-spacing: var(--h2-letter-spacing);
   border-bottom: 1px solid var(--background-modifier-border);
   width: 100%;
-  padding-bottom: 0px;
-  border-image: linear-gradient(to right, rgba(90, 90, 90, 0), rgba(125, 125, 125, 1), rgba(90, 90, 90, 0)) 1;
+  border-image: linear-gradient(to right, transparent, oklch(var(--hr-color) / 0.5), transparent) 1;
   border-left: none;
   border-right: none;
   border-top: none;
-  letter-spacing: var(--medium-heading-letter-spacing);
-  --h2-weight: 800;
 }
 
-
-h2 a.internal-link.is-unresolved,
-.HyperMD-header.HyperMD-header-2 a.internal-link.is-unresolved,
-h2 a.internal-link,
-.HyperMD-header.HyperMD-header-2 a.internal-link {
-  color: rgb(var(--heading-color));
-  opacity: 100%;
-  filter: none;
-}
-
-.cm-header.cm-header-2.cm-hmd-internal-link {
-  color: rgb(var(--heading-color));
-}
-
-h3,
-.HyperMD-header.HyperMD-header-3.cm-line,
-.markdown-preview-view h3,
-.markdown-rendered h3 {
-  color: rgb(var(--heading-color));
+h3, .markdown-rendered h3, .HyperMD-header.HyperMD-header-3.cm-line, span.cm-header.cm-header-3 {
+  --h3-font: "Onest", "Rowdies", "Nexa", "Inter";
   --h3-size: 2rem;
-  margin-bottom: 0px;
-  padding-top: 0px;
-  margin-top: 25px;
-  margin-left: 0em;
-  padding-bottom: 0px;
-  letter-spacing: var(--medium-heading-letter-spacing);
-  --h3-weight: 800;
+  --h3-weight: 800;  
+  --h3-lightness: var(--text-lightness);
+  --h3-chroma: var(--text-chroma);
+  --h3-hue: var(--text-chroma);
+  --h3-opacity: 1;
+  --h3-color: var(--h3-lightness) var(--h3-chroma) var(--h3-hue);
+  color: oklch(var(--h3-color) / var(--h3-opacity));
+  letter-spacing: var(--h3-letter-spacing);
+  margin-bottom: 0;
+  margin-top: 1.1em;
 }
 
-
-h3 a.internal-link.is-unresolved,
-.HyperMD-header.HyperMD-header-3 a.internal-link.is-unresolved,
-h3 a.internal-link,
-.HyperMD-header.HyperMD-header-3 a.internal-link {
-  color: rgb(var(--heading-color));
-  opacity: 100%;
-  filter: none;
-}
-
-.cm-header.cm-header-3.cm-hmd-internal-link {
-  color: rgb(var(--heading-color));
-}
-
-h4,
-.HyperMD-header.HyperMD-header-4.cm-line,
-.markdown-preview-view h4,
-.markdown-rendered h4 {
-  background-color: oklch(var(--lightest) 0 0);
-  color: var(--background-primary);
-  font-weight: 900;
-  padding-top: 0px;
+h4, .markdown-rendered h4, .HyperMD-header.HyperMD-header-4.cm-line, span.cm-header.cm-header-4 {
+  --h4-font: "Onest", "Rowdies", "Nexa", "Inter";
   --h4-size: 1.6rem;
+  --h4-weight: 700;
+  --h4-lightness: var(--text-lightness);
+  --h4-chroma: var(--text-chroma);
+  --h4-hue: var(--text-chroma);
+  --h4-opacity: 1;
+  --h4-color: var(--h4-lightness) var(--h4-chroma) var(--h4-hue);
+  background-color: oklch(var(--h4-color) / var(--h4-opacity));
+  color: var(--background-primary);
+  letter-spacing: var(--h4-letter-spacing);
+  font-weight: 900;
+  padding: 0 var(--h4-vertical-padding) 0 var(--h4-vertical-padding);
   width: fit-content;
-  padding-left: var(--h4-vertical-padding);
-  padding-right: var(--h4-vertical-padding);
   border-radius: 0.2rem;
   word-wrap: normal;
-  letter-spacing: var(--medium-heading-letter-spacing);
-  --h4-weight: 700;
 }
 
-h4 a.internal-link.is-unresolved,
-.HyperMD-header.HyperMD-header-4 a.internal-link.is-unresolved,
-h4 a.internal-link,
-.HyperMD-header.HyperMD-header-4 a.internal-link {
-  color: oklch(0% 0 0) !important;
-  background-color: oklch(var(--lightest) 0 0);
-  opacity: 100%;
-  filter: none;
-}
-
-h4 a.internal-link:hover,
-.HyperMD-header.HyperMD-header-4 a.internal-link:hover {
-  color: oklch(40% 0 0) !important;
-  background-color: oklch(var(--lightest) 0 0);
-}
-
-.cm-header.cm-header-4.cm-hmd-internal-link {
-  color: rgb(0, 0, 0);
-}
-
-h4.chat-view-header {
-  color: rgb(var(--heading-color));
-  background-color: rgb(0, 0, 0);
-  opacity: 100%;
-  filter: none;
-  font-size: 22px;
-  margin: 0px;
-  padding: 0px;
-}
-
-
-@media print {
-  h4.chat-view-header {
-    color: rgb(0, 0, 0);
-    background-color: rgb(237, 237, 237);
-    opacity: 100%;
-    filter: none;
-    font-size: 22px;
-    margin: 0px;
-    padding: 0px;
-  }
-}
-
-h5,
-.HyperMD-header.HyperMD-header-5.cm-line,
-.markdown-preview-view h5,
-.markdown-rendered h5 {
-  color: rgb(245, 245, 245);
+h5, .markdown-rendered h5, .HyperMD-header.HyperMD-header-5.cm-line, span.cm-header.cm-header-5 {
+  --h5-font: "Onest", "Rowdies", "Nexa", "Inter";
   --h5-size: 1.3rem;
+  --h5-weight: 600;
+  --h5-lightness: var(--text-lightness);
+  --h5-chroma: var(--text-chroma);
+  --h5-hue: var(--text-chroma);
+  --h5-opacity: 1;
+  --h5-color: var(--h5-lightness) var(--h5-chroma) var(--h5-hue);
+  color: oklch(var(--h5-color) / var(--h5-opacity));
+  letter-spacing: var(--h5-letter-spacing);
   padding: var(--h4-vertical-padding) 0em;
   margin-top: 0px;
   margin-bottom: 0px;
-  letter-spacing: var(--small-heading-letter-spacing);
-  --h5-weight: 600;
 }
 
-h6,
-.HyperMD-header.HyperMD-header-6.cm-line,
-.markdown-preview-view h6,
-.markdown-rendered h6 {
-  color: rgb(225, 225, 225);
+h6, .markdown-rendered h6, .HyperMD-header.HyperMD-header-6.cm-line, span.cm-header.cm-header-6 {
+  --h6-font: "Onest", "Rowdies", "Nexa", "Inter";
   --h6-size: 1.05rem;
-  padding-top: 0px;
-  padding-bottom: 0px;
-  margin-top: 0px;
-  margin-bottom: 0px;
-  letter-spacing: var(--small-heading-letter-spacing);
   --h6-weight: 600;
+  --h6-lightness: var(--text-lightness);
+  --h6-chroma: var(--text-chroma);
+  --h6-hue: var(--text-chroma);
+  --h6-opacity: 1;
+  --h6-color: var(--h6-lightness) var(--h6-chroma) var(--h6-hue);
+  color: oklch(var(--h6-color) / var(--h6-opacity));
+  letter-spacing: var(--h6-letter-spacing);
+  margin: 0;
 }
 
 @media print {
@@ -769,7 +589,7 @@ hr { /* WIP */
 body .markdown-rendered hr,
 body .cm-line.hr hr {
   height: 1px;
-  background-image: linear-gradient(to right, transparent, rgba(255,255,255,0.5) 46.2%, transparent 46.2%, transparent 54%, rgba(255,255,255,0.5) 54%, transparent);
+  background-image: linear-gradient(to right, transparent, oklch(var(--hr-color) / 0.5) 46.2%, transparent 46.2%, transparent 54%, oklch(var(--hr-color) / 0.5) 54%, transparent);
   border: none;
   position: relative;
   overflow: visible;
@@ -851,22 +671,40 @@ I need to make the standard theme's callouts lead to a common one to avoid unint
 [data-callout*="bug"], [data-callout*="error"],[data-callout*="danger"], 
 [data-callout*="important"], [data-callout*="tip"], [data-callout*="hint"],
 [data-callout*="tldr"], [data-callout*="summary"], [data-callout*="abstract"],
-[data-callout*="info"], [data-callout*="todo"]) {
+[data-callout*="info"], [data-callout*="todo"], [data-callout*="example"]) {
   --callout-color: oklch(var(--callout-lightness) var(--callout-chroma) var(--callout-hue) / var(--callout-opacity));
+  --callout-title-color: oklch(var(--callout-title-lightness) var(--callout-title-chroma) var(--callout-title-hue) / var(--callout-title-opacity)); 
   background-color: oklch(var(--callout-lightness) var(--callout-chroma) var(--callout-hue) / var(--transparent));
-  border-color: oklch(var(--callout-color) / var(--callout-border-opacity));
+  border-color: var(--callout-color);
   border-width: var(--callout-border-width);
 }
 
 /* Changing the standard format */
 
 .callout {
-  --callout-color: oklch(var(--callout-lightness) var(--callout-chroma) var(--callout-hue) / var(--callout-opacity));
-  --callout-title-color: oklch(var(--callout-title-lightness) var(--callout-title-chroma) var(--callout-title-hue) / var(--callout-title-opacity)); 
-  
+  --callout-lightness: var(--lighter);
+  --callout-chroma: var(--text-chroma);
+  --callout-hue: var(--text-hue);
+  --callout-opacity: 1;
+  --callout-color: var(--callout-lightness) var(--callout-chroma) var(--callout-hue);
+
+  --callout-title-lightness: var(--callout-lightness);
+  --callout-title-chroma: var(--callout-chroma);
+  --callout-title-hue: var(--callout-hue);
+  --callout-title-opacity: var(--callout-opacity);
+  --callout-title-color: var(--callout-title-lightness) var(--callout-title-chroma) var(--callout-title-hue) / var(--callout-title-opacity);
+  --callout-title-size: 1em;
+
+  --callout-blend-mode: normal;
+  --callout-border-opacity: var(--opaque);
+  --callout-border-width: .2em;
+  --callout-double-border-width: .3em;
+
+  --callout-quote-lightness: var(--lightest);
+
   overflow: visible;
-  background-color: oklch(var(--callout-lightness) var(--callout-chroma) var(--callout-hue) / var(--transparent));
-  border-color: var(--callout-color);
+  background-color: oklch(var(--callout-color) / var(--transparent));
+  border-color: oklch(var(--callout-color) / var(--callout-opacity));
   border-width: 0.2em;
   margin-top: 1.7em;
   padding-left: 1.4rem;
@@ -885,7 +723,7 @@ I need to make the standard theme's callouts lead to a common one to avoid unint
 
     &>.callout-title-inner {
       letter-spacing: 0.07em;
-      color: var(--callout-title-color);
+      color: oklch(var(--callout-title-color));
     }
 
     &>.callout-icon {
@@ -893,7 +731,7 @@ I need to make the standard theme's callouts lead to a common one to avoid unint
       margin-top: -0.05em;
 
       .svg-icon {
-        color: var(--callout-color);
+        color: oklch(var(--callout-color) / var(--callout-opacity));
         --icon-stroke: 3px;
       }
     }
@@ -911,10 +749,10 @@ All done by me.
 
 /* Blank */
 
-div[data-callout*="blanco"].callout {
+div.callout[data-callout*="blanco"] {
   --callout-blend-mode: normal;
   --callout-title-size: 1em;
-  --callout-color: oklch(var(--white) var(--callout-chroma) var(--callout-hue));
+  --callout-color: oklch(var(--white) var(--callout-chroma) var(--callout-hue) / var(--callout-opacity));
   border: none;
   padding: 0px;
   margin: 1em 0em;/*
@@ -934,15 +772,17 @@ div[data-callout*="blanco"].callout {
 
 div.callout:is([data-callout*="quote"], [data-callout*="cite"]) {
   --callout-lightness: var(--callout-quote-lightness);
+  --callout-title-lightness: var(--callout-quote-lightness);
+  --callout-gradient: var(--callout-lightness) var(--callout-chroma) var(--callout-hue);
   display: flex;
   flex-direction: column-reverse;
   padding-bottom: 1.5em;
-  border-image: linear-gradient(to right, oklch(var(--callout-color) / 0.5), oklch(var(--callout-color) / 0.4), oklch(var(--callout-color) / 0.2)) 1;
+  border-image: 
+  linear-gradient(to right, oklch(var(--callout-gradient)), 
+  oklch(var(--callout-gradient) / 0.4), oklch(var(--callout-gradient) / 0.2)) 1;
   padding-top: 0.5em;
-  --callout-chroma: 0;
-  --callout-hue: 0;
-  --callout-icon: quote-glyph;
   margin-bottom: 2.5em;
+  --callout-icon: quote-glyph;
 
   .cm-embed-block.cm-callout & {
     margin-top: 0em;
@@ -969,7 +809,10 @@ div.callout[data-callout*="cite"] {
   border-left: none;
   border-right: none;
   border-radius: 0px;
-  border-image: linear-gradient(to right, oklch(var(--callout-color) / 0), oklch(var(--callout-color) / 0.4), oklch(var(--callout-color) / 0.5), oklch(var(--callout-color) / 0.4), oklch(var(--callout-color) / 0)) 1;
+  border-image: 
+  linear-gradient(to right, oklch(var(--callout-gradient) / 0), 
+  oklch(var(--callout-gradient) / 0.4), oklch(var(--callout-gradient) / 0.5), 
+  oklch(var(--callout-gradient) / 0.4), oklch(var(--callout-gradient) / 0)) 1;
 }
 
 /* Timeline Callout
@@ -979,7 +822,8 @@ link: https://forum.obsidian.md/t/css-snippet-timeline-as-callout/93652
 
 div.callout[data-callout*="timeline"] {
   --callout-icon: clock;
-  --callout-lightness: var(--white);
+  --callout-lightness: 100%;
+  --callout-title-lightness: 100%;
   overflow: visible;
 
   /* links */
@@ -1165,28 +1009,34 @@ All done by me.
 
 /* Primary Accent */
 div.callout[data-callout^="primary-accent"] {
+  --callout-title-lightness: var(--primary-accent-lightness);
+  --callout-title-chroma: var(--primary-accent-chroma);
+  --callout-title-hue: var(--primary-accent-hue);
   --callout-lightness: var(--primary-accent-lightness);
   --callout-chroma: var(--primary-accent-chroma);
   --callout-hue: var(--primary-accent-hue);
-  --callout-color: oklch(var(--callout-lightness) var(--callout-chroma) var(--callout-hue) / var(--callout-opacity));
   border-color: var(--callout-color);
 }
 
 /* Secondary Accent */
 div.callout[data-callout^="secondary-accent"] {
+  --callout-title-lightness: var(--secondary-accent-lightness);
+  --callout-title-chroma: var(--secondary-accent-chroma);
+  --callout-title-hue: var(--secondary-accent-hue);
   --callout-lightness: var(--secondary-accent-lightness);
   --callout-chroma: var(--secondary-accent-chroma);
   --callout-hue: var(--secondary-accent-hue);
-  --callout-color: oklch(var(--callout-lightness) var(--callout-chroma) var(--callout-hue) / var(--callout-opacity));
   border-color: var(--callout-color);
 }
 
 /* Bug */ 
 div.callout[data-callout^="bug"] {
+  --callout-title-lightness: var(--light);
+  --callout-title-chroma: 0.25;
+  --callout-title-hue: 50;
   --callout-lightness: var(--light);
   --callout-chroma: 0.25;
   --callout-hue: 50;
-  --callout-color: oklch(var(--callout-lightness) var(--callout-chroma) var(--callout-hue) / var(--callout-opacity));
   border-color: var(--callout-color);
   --callout-icon: lucide-bug;
   color: oklch(var(--callout-color) / var(--callout-opacity));
@@ -1195,26 +1045,33 @@ div.callout[data-callout^="bug"] {
 /* Warning, Attention, Caution */ 
 div.callout {
   &:is([data-callout^="warning"], [data-callout^="attention"], [data-callout^="caution"]) {
+  --callout-title-lightness: var(--lighter);
+  --callout-title-chroma: 0.25;
+  --callout-title-hue: 70;
   --callout-lightness: var(--lighter);
   --callout-chroma: 0.25;
   --callout-hue: 70;
-  --callout-color: oklch(var(--callout-lightness) var(--callout-chroma) var(--callout-hue) / var(--callout-opacity));
-  border-color: var(--callout-color);
+  border: double var(--callout-double-border-width);
+  border-color: oklch(var(--callout-color) / var(--callout-opacity));
   --callout-icon: lucide-alert-triangle;
-  border-style: double;
-  border-width: var(--callout-double-border-width);
   }
-  &[data-callout^="caution"] { border-style: solid; border-width: var(--callout-border-width); }
+  &[data-callout^="caution"] { 
+    border-style: solid; 
+    border-width: var(--callout-border-width); 
+    border-color: oklch(var(--callout-lightness) var(--callout-chroma) var(--callout-hue) / var(--callout-opacity));
+  }
 }
 
 /* Important, Tip, Hint - Summary, tldr, abstract */ 
 div.callout {
   &:is([data-callout^="important"], [data-callout^="tip"], [data-callout^="hint"], 
   [data-callout*="summary"], [data-callout*="tldr"], [data-callout*="tl;dr"], [data-callout*="abstract"]) {
+  --callout-title-lightness: var(--lightest);
+  --callout-title-chroma: 0.13;
+  --callout-title-hue: 185;
   --callout-lightness: var(--lightest);
   --callout-chroma: 0.13;
   --callout-hue: 185;
-  --callout-color: oklch(var(--callout-lightness) var(--callout-chroma) var(--callout-hue) / var(--callout-opacity));
   border-color: var(--callout-color);
   border-style: solid;
   border-width: var(--callout-border-width);
@@ -1228,6 +1085,9 @@ div.callout {
 /* Error, Danger */ 
 div.callout {
   &:is([data-callout^="error"], [data-callout^="danger"]) {
+  --callout-title-lightness: var(--light);
+  --callout-title-chroma: 0.25;
+  --callout-title-hue: 30;
   --callout-lightness: var(--light);
   --callout-chroma: 0.25;
   --callout-hue: 30;
@@ -1240,12 +1100,12 @@ div.callout {
 /* Fail/Failure & Missing */ 
 div.callout {
   &:is([data-callout^="fail"], [data-callout^="failure"], [data-callout^="missing"]) {
-    --callout-lightness: var(--base);
-    --callout-chroma: 0.25;
-    --callout-hue: 30;
     --callout-title-lightness: var(--base);
     --callout-title-chroma: 0.25;
     --callout-title-hue: 30;
+    --callout-lightness: var(--base);
+    --callout-chroma: 0.25;
+    --callout-hue: 30;
     border-color: var(--callout-color);
     --callout-icon: lucide-x;
   }
@@ -1255,29 +1115,30 @@ div.callout {
 /* Todo, Info */ 
 div.callout {
   &:is([data-callout^="todo"], [data-callout^="info"]) {
-  --callout-lightness: var(--light);
-  --callout-chroma: 0.3;
-  --callout-hue: 270;
   --callout-title-lightness: var(--light);
   --callout-title-chroma: 0.3;
   --callout-title-hue: 270;
+  --callout-lightness: var(--light);
+  --callout-chroma: 0.3;
+  --callout-hue: 270;
   border-color: var(--callout-color);
   }
   &[data-callout*="todo"] { --callout-icon: lucide-check-circle-2; }
   &[data-callout*="info"] { --callout-icon: lucide-info; }
 }
 
-/* Definition */
+/* Definition, Example */ /*WIP: Perhaps make Example Purple/Lavender again */
 div.callout {
-  &[data-callout^="definition"] {
-    --callout-lightness: var(--lightest);
-    --callout-chroma: 0;
-    --callout-hue: 0;
+  &:is([data-callout^="definition"], [data-callout^="example"]) {
     --callout-title-lightness: var(--lightest);
     --callout-title-chroma: 0;
     --callout-title-hue: 0;
-    --callout-icon: lucide-clipboard-list;
+    --callout-lightness: var(--lightest);
+    --callout-chroma: 0;
+    --callout-hue: 0;
   }
+  &[data-callout^="definition"] { --callout-icon: lucide-clipboard-list; } 
+  &[data-callout^="example"] { --callout-icon: lucide-list; } 
 }
 
 
@@ -1333,6 +1194,8 @@ div.callout {
   &[data-callout$="check"] { --callout-icon: lucide-check-circle-2; }
 
   &[data-callout$="clipboard"] { --callout-icon: lucide-clipboard-list; }
+
+  &[data-callout$="list"] { --callout-icon: lucide-list; }
 
   &[data-callout$="clock"] { --callout-icon: clock; }
 
@@ -1683,6 +1546,8 @@ With special thanks to:
   height: 7px;
   width: 7px;
   border-radius: 50%;
+  border-color: oklch(var(--text-color) / 0.4);
+  background-color: oklch(var(--text-color) / 0.4);
 } .markdown-source-view.mod-cm6 .HyperMD-list-line-1 .list-bullet:after {
   margin-right: 1em;
 }
@@ -1692,8 +1557,9 @@ With special thanks to:
 .markdown-source-view.mod-cm6 .HyperMD-list-line-2 .list-bullet:after {
   height: 7px;
   width: 7px;
-  background-color: transparent;
+  background-color: oklch(var(--text-color) / 0);
   border-style: solid;
+  border-color: oklch(var(--text-color) / 0.4);
   border-radius: 50%;
   border-width: 1px;
 } .markdown-source-view.mod-cm6 .HyperMD-list-line-2 .list-bullet:after {
@@ -1706,13 +1572,13 @@ With special thanks to:
   height: 5px;
   width: 5px;
   border-radius: 0%;
-  background-color: rgb(89, 89, 89);
+  background-color: oklch(var(--text-color) / 0.4);
 }
 .markdown-source-view.mod-cm6 .HyperMD-list-line-3 .list-bullet:after {
   height: 7px;
   width: 7px;
   border-radius: 0%;
-  background-color: rgb(89, 89, 89);
+  background-color: oklch(var(--text-color) / 0.4);
   margin-right: 1em;
 }
 
@@ -1725,8 +1591,8 @@ With special thanks to:
   border-radius: 0%;
   border-top: 5px solid transparent;
   border-bottom: 5px solid transparent;
-  border-left: 8px solid;
-  border-right: 0px solid;
+  border-left: 8px solid oklch(var(--text-color) / 0.4);
+  border-right: 0px solid oklch(var(--text-color) / 0.4);
 } .markdown-source-view.mod-cm6 .HyperMD-list-line-4 .list-bullet:after {
   margin-right: 1em;
 }
@@ -1748,6 +1614,99 @@ mark {
   padding: 0 0.15em;
   border-radius: 0.05em;
   outline: 2px solid hsla(var(--accent-h), var(--accent-s), var(--accent-l), 0.5);
+}
+
+
+
+/* MISCALLENOUS 
+Minor Changes and compatibilities
+*/
+
+/* No Status Bar Clutter */
+.status-bar-item {
+  &.plugin-backlink.mod-clickable {
+    display: none;
+  }
+  &.plugin-properties.mod-clickable {
+    display: none;
+  }
+}
+
+/* Move Status Bar */
+.status-bar {
+  transform: translateX(0.15em);
+}
+
+/* Image always displayed on full width unless specified differently */
+img, .markdown-preview-view img {
+  max-width: 100%;
+}
+
+/* Larger Popover Preview */
+.popover.hover-popover>.markdown-embed {
+  height: 100%;
+  max-height: 60vh;
+  max-width: 60vh;
+  overflow: scroll;
+}
+
+/* CODE BLOCK STYLING */
+
+.markdown-rendered pre.language-md {
+  border: solid oklch(var(--base) 0 0);
+}
+
+.markdown-rendered button.copy-code-button {
+  background-color: oklch(var(--base) 0 0 / 0.4);
+}
+
+
+/* RANDOM FROM OLD THEME */ /* WIP: Put elsewhere and/or revaluate */
+
+p a.footnote-link {
+  color: oklch(var(--primary-accent-lightness) var(--primary-accent-chroma) var(--primary-accent-hue) / 0.9);
+}
+
+p a.footnote-link:hover {
+  color: hsla(var(--accent-h), var(--accent-s), var(--accent-l), 1);
+}
+
+sup, sub {
+  color: oklch( var(--lightest) var(--text-normal-chroma) var(--text-normal-hue) / 0.9);
+}
+
+.markdown-rendered blockquote {
+  margin-left: var(--h4-vertical-padding);
+}
+
+.mod-root .workspace-tab-container .workspace-leaf-content {
+  --en-opacity: 1;
+  background-color: var(--background-primary);
+  border-radius: var(--tab-radius);
+}
+
+/* BLOCKQUOTE STYLING */
+.markdown-rendered blockquote {
+  --blockquote-border-color: oklch(var(--text-lightness) var(--text-chroma) var(--text-hue));
+  background-color: var(--blockquote-background-color);
+  border-inline-start: var(--blockquote-border-thickness) solid var(--blockquote-border-color);
+  padding-left: 1rem;
+  p {
+  margin-left: 0em;
+  }
+}
+
+.markdown-source-view.mod-cm6.is-live-preview .HyperMD-quote:before, .markdown-source-view.mod-cm6 .cm-blockquote-border:before {
+    --blockquote-border-color: oklch(var(--text-lightness) var(--text-chroma) var(--text-hue));
+}
+
+@media print {
+  .markdown-rendered blockquote, blockquote {
+    --blockquote-background-color: var(--background-primary);
+    --blockquote-border-color: rgba(0,0,0, 1);
+    background-color: var(--blockquote-background-color);
+    border-inline-start: var(--blockquote-border-thickness) solid var(--blockquote-border-color);
+  }
 }
 
 
@@ -1825,22 +1784,21 @@ Here I add styling for the most commonly used plugins
 ---------------*/
 
 /* Dataview Inline Styling */
-
 .dataview {
   &.inline-field-standalone-value {
     padding-left: 0.1em;
     padding-right: 0.1em;
     font-family: var(--font-text);
     background-color: var(--background-primary);
-    outline: 2px solid var(--background-primary-alt);
-    color: oklch(var(--lightest) 0 0);
+    outline: 2px solid oklch(var(--text-color) / var(--translucent));
+    color: var(--text-color);
   }
   &.inline-field-key {
     padding-left: 0.2em;
     padding-right: 0.2em;
     font-family: var(--font-monospace);
     background-color: var(--background-primary-alt);
-    color: var(--text-nav-selected);
+    color: var(--text-color);
   }
   &.inline-field-value {
     padding-left: 0.2em;
@@ -1848,7 +1806,7 @@ Here I add styling for the most commonly used plugins
     font-family: var(--font-monospace);
     background-color: var(--background-primary);
     outline: 2px solid var(--background-primary-alt);
-    color: oklch(var(--lightest) 0 0);
+    color: var(--text-color);
   }
 }
 
@@ -1858,6 +1816,35 @@ Here I add styling for the most commonly used plugins
   font-size: 1.1em;
 }
 
+/* Chatview Plugin */
+h4.chat-view-header {
+  color: rgb(var(--heading-color));
+  background-color: rgb(0, 0, 0);
+  opacity: 100%;
+  filter: none;
+  font-size: 22px;
+  margin: 0px;
+  padding: 0px;
+}
 
+
+@media print {
+  h4.chat-view-header {
+    color: rgb(0, 0, 0);
+    background-color: rgb(237, 237, 237);
+    opacity: 100%;
+    filter: none;
+    font-size: 22px;
+    margin: 0px;
+    padding: 0px;
+  }
+}
+
+/* Hide Excalidraw Welcome */
+.welcome-screen-center__logo.virgil.welcome-screen-decor,
+.welcome-screen-center__heading.welcome-screen-decor.virgil,
+.welcome-screen-menu {
+  display: none !important;
+}
 
 /* END OF DOCUMENT */

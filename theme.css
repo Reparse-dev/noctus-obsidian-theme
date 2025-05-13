@@ -152,30 +152,6 @@ body {
   --h4-vertical-padding: 0.4rem; /* Better padding variable */
   --titlebar-background-focused: oklch(0% 0 0);
   --blockquote-border-color: var(--text-color);
-
-  /* Link Colors */  
-  --link-hover-lightness: var(--lightest);
-  --link-lightness: var(--primary-accent-lightness);
-  --link-chroma: var(--primary-accent-chroma);
-  --link-hue: var(--primary-accent-hue);
-  --link-opacity: 1;
-  --link-color: var(--link-lightness) var(--link-chroma) var(--link-hue);
-  --link-color-hover: var(--link-hover-lightness) var(--link-chroma) var(--link-hue);
-
-  --link-hover-external-lightness: var(--lightest);
-  --link-external-lightness: var(--primary-accent-lightness);
-  --link-external-chroma: var(--primary-accent-chroma);
-  --link-external-hue: var(--primary-accent-hue);
-  --link-external-opacity: 1;
-  --link-external-color: var(--link-external-lightness) var(--link-external-chroma) var(--link-external-hue);
-  --link-external-color-hover: var(--link-hover-external-lightness) var(--link-external-chroma) var(--link-external-hue);
-
-  --link-unresolved-chroma: var(--secondary-accent-chroma);
-  --link-unresolved-hue: var(--secondary-accent-hue);
-  --link-unresolved-opacity: 0.7;
-  --link-unresolved-color: var(--link-unresolved-lightness) var(--link-unresolved-chroma) var(--link-unresolved-hue);
-  --link-unresolved-decoration-color: var(--link-unresolved-color);
-  --link-unresolved-opacity: var(--faint);
 }
 
 
@@ -1586,6 +1562,42 @@ mark {
 }
 
 
+
+/* LINKS */
+/*a, a.cm-underline*/
+
+.markdown-rendered a.internal-link.is-unresolved {
+  --link-unresolved-lightness: var(--primary-accent-lightness);
+  --link-unresolved-chroma: var(--primary-accent-chroma);
+  --link-unresolved-hue: var(--primary-accent-hue);
+  --link-unresolved-opacity: 0.85;
+  --link-unresolved-color: var(--link-unresolved-lightness) var(--link-unresolved-chroma) var(--link-unresolved-hue);
+  --link-unresolved-decoration-color: var(--link-unresolved-color);
+  color: oklch(var(--link-unresolved-color) / var(--link-unresolved-opacity));
+}
+
+
+.markdown-rendered a.internal-link {
+  --link-hover-lightness: var(--lightest);
+  --link-lightness: var(--primary-accent-lightness);
+  --link-chroma: var(--primary-accent-chroma);
+  --link-hue: var(--primary-accent-hue);
+  --link-opacity: 1;
+  --link-color: var(--link-lightness) var(--link-chroma) var(--link-hue);
+  --link-color-hover: var(--link-hover-lightness) var(--link-chroma) var(--link-hue);
+  color: oklch(var(--link-color) / var(--link-opacity));
+}
+
+.markdown-rendered a.external-link {
+  --link-hover-external-lightness: var(--lightest);
+  --link-external-lightness: var(--primary-accent-lightness);
+  --link-external-chroma: var(--primary-accent-chroma);
+  --link-external-hue: var(--primary-accent-hue);
+  --link-external-opacity: 1;
+  --link-external-color: var(--link-external-lightness) var(--link-external-chroma) var(--link-external-hue);
+  --link-external-color-hover: var(--link-hover-external-lightness) var(--link-external-chroma) var(--link-external-hue);
+  color: oklch(var(--link-external-color) / var(--link-external-opacity));
+}
 
 /* MISCALLENOUS 
 Minor Changes and compatibilities

@@ -211,19 +211,7 @@ Link: https://github.com/radekkozak/discordian
 
 @media print {
   body {
-    --background-primary: oklch(100% 0 0);/*
-    --white: 0%;
-    --lightest: 10%;
-    --super-light: 20%;
-    --lighter: 30%;
-    --light: 40%;
-    &[data-callout^="abstract"] { border-style: dotted; }
-    --base: 50%;
-    --dark: 60%;
-    --darker: 70%;
-    --super-dark: 80%;
-    --darkest: 90%;
-    --black: 100%;*/
+    --background-primary: oklch(100% 0 0);
   }
   html {
     --font-text-size: var(--pdf-text-size) !important;
@@ -666,22 +654,15 @@ Link: https://twitter.com/kepano
 Because I make it mandatory to place presets at the start of the callout data 
 I need to make the standard theme's callouts lead to a common one to avoid unintended alterations. */
 
-.callout, .callout:is([data-callout*="fail"], [data-callout*="missing"],
-[data-callout*="warning"], [data-callout*="attention"], [data-callout*="alert"],
+/* Changing the standard format */
+
+div.callout:is([data-callout*="fail"], [data-callout*="missing"],
+[data-callout*="warning"], [data-callout*="attention"], [data-callout*="caution"], [data-callout*="alert"],
 [data-callout*="bug"], [data-callout*="error"],[data-callout*="danger"], 
 [data-callout*="important"], [data-callout*="tip"], [data-callout*="hint"],
 [data-callout*="tldr"], [data-callout*="summary"], [data-callout*="abstract"],
-[data-callout*="info"], [data-callout*="todo"], [data-callout*="example"]) {
-  --callout-color: oklch(var(--callout-lightness) var(--callout-chroma) var(--callout-hue) / var(--callout-opacity));
-  --callout-title-color: oklch(var(--callout-title-lightness) var(--callout-title-chroma) var(--callout-title-hue) / var(--callout-title-opacity)); 
-  background-color: oklch(var(--callout-lightness) var(--callout-chroma) var(--callout-hue) / var(--transparent));
-  border-color: var(--callout-color);
-  border-width: var(--callout-border-width);
-}
-
-/* Changing the standard format */
-
-.callout {
+[data-callout*="info"], [data-callout*="todo"], [data-callout*="example"]), 
+div.callout {
   --callout-lightness: var(--lighter);
   --callout-chroma: var(--text-chroma);
   --callout-hue: var(--text-hue);
@@ -752,7 +733,6 @@ All done by me.
 div.callout[data-callout*="blanco"] {
   --callout-blend-mode: normal;
   --callout-title-size: 1em;
-  --callout-color: oklch(var(--white) var(--callout-chroma) var(--callout-hue) / var(--callout-opacity));
   border: none;
   padding: 0px;
   margin: 1em 0em;/*
@@ -773,13 +753,13 @@ div.callout[data-callout*="blanco"] {
 div.callout:is([data-callout*="quote"], [data-callout*="cite"]) {
   --callout-lightness: var(--callout-quote-lightness);
   --callout-title-lightness: var(--callout-quote-lightness);
-  --callout-gradient: var(--callout-lightness) var(--callout-chroma) var(--callout-hue);
+  --callout-color: var(--callout-lightness) var(--callout-chroma) var(--callout-hue);
   display: flex;
   flex-direction: column-reverse;
   padding-bottom: 1.5em;
   border-image: 
-  linear-gradient(to right, oklch(var(--callout-gradient)), 
-  oklch(var(--callout-gradient) / 0.4), oklch(var(--callout-gradient) / 0.2)) 1;
+  linear-gradient(to right, oklch(var(--callout-color)), 
+  oklch(var(--callout-color) / 0.4), oklch(var(--callout-color) / 0.2)) 1;
   padding-top: 0.5em;
   margin-bottom: 2.5em;
   --callout-icon: quote-glyph;
@@ -810,9 +790,9 @@ div.callout[data-callout*="cite"] {
   border-right: none;
   border-radius: 0px;
   border-image: 
-  linear-gradient(to right, oklch(var(--callout-gradient) / 0), 
-  oklch(var(--callout-gradient) / 0.4), oklch(var(--callout-gradient) / 0.5), 
-  oklch(var(--callout-gradient) / 0.4), oklch(var(--callout-gradient) / 0)) 1;
+  linear-gradient(to right, oklch(var(--callout-color) / 0), 
+  oklch(var(--callout-color) / 0.4), oklch(var(--callout-color) / 0.5), 
+  oklch(var(--callout-color) / 0.4), oklch(var(--callout-color) / 0)) 1;
 }
 
 /* Timeline Callout
@@ -1015,7 +995,6 @@ div.callout[data-callout^="primary-accent"] {
   --callout-lightness: var(--primary-accent-lightness);
   --callout-chroma: var(--primary-accent-chroma);
   --callout-hue: var(--primary-accent-hue);
-  border-color: var(--callout-color);
 }
 
 /* Secondary Accent */
@@ -1026,7 +1005,6 @@ div.callout[data-callout^="secondary-accent"] {
   --callout-lightness: var(--secondary-accent-lightness);
   --callout-chroma: var(--secondary-accent-chroma);
   --callout-hue: var(--secondary-accent-hue);
-  border-color: var(--callout-color);
 }
 
 /* Bug */ 
@@ -1037,9 +1015,7 @@ div.callout[data-callout^="bug"] {
   --callout-lightness: var(--light);
   --callout-chroma: 0.25;
   --callout-hue: 50;
-  border-color: var(--callout-color);
   --callout-icon: lucide-bug;
-  color: oklch(var(--callout-color) / var(--callout-opacity));
 }
 
 /* Warning, Attention, Caution */ 
@@ -1051,14 +1027,13 @@ div.callout {
   --callout-lightness: var(--lighter);
   --callout-chroma: 0.25;
   --callout-hue: 70;
-  border: double var(--callout-double-border-width);
-  border-color: oklch(var(--callout-color) / var(--callout-opacity));
+  border-style: double;
+  border-width: var(--callout-double-border-width);
   --callout-icon: lucide-alert-triangle;
   }
   &[data-callout^="caution"] { 
     border-style: solid; 
     border-width: var(--callout-border-width); 
-    border-color: oklch(var(--callout-lightness) var(--callout-chroma) var(--callout-hue) / var(--callout-opacity));
   }
 }
 
@@ -1072,9 +1047,6 @@ div.callout {
   --callout-lightness: var(--lightest);
   --callout-chroma: 0.13;
   --callout-hue: 185;
-  border-color: var(--callout-color);
-  border-style: solid;
-  border-width: var(--callout-border-width);
   }
   &[data-callout^="important"] { border-style: double; border-width: var(--callout-double-border-width); }
   &[data-callout^="hint"] { border-style: dashed; }
@@ -1091,7 +1063,6 @@ div.callout {
   --callout-lightness: var(--light);
   --callout-chroma: 0.25;
   --callout-hue: 30;
-  border-color: var(--callout-color);
   --callout-icon: lucide-zap;
   }
   &[data-callout^="danger"] { border-style: double; border-width: var(--callout-double-border-width); }
@@ -1106,7 +1077,6 @@ div.callout {
     --callout-lightness: var(--base);
     --callout-chroma: 0.25;
     --callout-hue: 30;
-    border-color: var(--callout-color);
     --callout-icon: lucide-x;
   }
   &[data-callout^="missing"] { border-style: dashed; }
@@ -1121,7 +1091,6 @@ div.callout {
   --callout-lightness: var(--light);
   --callout-chroma: 0.3;
   --callout-hue: 270;
-  border-color: var(--callout-color);
   }
   &[data-callout*="todo"] { --callout-icon: lucide-check-circle-2; }
   &[data-callout*="info"] { --callout-icon: lucide-info; }

@@ -413,9 +413,9 @@ h1, .markdown-rendered h1, .HyperMD-header.HyperMD-header-1.cm-line, span.cm-hea
   --h1-font: "Onest", "Rowdies", "Nexa", "Inter";
   --h1-size: 3rem;  
   --h1-weight: 800;
-  --h1-lightness: 50%;
-  --h1-chroma: 0.5;
-  --h1-hue: 200;
+  --h1-lightness: var(--text-lightness);
+  --h1-chroma: var(--text-chroma);
+  --h1-hue: var(--text-chroma);
   --h1-opacity: 1;
   --h1-color: var(--h1-lightness) var(--h1-chroma) var(--h1-hue);
   color: oklch(var(--h1-color) / var(--h1-opacity));
@@ -1598,6 +1598,8 @@ mark {
   --link-external-color-hover: var(--link-hover-external-lightness) var(--link-external-chroma) var(--link-external-hue);
   color: oklch(var(--link-external-color) / var(--link-external-opacity));
 }
+
+
 
 /* MISCALLENOUS 
 Minor Changes and compatibilities

@@ -295,7 +295,7 @@ Link: https://github.com/radekkozak/discordian
 
 
 svg.svg-icon {
-  --icon-size: 1.05em;
+  --icon-size: 1.15em;
 }
 
 
@@ -1123,8 +1123,9 @@ div.callout {
     border-style: solid; 
     border-width: var(--callout-border-width); 
     --callout-icon: lucide-shield-alert;
+    --icon-size: 1.25em;
   }
-  &[data-callout^="attention"] { --callout-icon: lucide-badge-alert; }
+  &[data-callout^="attention"] { --callout-icon: lucide-badge-alert;   --icon-size: 1.15em; }
 }
 
 /* Important, Tip, Hint - Summary, tldr, abstract */ 
@@ -1156,9 +1157,12 @@ div.callout {
   --callout-lightness: var(--light);
   --callout-chroma: 0.25;
   --callout-hue: 30;
-  --callout-icon: lucide-zap;
+  --callout-icon: lucide-badge-alert;
   }
-  &[data-callout^="danger"] { border-style: double; border-width: var(--callout-double-border-width); }
+  &[data-callout^="danger"] { 
+    --callout-icon: lucide-zap;
+    border-style: double; 
+    border-width: var(--callout-double-border-width); }
 }
 
 /* Fail/Failure & Missing */ 
@@ -1312,19 +1316,20 @@ div.callout {
 
   &[data-callout$="badge-help"] { --callout-icon: lucide-badge-help; }
   &[data-callout$="badge-info"] { --callout-icon: lucide-badge-info; }
+  &[data-callout$="badge-alert"] { --callout-icon: lucide-badge-alert; }
 
   &[data-callout$="ban"] { --callout-icon: lucide-ban; }
 
   &[data-callout$="activity"] { --callout-icon: lucide-activity; }
 
-  &[data-calout$="shield"] { --callout-icon: lucide-shield; }
-  &[data-callout$="shield-alert"] { --callout-icon: lucide-shield-alert; }
-  &[data-callout$="shield-ban"] { --callout-icon: lucide-shield-ban; }
-  &[data-callout$="shield-check"] { --callout-icon: lucide-shield-check; }
-  &[data-callout$="shield-ellipsis"] { --callout-icon: lucide-shield-ellipsis; }
-  &[data-callout$="shield-half"] { --callout-icon: lucide-shield-half; }
-  &[data-callout$="shield-plus"] { --callout-icon: lucide-shield-plus; }
-  &[data-callout$="shield-x"] { --callout-icon: lucide-shield-x; }
+  &[data-calout$="shield"] { --callout-icon: lucide-shield; --icon-size: 1.25em; }
+  &[data-callout$="shield-alert"] { --callout-icon: lucide-shield-alert; --icon-size: 1.25em; }
+  &[data-callout$="shield-ban"] { --callout-icon: lucide-shield-ban; --icon-size: 1.25em; }
+  &[data-callout$="shield-check"] { --callout-icon: lucide-shield-check; --icon-size: 1.25em; }
+  &[data-callout$="shield-ellipsis"] { --callout-icon: lucide-shield-ellipsis; --icon-size: 1.25em; }
+  &[data-callout$="shield-half"] { --callout-icon: lucide-shield-half; --icon-size: 1.25em; }
+  &[data-callout$="shield-plus"] { --callout-icon: lucide-shield-plus; --icon-size: 1.25em; }
+  &[data-callout$="shield-x"] { --callout-icon: lucide-shield-x; --icon-size: 1.25em; }
 }
 
 

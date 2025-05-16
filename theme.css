@@ -1498,8 +1498,7 @@ div.callout{
 }
 
 /* Callouts: Fixed Colors
-These colors are shortcuts to specific colors 
-which you'd usually only achieve by taking one of the modular colors and making it lighter or darker.
+These colors' identities are bound to their lightness; Altering it will make it less identifiable.
 */
 
 div.callout {
@@ -1586,10 +1585,10 @@ div.callout {
 
   &[data-callout*="pink"] {
     --callout-title-lightness: var(--pink-lightness);
-    --callout-title-chroma: var(--prink-chroma);
+    --callout-title-chroma: var(--pink-chroma);
     --callout-title-hue: var(--pink-hue);
     --callout-lightness: var(--pink-lightness);
-    --callout-chroma: var(--prink-chroma);
+    --callout-chroma: var(--pink-chroma);
     --callout-hue: var(--pink-hue);
   }
 

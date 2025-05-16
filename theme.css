@@ -57,6 +57,17 @@ body {
   --black: 0%;
   /* Or I could go with: base-10, base-20, base-30, base-40, base-50, etc. */
 
+  --yellow-lightness: 100%;
+  --tangerine-lightness: 80%;
+  --orange-lightness: 60%;
+  --vermillion-lightness: 60%;
+  --sanguine-lightness: 37.5%;
+  --coral-lightness: 70%;
+  --lavender-lightness: 90%;
+  --pink-lightness: 90%;
+  --cyan-lightness: 90%;
+
+
   /* Chroma Levels (c) */
   --chroma-00: 0;
   --chroma-10: 0.1;
@@ -93,6 +104,16 @@ body {
   --fuchsia-chroma: 0.3;
   --magenta-chroma: 0.3;
   
+  --yellow-chroma: 0.25;
+  --tangerine-chroma: 0.2;
+  --orange-chroma: 0.5;
+  --vermillion-chroma: 0.25;
+  --sanguine-chroma: 0.5;
+  --coral-chroma: 0.15;
+  --lavender-chroma: 0.3;
+  --pink-chroma: 0.25;
+  --cyan-chroma: 0.13;
+
   /* Hue Levels (h) */
   --grey-hue: 0;
   --rhodamine-hue: 0;
@@ -117,6 +138,16 @@ body {
   --fuchsia-hue: 330;
   --magenta-hue: 340;
 
+  --yellow-hue: 100;
+  --tangerine-hue: 53;
+  --orange-hue: 100;
+  --vermillion-hue: 30;
+  --sanguine-hue: 100;
+  --coral-hue: 10;
+  --lavender-hue: 285;
+  --pink-hue: 300;
+  --cyan-hue: 185;
+
   /* Alpha Levels (a) */ /* "--true" & "--false" made by Zohiu */
   --opaque: 1;
   --strongest: 0.9;
@@ -129,12 +160,9 @@ body {
   --transparent: 0;
 
   /* Text Colors */
-  --text-lightness: var(--white);
-  --text-chroma: 0;
-  --text-hue: 0;
-  --text-opacity: 1;
-  --text-color: var(--text-lightness) var(--text-chroma) var(--text-hue);
-  --text-normal-color: var(--text-lightness) var(--text-chroma) var(--text-hue);
+  --primary-lightness: var(--white);
+  --primary-chroma: 0;
+  --primary-hue: 0;
 
   --bold-color: var(--text-normal-lightness) var(--text-normal-chroma) var(--text-normal-hue);
 
@@ -352,16 +380,19 @@ div.callout .callout-content p { margin-left: 0rem; }
 
 
 /* HOLISTIC OKLCH */
-body :is(p, li, li.task-list-item.is-checked, th, tr, code, span.cm-inline-code, div.cm-line, 
+body :is(p, li, li.task-list-item, th, tr, code, span.cm-inline-code, div.cm-line, 
 .HyperMD-codeblock.HyperMD-codeblock-bg.cm-line.cmd-hmd-codeblock) {
+  --text-lightness: var(--primary-lightness);
+  --text-chroma: var(--primary-chroma);
+  --text-hue: var(--primary-hue);
+  --text-opacity: 1;
+  --text-color: var(--text-lightness) var(--text-chroma) var(--text-hue);
   color: oklch(var(--text-color) / var(--text-opacity));
 }
 
-body li.task-list-item.is-checked[data-task="x"] {
-  --text-lightness: var(--light);
-  --text-color: oklch(var(--text-lightness) var(--text-chroma) var(--text-hue) / var(--text-opacity));
+body ul > li.task-list-item.is-checked[data-task="x"] #text {
+  --text-opacity: 0.2;
 }
-
 
 
 /* WORKSPACE SECTIONS DIVIDER STYLING
@@ -415,9 +446,9 @@ h1, .markdown-rendered h1, .HyperMD-header.HyperMD-header-1.cm-line {
   --h1-font: "Onest", "Rowdies", "Nexa", "Inter";
   --h1-size: 3rem;  
   --h1-weight: 800;
-  --h1-lightness: var(--text-lightness);
-  --h1-chroma: var(--text-chroma);
-  --h1-hue: var(--text-chroma);
+  --h1-lightness: var(--primary-lightness);
+  --h1-chroma: var(--primary-chroma);
+  --h1-hue: var(--primary-chroma);
   --h1-opacity: 1;
   --h1-color: var(--h1-lightness) var(--h1-chroma) var(--h1-hue);
   color: oklch(var(--h1-color) / var(--h1-opacity));
@@ -429,9 +460,9 @@ h2, .markdown-rendered h2, .HyperMD-header.HyperMD-header-2.cm-line {
   --h2-font: "Onest", "Rowdies", "Nexa", "Inter";
   --h2-size: 2.2rem;
   --h2-weight: 800;
-  --h2-lightness: var(--text-lightness);
-  --h2-chroma: var(--text-chroma);
-  --h2-hue: var(--text-chroma);
+  --h2-lightness: var(--primary-lightness);
+  --h2-chroma: var(--primary-chroma);
+  --h2-hue: var(--primary-chroma);
   --h2-opacity: 1;
   --h2-color: var(--h2-lightness) var(--h2-chroma) var(--h2-hue);
   color: oklch(var(--h2-color) / var(--h2-opacity));
@@ -448,9 +479,9 @@ h3, .markdown-rendered h3, .HyperMD-header.HyperMD-header-3.cm-line {
   --h3-font: "Onest", "Rowdies", "Nexa", "Inter";
   --h3-size: 2rem;
   --h3-weight: 800;  
-  --h3-lightness: var(--text-lightness);
-  --h3-chroma: var(--text-chroma);
-  --h3-hue: var(--text-chroma);
+  --h3-lightness: var(--primary-lightness);
+  --h3-chroma: var(--primary-chroma);
+  --h3-hue: var(--primary-chroma);
   --h3-opacity: 1;
   --h3-color: var(--h3-lightness) var(--h3-chroma) var(--h3-hue);
   color: oklch(var(--h3-color) / var(--h3-opacity));
@@ -463,9 +494,9 @@ h4, .markdown-rendered h4, .HyperMD-header.HyperMD-header-4.cm-line, span.cm-hea
   --h4-font: "Onest", "Rowdies", "Nexa", "Inter";
   --h4-size: 1.6rem;
   --h4-weight: 700;
-  --h4-lightness: var(--text-lightness);
-  --h4-chroma: var(--text-chroma);
-  --h4-hue: var(--text-chroma);
+  --h4-lightness: var(--primary-lightness);
+  --h4-chroma: var(--primary-chroma);
+  --h4-hue: var(--primary-chroma);
   --h4-opacity: 1;
   --h4-color: var(--h4-lightness) var(--h4-chroma) var(--h4-hue);
   background-color: oklch(var(--h4-color) / var(--h4-opacity));
@@ -482,9 +513,9 @@ h5, .markdown-rendered h5, .HyperMD-header.HyperMD-header-5.cm-line {
   --h5-font: "Onest", "Rowdies", "Nexa", "Inter";
   --h5-size: 1.3rem;
   --h5-weight: 600;
-  --h5-lightness: var(--text-lightness);
-  --h5-chroma: var(--text-chroma);
-  --h5-hue: var(--text-chroma);
+  --h5-lightness: var(--primary-lightness);
+  --h5-chroma: var(--primary-chroma);
+  --h5-hue: var(--primary-chroma);
   --h5-opacity: 1;
   --h5-color: var(--h5-lightness) var(--h5-chroma) var(--h5-hue);
   color: oklch(var(--h5-color) / var(--h5-opacity));
@@ -498,9 +529,9 @@ h6, .markdown-rendered h6, .HyperMD-header.HyperMD-header-6.cm-line {
   --h6-font: "Onest", "Rowdies", "Nexa", "Inter";
   --h6-size: 1.05rem;
   --h6-weight: 600;
-  --h6-lightness: var(--text-lightness);
-  --h6-chroma: var(--text-chroma);
-  --h6-hue: var(--text-chroma);
+  --h6-lightness: var(--primary-lightness);
+  --h6-chroma: var(--primary-chroma);
+  --h6-hue: var(--primary-chroma);
   --h6-opacity: 1;
   --h6-color: var(--h6-lightness) var(--h6-chroma) var(--h6-hue);
   color: oklch(var(--h6-color) / var(--h6-opacity));
@@ -642,8 +673,8 @@ div.callout:is([data-callout*="fail"], [data-callout*="missing"],
 [data-callout*="info"], [data-callout*="todo"], [data-callout*="example"]), 
 div.callout {
   --callout-lightness: var(--lighter);
-  --callout-chroma: var(--text-chroma);
-  --callout-hue: var(--text-hue);
+  --callout-chroma: var(--primary-chroma);
+  --callout-hue: var(--primary-hue);
   --callout-opacity: 1;
   --callout-color: var(--callout-lightness) var(--callout-chroma) var(--callout-hue);
 
@@ -965,6 +996,17 @@ div.callout[data-callout*="timeline"] {
 All done by me.
 -------------------*/
 
+/* Primary */
+div.callout:is([data-callout^="primary"], [data-callout^="callout"], 
+[data-callout^="standard"], [data-callout^="default"]) {
+  --callout-title-lightness: var(--primary-lightness);
+  --callout-title-chroma: var(--primary-chroma);
+  --callout-title-hue: var(--primary-hue);
+  --callout-lightness: var(--primary-lightness);
+  --callout-chroma: var(--primary-chroma);
+  --callout-hue: var(--primary-hue);
+}
+
 /* Primary Accent */
 div.callout[data-callout^="primary-accent"] {
   --callout-title-lightness: var(--primary-accent-lightness);
@@ -1190,23 +1232,343 @@ div.callout {
 }
 
 
+/* TEST COLORS */
+
+/*
+Amaranth: oklch(0.6 0.2173 16.84)
+60% lightness is important to make it recognizable. 
+Having it work modular would be pretty neat though.
+*/
+
+div.callout{
+  &[data-callout*="amaranth"] {
+  --callout-lightness: 50%;
+  --callout-title-lightness: 50%;
+  --callout-chroma: 0.2;
+  --callout-hue: 17;
+  --callout-title-chroma: 0.22;
+  --callout-title-hue: 17;
+  }
+}
+
+/* Callouts: Modular Colors */
+
+
+div.callout{
+  &:is([data-callout*="grey"], [data-callout*="gray"]) {
+    --callout-title-chroma: var(--grey-chroma);
+    --callout-title-hue: var(--grey-hue);
+    --callout-chroma: var(--grey-chroma);
+    --callout-hue: var(--grey-hue);
+  }
+
+  &[data-callout*="rhodamine"] {
+    --callout-title-chroma: var(--rhodamine-chroma);
+    --callout-title-hue: var(--rhodamine-hue);
+    --callout-chroma: var(--rhodamine-chroma);
+    --callout-hue: var(--rhodamine-hue);
+  }
+
+  &[data-callout*="rose"] {
+    --callout-title-chroma: var(--rose-red-chroma);
+    --callout-title-hue: var(--rose-red-hue);
+    --callout-chroma: var(--rose-red-chroma);
+    --callout-hue: var(--rose-red-hue);
+  }
+
+  &[data-callout*="crimson"] {
+    --callout-title-chroma: var(--crimson-chroma);
+    --callout-title-hue: var(--crimson-hue);
+    --callout-chroma: var(--crimson-chroma);
+    --callout-hue: var(--crimson-hue);
+  }
+
+  &[data-callout*="scarlet"] {
+    --callout-title-chroma: var(--scarlet-chroma);
+    --callout-title-hue: var(--scarlet-hue);
+    --callout-chroma: var(--scarlet-chroma);
+    --callout-hue: var(--scarlet-hue);
+  }
+
+  &[data-callout*="red"] {
+    --callout-title-chroma: var(--red-chroma);
+    --callout-title-hue: var(--red-hue);
+    --callout-chroma: var(--red-chroma);
+    --callout-hue: var(--red-hue);
+  }
+
+  &[data-callout*="brown"] {
+    --callout-title-chroma: var(--brown-chroma);
+    --callout-title-hue: var(--brown-hue);
+    --callout-chroma: var(--brown-chroma);
+    --callout-hue: var(--brown-hue);
+  }
+
+  &[data-callout*="gold"] {
+    --callout-chroma: var(--gold-chroma);
+    --callout-hue: var(--gold-hue);
+    --callout-title-chroma: var(--gold-chroma);
+    --callout-title-hue: var(--gold-hue);
+  }
+
+  &[data-callout*="amber"] {
+    --callout-title-chroma: var(--amber-chroma);
+    --callout-title-hue: var(--amber-hue);
+    --callout-chroma: var(--amber-chroma);
+    --callout-hue: var(--amber-hue);
+  }
+
+  &[data-callout*="chartreuse"] {
+    --callout-title-chroma: var(--chartreuse-chroma);
+    --callout-title-hue: var(--chartreuse-hue);
+    --callout-chroma: var(--chartreuse-chroma);
+    --callout-hue: var(--chartreuse-hue);
+  }
+
+  &[data-callout*="olive"] {
+    --callout-title-chroma: var(--olive-chroma);
+    --callout-title-hue: var(--olive-hue);
+    --callout-chroma: var(--olive-chroma);
+    --callout-hue: var(--olive-hue);
+  }
+
+  &[data-callout*="green"] {
+    --callout-chroma: var(--green-chroma);
+    --callout-hue: var(--green-hue);
+    --callout-title-chroma: var(--green-chroma);
+    --callout-title-hue: var(--green-hue);
+  }
+
+  &[data-callout*="teal"] {
+    --callout-title-chroma: var(--teal-chroma);
+    --callout-title-hue: var(--teal-hue);
+    --callout-chroma: var(--teal-chroma);
+    --callout-hue: var(--teal-hue);
+  }
+
+  &[data-callout*="turquoise"] {
+    --callout-title-chroma: var(--turquoise-chroma);
+    --callout-title-hue: var(--turquoise-hue);
+    --callout-chroma: var(--turquoise-chroma);
+    --callout-hue: var(--turquoise-hue);
+  }
+
+  &[data-callout*="cerulean"] {
+    --callout-title-chroma: var(--cerulean-chroma);
+    --callout-title-hue: var(--cerulean-hue);
+    --callout-chroma: var(--cerulean-chroma);
+    --callout-hue: var(--cerulean-hue);
+  }
+
+  &[data-callout*="blue"] {
+    --callout-chroma: var(--indigo-chroma);
+    --callout-hue: var(--indigo-hue);
+    --callout-title-chroma: var(--indigo-chroma);
+    --callout-title-hue: var(--indigo-hue);
+  }
+
+  &[data-callout*="indigo"] {
+    --callout-title-chroma: var(--indigo-chroma);
+    --callout-title-hue: var(--indigo-hue);
+    --callout-chroma: var(--indigo-chroma);
+    --callout-hue: var(--indigo-hue);
+  }
+
+  &[data-callout*="lapis"] { /*Also known as Ultramarine-Violet*/
+    --callout-title-chroma: var(--lapis-chroma);
+    --callout-title-hue: var(--lapis-hue);
+    --callout-chroma: var(--lapis-chroma);
+    --callout-hue: var(--lapis-hue);
+  }
+
+  &[data-callout*="violet"] {
+    --callout-title-chroma: var(--violet-chroma);
+    --callout-title-hue: var(--violet-hue);
+    --callout-chroma: var(--violet-chroma);
+    --callout-hue: var(--violet-hue);
+  }
+
+  &[data-callout*="purple"] {
+    --callout-title-chroma: var(--purple-chroma);
+    --callout-title-hue: var(--purple-hue);
+    --callout-chroma: var(--purple-chroma);
+    --callout-hue: var(--purple-hue);
+  }
+
+  &[data-callout*="fuchsia"] {
+    --callout-title-chroma: var(--fuchsia-chroma);
+    --callout-title-hue: var(--fuchsia-hue);
+    --callout-chroma: var(--fuchsia-chroma);
+    --callout-hue: var(--fuchsia-hue);
+  }
+
+  &[data-callout*="magenta"] {
+    --callout-title-chroma: var(--magenta-chroma);
+    --callout-title-hue: var(--magenta-hue);
+    --callout-chroma: var(--magenta-chroma);
+    --callout-hue: var(--magenta-hue);
+  }
+}
+
+/* Callouts: Fixed Colors
+These colors are shortcuts to specific colors 
+which you'd usually only achieve by taking one of the modular colors and making it lighter or darker.
+*/
+
+div.callout {
+  &[data-callout*="yellow"] {
+  --callout-title-lightness: var(--yellow-lightness);
+  --callout-title-chroma: var(--yellow-chroma);
+  --callout-title-hue: var(--yellow-hue);
+  --callout-lightness: var(--yellow-lightness);
+  --callout-chroma: var(--yellow-chroma);
+  --callout-hue: var(--yellow-hue);
+  }
+
+  &[data-callout*="tangerine"] {
+    --callout-title-lightness: var(--trangerine-lightness);
+    --callout-title-chroma: var(--tangerine-chroma);
+    --callout-title-hue: var(--tangerine-hue);
+    --callout-lightness: var(--tangerine-lightness);
+    --callout-chroma: var(--tangerine-chroma);
+    --callout-hue: var(--tangerine-hue);
+  }
+
+  &[data-callout*="orange"] {
+    --callout-title-lightness: var(--orange-lightness);
+    --callout-title-chroma: var(--orange-chroma);
+    --callout-title-hue: var(--orange-hue);
+    --callout-lightness: var(--orange-lightness);
+    --callout-chroma: var(--orange-chroma);
+    --callout-hue: var(--orange-hue);
+  }
+
+  &[data-callout*="vermillion"] {
+    --callout-title-lightness: var(--vermillion-lightness);
+    --callout-title-chroma: var(--vermillion-chroma);
+    --callout-title-hue: var(--vermillion-hue);
+    --callout-lightness: var(--vermillion-lightness);
+    --callout-chroma: var(--vermillion-chroma);
+    --callout-hue: var(--vermillion-hue);
+  }
+
+  &:is([data-callout*="sanguine"],[data-callout*="blood"]) {
+    --callout-title-lightness: var(--sanguine-lightness);
+    --callout-title-chroma: var(--sanguine-chroma);
+    --callout-title-hue: var(--sanguine-hue);
+    --callout-lightness: var(--sanguine-lightness);
+    --callout-chroma: var(--sanguine-chroma);
+    --callout-hue: var(--sanguine-hue);
+  }
+
+  &[data-callout*="coral"] {
+    --callout-title-lightness: var(--coral-lightness);
+    --callout-title-chroma: var(--coral-chroma);
+    --callout-title-hue: var(--coral-hue);
+    --callout-lightness: var(--coral-lightness);
+    --callout-chroma: var(--coral-chroma);
+    --callout-hue: var(--coral-hue);
+  }
+
+  &[data-callout*="lavender"] {
+    --callout-title-lightness: var(--lavender-lightness);
+    --callout-title-chroma: var(--lavender-chroma);
+    --callout-title-hue: var(--lavender-hue);
+    --callout-lightness: var(--lavender-lightness);
+    --callout-chroma: var(--lavender-chroma);
+    --callout-hue: var(--lavender-hue);
+  }
+
+  &[data-callout*="pink"] {
+    --callout-title-lightness: var(--pink-lightness);
+    --callout-title-chroma: var(--prink-chroma);
+    --callout-title-hue: var(--pink-hue);
+    --callout-lightness: var(--pink-lightness);
+    --callout-chroma: var(--prink-chroma);
+    --callout-hue: var(--pink-hue);
+  }
+
+  &[data-callout*="cyan"] {
+    --callout-title-lightness: var(--cyan-lightness);
+    --callout-title-chroma: var(--cyan-chroma);
+    --callout-title-hue: var(--cyan-hue);
+    --callout-lightness: var(--cyan-lightness);
+    --callout-chroma: var(--cyan-chroma);
+    --callout-hue: var(--cyan-hue);
+  }
+
+  &[data-callout*="white"] {
+    --callout-title-lightness: var(--white);
+    --callout-title-chroma: var(--grey-chroma);
+    --callout-title-hue: var(--grey-hue);
+    --callout-lightness: var(--white);
+    --callout-chroma: var(--grey-chroma);
+    --callout-hue: var(--grey-hue);
+  }
+
+  &[data-callout*="black"] {
+    --callout-title-lightness: var(--black);
+    --callout-title-chroma: var(--grey-chroma);
+    --callout-title-hue: var(--grey-hue);
+    --callout-lightness: var(--black);
+    --callout-chroma: var(--grey-chroma);
+    --callout-hue: var(--grey-hue);
+  }
+}
+
+@media print { /*WIP: Should only apply for darkmode users!*/
+  div.callout[data-callout*="black"] {
+    --callout-lightness: var(--white);
+  }
+  div.callout[data-callout*="white"] {
+    --callout-lightness: var(--black);
+  }
+}
+
+
 
 /* MODULAR CALLOUT USER-STYLING */
 
-/* Callout: Lightness/Darkness (l) */
-
+/* Lightness (l) */
 div.callout {
-  &[data-callout*="l=0"] { --callout-lightness: var(--black); --callout-title-lightness: var(--black); }
-  &[data-callout*="l=10"] { --callout-lightness: var(--darkest); --callout-title-lightness: var(--darkest); }
-  &[data-callout*="l=20"] { --callout-lightness: var(--super-dark); --callout-title-lightness: var(--super-dark); }
-  &[data-callout*="l=30"] { --callout-lightness: var(--darker); --callout-title-lightness: var(--darker); }
-  &[data-callout*="l=40"] { --callout-lightness: var(--dark); --callout-title-lightness: var(--dark); }
-  &[data-callout*="l=50"] { --callout-lightness: var(--base); --callout-title-lightness: var(--base); }
-  &[data-callout*="l=60"] { --callout-lightness: var(--light); --callout-title-lightness: var(--light); }
-  &[data-callout*="l=70"] { --callout-lightness: var(--lighter); --callout-title-lightness: var(--lighter); }
-  &[data-callout*="l=80"] { --callout-lightness: var(--super-light); --callout-title-lightness: var(--super-light); }
-  &[data-callout*="l=90"] { --callout-lightness: var(--lightest); --callout-title-lightness: var(--lightest); }
-  &[data-callout*="l=100"] { --callout-lightness: var(--white); --callout-title-lightness: var(--white); }
+  &[data-callout-metadata*="l=0"] { --callout-lightness: var(--black); --callout-title-lightness: var(--black); }
+  &[data-callout-metadata*="l=10"] { --callout-lightness: var(--darkest); --callout-title-lightness: var(--darkest); }
+  &[data-callout-metadata*="l=20"] { --callout-lightness: var(--super-dark); --callout-title-lightness: var(--super-dark); }
+  &[data-callout-metadata*="l=30"] { --callout-lightness: var(--darker); --callout-title-lightness: var(--darker); }
+  &[data-callout-metadata*="l=40"] { --callout-lightness: var(--dark); --callout-title-lightness: var(--dark); }
+  &[data-callout-metadata*="l=50"] { --callout-lightness: var(--base); --callout-title-lightness: var(--base); }
+  &[data-callout-metadata*="l=60"] { --callout-lightness: var(--light); --callout-title-lightness: var(--light); }
+  &[data-callout-metadata*="l=70"] { --callout-lightness: var(--lighter); --callout-title-lightness: var(--lighter); }
+  &[data-callout-metadata*="l=80"] { --callout-lightness: var(--super-light); --callout-title-lightness: var(--super-light); }
+  &[data-callout-metadata*="l=90"] { --callout-lightness: var(--lightest); --callout-title-lightness: var(--lightest); }
+  &[data-callout-metadata*="l=100"] { --callout-lightness: var(--white); --callout-title-lightness: var(--white); }
+}
+
+/* Chroma (c) */
+div.callout {
+  &[data-callout-metadata*="c=0"] { --callout-chroma: 0; }
+  &[data-callout-metadata*="c=0.1"] { --callout-chroma: 0.1; }
+  &[data-callout-metadata*="c=0.2"] { --callout-chroma: 0.2; }
+  &[data-callout-metadata*="c=0.3"] { --callout-chroma: 0.3; }
+  &[data-callout-metadata*="c=0.4"] { --callout-chroma: 0.4; }
+  &[data-callout-metadata*="c=0.5"] { --callout-chroma: 0.5; }
+}
+
+/* Hue (h) */
+div.callout {
+  &[data-callout-metadata*="h=0"] { --callout-hue: 0; }
+  &[data-callout-metadata*="h=30"] { --callout-hue: 30; }
+  &[data-callout-metadata*="h=60"] { --callout-hue: 60; }
+  &[data-callout-metadata*="h=90"] { --callout-hue: 90; }
+  &[data-callout-metadata*="h=120"] { --callout-hue: 120; }
+  &[data-callout-metadata*="h=150"] { --callout-hue: 150; }
+  &[data-callout-metadata*="h=180"] { --callout-hue: 180; }
+  &[data-callout-metadata*="h=210"] { --callout-hue: 210; }
+  &[data-callout-metadata*="h=240"] { --callout-hue: 240; }
+  &[data-callout-metadata*="h=270"] { --callout-hue: 270; }
+  &[data-callout-metadata*="h=300"] { --callout-hue: 300; }
+  &[data-callout-metadata*="h=330"] { --callout-hue: 330; }
+  &[data-callout-metadata*="h=360"] { --callout-hue: 360; }
 }
 
 /* Callout: Alpha (a) */
@@ -1220,289 +1582,6 @@ div.callout {
   &[data-callout-metadata*="a=0.4"] { --callout-opacity: var(--faintest); --callout-title-opacity: var(--faintest); --callout-border-opacity: var(--callout-opacity)}
   &[data-callout-metadata*="a=0.2"] { --callout-opacity: var(--translucent); --callout-title-opacity: var(--translucent); --callout-border-opacity: var(--callout-opacity)}
   &[data-callout-metadata*="a=0"] { --callout-opacity: var(--transparent); --callout-title-opacity: var(--transparent); --callout-border-opacity: var(--callout-opacity)}
-}
-
-/* Callouts: Modular Colors */
-
-div.callout{
-  &:is([data-callout*="grey"], [data-callout*="gray"]) {
-  --callout-chroma: var(--grey-chroma);
-  --callout-hue: var(--grey-hue);
-  --callout-title-chroma: var(--grey-chroma);
-  --callout-title-hue: var(--grey-hue);
-  }
-
-  &[data-callout*="rhodamine"] {
-    --callout-chroma: var(--rhodamine-chroma);
-    --callout-hue: var(--rhodamine-hue);
-    --callout-title-chroma: var(--rhodamine-chroma);
-    --callout-title-hue: var(--rhodamine-hue);
-  }
-
-  &[data-callout*="rose-red"] {
-    --callout-chroma: var(--rose-red-chroma);
-    --callout-hue: var(--rose-red-hue);
-    --callout-title-chroma: var(--rose-red-chroma);
-    --callout-title-hue: var(--rose-red-hue);
-  }
-
-  &[data-callout*="crimson"] {
-    --callout-chroma: var(--crimson-chroma);
-    --callout-hue: var(--crimson-hue);
-    --callout-title-chroma: var(--crimson-chroma);
-    --callout-title-hue: var(--crimson-hue);
-  }
-
-  &[data-callout*="scarlet"] {
-    --callout-chroma: var(--scarlet-chroma);
-    --callout-hue: var(--scarlet-hue);
-    --callout-title-chroma: var(--scarlet-chroma);
-    --callout-title-hue: var(--scarlet-hue);
-  }
-
-  &[data-callout*="red"] {
-    --callout-chroma: var(--red-chroma);
-    --callout-hue: var(--red-hue);
-    --callout-title-chroma: var(--red-chroma);
-    --callout-title-hue: var(--red-hue);
-  }
-
-  &[data-callout*="brown"] {
-    --callout-chroma: var(--brown-chroma);
-    --callout-hue: var(--brown-hue);
-    --callout-title-chroma: var(--brown-chroma);
-    --callout-title-hue: var(--brown-hue);
-  }
-
-  &[data-callout*="gold"] {
-    --callout-chroma: var(--gold-chroma);
-    --callout-hue: var(--gold-hue);
-    --callout-title-chroma: var(--gold-chroma);
-    --callout-title-hue: var(--gold-hue);
-  }
-
-  &[data-callout*="amber"] {
-    --callout-chroma: var(--amber-chroma);
-    --callout-hue: var(--amber-hue);
-    --callout-title-chroma: var(--amber-chroma);
-    --callout-title-hue: var(--amber-hue);
-  }
-
-  &[data-callout*="chartreuse"] {
-    --callout-chroma: var(--chartreuse-chroma);
-    --callout-hue: var(--chartreuse-hue);
-    --callout-title-chroma: var(--chartreuse-chroma);
-    --callout-title-hue: var(--chartreuse-hue);
-  }
-
-  &[data-callout*="olive"] {
-    --callout-chroma: var(--olive-chroma);
-    --callout-hue: var(--olive-hue);
-    --callout-title-chroma: var(--olive-chroma);
-    --callout-title-hue: var(--olive-hue);
-  }
-
-  &[data-callout*="green"] {
-    --callout-chroma: var(--green-chroma);
-    --callout-hue: var(--green-hue);
-    --callout-title-chroma: var(--green-chroma);
-    --callout-title-hue: var(--green-hue);
-  }
-
-  &[data-callout*="teal"] {
-    --callout-chroma: var(--teal-chroma);
-    --callout-hue: var(--teal-hue);
-    --callout-title-chroma: var(--teal-chroma);
-    --callout-title-hue: var(--teal-hue);
-  }
-
-  &[data-callout*="turquoise"] {
-    --callout-chroma: var(--turquoise-chroma);
-    --callout-hue: var(--turquoise-hue);
-    --callout-title-chroma: var(--turquoise-chroma);
-    --callout-title-hue: var(--turquoise-hue);
-  }
-
-  &[data-callout*="cerulean"] {
-    --callout-chroma: var(--cerulean-chroma);
-    --callout-hue: var(--cerulean-hue);
-    --callout-title-chroma: var(--cerulean-chroma);
-    --callout-title-hue: var(--cerulean-hue);
-  }
-
-  &[data-callout*="blue"] {
-    --callout-chroma: var(--indigo-chroma);
-    --callout-hue: var(--indigo-hue);
-    --callout-title-chroma: var(--indigo-chroma);
-    --callout-title-hue: var(--indigo-hue);
-  }
-
-  &[data-callout*="indigo"] {
-    --callout-chroma: var(--indigo-chroma);
-    --callout-hue: var(--indigo-hue);
-    --callout-title-chroma: var(--indigo-chroma);
-    --callout-title-hue: var(--indigo-hue);
-  }
-
-  &[data-callout*="lapis"] { /*Also known as Ultramarine-Violet*/
-    --callout-chroma: var(--lapis-chroma);
-    --callout-hue: var(--lapis-hue);
-    --callout-title-chroma: var(--lapis-chroma);
-    --callout-title-hue: var(--lapis-hue);
-  }
-
-  &[data-callout*="violet"] {
-    --callout-chroma: var(--violet-chroma);
-    --callout-hue: var(--violet-hue);
-    --callout-title-chroma: var(--violet-chroma);
-    --callout-title-hue: var(--violet-hue);
-  }
-
-  &[data-callout*="purple"] {
-    --callout-chroma: var(--purple-chromas);
-    --callout-hue: var(--purple-hue);
-    --callout-title-chroma: var(--purple-chromas);
-    --callout-title-hue: var(--purple-hue);
-  }
-
-  &[data-callout*="fuchsia"] {
-    --callout-chroma: var(--fuchsia-chroma);
-    --callout-hue: var(--fuchsia-hue);
-    --callout-title-chroma: var(--fuchsia-chroma);
-    --callout-title-hue: var(--fuchsia-hue);
-  }
-
-  &[data-callout*="magenta"] {
-    --callout-chroma: var(--magenta-chroma);
-    --callout-hue: var(--magenta-hue);
-    --callout-title-chroma: var(--magenta-chroma);
-    --callout-title-hue: var(--magenta-hue);
-  }
-}
-
-/* Callouts: Fixed Colors
-These colors are shortcuts to specific colors 
-which you'd usually only achieve by taking one of the modular colors and making it lighter or darker.
-*/
-
-div.callout {
-  &[data-callout*="yellow"] {
-  --callout-lightness: var(--white);
-  --callout-chroma: 0.25;
-  --callout-hue: 100;
-  --callout-title-lightness: var(--white);
-  --callout-title-chroma: 0.25;
-  --callout-title-hue: 100;
-  }
-
-  &[data-callout*="tangerine"] {
-    --callout-lightness: var(--super-light);
-    --callout-chroma: 0.2;
-    --callout-hue: 53;
-    --callout-title-lightness: var(--super-light);
-    --callout-title-chroma: 0.2;
-    --callout-title-hue: 53;
-  }
-
-  &[data-callout*="orange"] {
-    --callout-lightness: var(--light);
-    --callout-chroma: 0.5;
-    --callout-hue: 100;
-    --callout-title-lightness: var(--light);
-    --callout-title-chroma: 0.5;
-    --callout-title-hue: 100;
-  }
-
-  &[data-callout*="vermillion"] {
-    --callout-lightness: var(--light);
-    --callout-chroma: 0.25;
-    --callout-hue: 30;
-    --callout-title-lightness: var(--light);
-    --callout-title-chroma: 0.25;
-    --callout-title-hue: 30;
-  }
-
-  &:is([data-callout*="sanguine"],[data-callout*="blood"]) {
-    --callout-lightness: 37.5%;
-    --callout-chroma: 0.5;
-    --callout-hue: 100;
-    --callout-title-lightness: 37.5%;
-    --callout-title-chroma: 0.5;
-    --callout-title-hue: 100;
-  }
-
-  &[data-callout*="coral"] {
-    --callout-lightness: var(--lighter);
-    --callout-chroma: 0.15;
-    --callout-hue: 10;
-    --callout-title-lightness: var(--lighter);
-    --callout-title-chroma: 0.15;
-    --callout-title-hue: 10;
-  }
-
-  &[data-callout*="lavender"] {
-    --callout-lightness: var(--lightest);
-    --callout-chroma: 0.3;
-    --callout-hue: 285;
-    --callout-title-lightness: var(--lightest);
-    --callout-title-chroma: 0.3;
-    --callout-title-hue: 285;
-  }
-
-  &[data-callout*="pink"] {
-    --callout-lightness: var(--lightest);
-    --callout-chroma: 0.25;
-    --callout-hue: 300;
-    --callout-title-lightness: var(--lightest);
-    --callout-title-chroma: 0.25;
-    --callout-title-hue: 300;
-  }
-
-  &[data-callout*="cyan"] {
-    --callout-lightness: var(--lightest);
-    --callout-chroma: 0.13;
-    --callout-hue: 185;
-    --callout-title-lightness: var(--lightest);
-    --callout-title-chroma: 0.13;
-    --callout-title-hue: 185;
-  }
-
-  &[data-callout*="white"] {
-    --callout-lightness: var(--white);
-    --callout-chroma: 0;
-    --callout-hue: 0;
-    --callout-title-lightness: var(--white);
-    --callout-title-chroma: 0;
-    --callout-title-hue: 0;
-  }
-
-  &[data-callout*="black"] {
-    --callout-lightness: var(--black);
-    --callout-chroma: 0;
-    --callout-hue: 0;
-    --callout-title-lightness: var(--black);
-    --callout-title-chroma: 0;
-    --callout-title-hue: 0;
-  }
-}
-
-@media print { /*WIP: Should only apply for darkmode users!*/
-  div.callout[data-callout*="black"] {
-    --callout-lightness: var(--white);
-  }
-  div.callout[data-callout*="white"] {
-    --callout-lightness: var(--black);
-  }
-}
-
-/* Chroma (c) */
-div.callout {
-  &[data-callout-metadata$="c=0"] { --callout-chroma: 0; }
-  &[data-callout-metadata$="c=0.1"] { --callout-chroma: 0.1; }
-  &[data-callout-metadata$="c=0.2"] { --callout-chroma: 0.2; }
-  &[data-callout-metadata$="c=0.3"] { --callout-chroma: 0.3; }
-  &[data-callout-metadata$="c=0.4"] { --callout-chroma: 0.4; }
-  &[data-callout-metadata$="c=0.5"] { --callout-chroma: 0.5; }
 }
 
 

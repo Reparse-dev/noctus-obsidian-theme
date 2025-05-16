@@ -240,6 +240,9 @@ body {
   --h4-vertical-padding: 0.4rem; /* Better padding variable */
   --titlebar-background-focused: oklch(0% 0 0);
   --blockquote-border-color: var(--text-color);
+
+  /* Callout Preset & Format Colors */
+
 }
 
 
@@ -863,6 +866,10 @@ div.callout[data-callout*="cite"] {
   linear-gradient(to right, oklch(var(--callout-color) / 0), 
   oklch(var(--callout-color) / 0.4), oklch(var(--callout-color) / 0.5), 
   oklch(var(--callout-color) / 0.4), oklch(var(--callout-color) / 0)) 1;
+  --callout-icon: lucide-text-quote;
+  &>.callout-title>.callout-icon {
+    transform: scale(1, 1);
+  }
 }
 
 /* Timeline Callout
@@ -1115,7 +1122,9 @@ div.callout {
   &[data-callout^="caution"] { 
     border-style: solid; 
     border-width: var(--callout-border-width); 
+    --callout-icon: lucide-shield-alert;
   }
+  &[data-callout^="attention"] { --callout-icon: lucide-badge-alert; }
 }
 
 /* Important, Tip, Hint - Summary, tldr, abstract */ 
@@ -1130,9 +1139,12 @@ div.callout {
   --callout-hue: 185;
   }
   &[data-callout^="important"] { border-style: double; border-width: var(--callout-double-border-width); }
-  &[data-callout^="hint"] { border-style: dashed; }
-  &:is([data-callout^="important"], [data-callout^="tip"], [data-callout^="hint"]) { --callout-icon: lucide-flame; }
-  &:is([data-callout^="summary"], [data-callout^="tldr"], [data-callout^="tl;dr"], [data-callout^="abstract"]) { --callout-icon: lucide-clipboard-list; }
+  &:[data-callout^="important"] { --callout-icon: lucide-flame; }
+  &[data-callout^="tip"] { --callout-icon: lucide-badge-info; }
+  &[data-callout^="hint"] { border-style: dashed; --callout-icon: lucide-badge-help; }
+  &:is([data-callout^="tldr"], [data-callout^="tl;dr"]) { --callout-icon: lucide-clipboard-list; }
+  &[data-callout^="summary"] { --callout-icon: lucide-sigma; }
+  &[data-callout^="abstract"] { --callout-icon: lucide-activity; }
 }
 
 /* Error, Danger */ 
@@ -1158,9 +1170,9 @@ div.callout {
     --callout-lightness: var(--base);
     --callout-chroma: 0.25;
     --callout-hue: 30;
-    --callout-icon: lucide-x;
+    --callout-icon: lucide-ban;
   }
-  &[data-callout^="missing"] { border-style: dashed; }
+  &[data-callout^="missing"] { border-style: dashed; --callout-icon: lucide-x; }
 }
 
 /* Todo, Info */ 
@@ -1275,6 +1287,7 @@ div.callout {
   &[data-callout$="list"] { --callout-icon: lucide-list; }
 
   &[data-callout$="clock"] { --callout-icon: clock; }
+  &[data-callout$="history"] { --callout-icon: lucide-history; }
 
   &[data-callout$="flame"] { --callout-icon: lucide-flame; }
 
@@ -1290,6 +1303,25 @@ div.callout {
   &[data-callout$="zap"] { --callout-icon: lucide-zap; }
 
   &[data-callout$="x"] { --callout-icon: lucide-x; }
+
+  &:is([data-calllout$="sigma"], [data-callout$="sum"]) { --callout-icon: sigma; }
+  &:is([data-calllout$="square-sigma"], [data-callout$="square-sum"]) { --callout-icon: square-sigma; }
+
+  &[data-callout$="badge-help"] { --callout-icon: lucide-badge-help; }
+  &[data-callout$="badge-info"] { --callout-icon: lucide-badge-info; }
+
+  &[data-callout$="ban"] { --callout-icon: lucide-ban; }
+
+  &[data-callout$="activity"] { --callout-icon: lucide-activity; }
+
+  &[data-calout$="shield"] { --callout-icon: lucide-shield; }
+  &[data-callout$="shield-alert"] { --callout-icon: lucide-shield-alert; }
+  &[data-callout$="shield-ban"] { --callout-icon: lucide-shield-ban; }
+  &[data-callout$="shield-check"] { --callout-icon: lucide-shield-check; }
+  &[data-callout$="shield-ellipsis"] { --callout-icon: lucide-shield-ellipsis; }
+  &[data-callout$="shield-half"] { --callout-icon: lucide-shield-half; }
+  &[data-callout$="shield-plus"] { --callout-icon: lucide-shield-plus; }
+  &[data-callout$="shield-x"] { --callout-icon: lucide-shield-x; }
 }
 
 

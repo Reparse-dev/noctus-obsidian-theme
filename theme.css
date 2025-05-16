@@ -1461,7 +1461,7 @@ div.callout{
   }
 
   &[data-callout*="violet"] {
-    --callout-title-lightness: var(--violet-lightness)
+    --callout-title-lightness: var(--violet-lightness);
     --callout-title-chroma: var(--violet-chroma);
     --callout-title-hue: var(--violet-hue);
     --callout-lightness: var(--violet-lightness);
@@ -1479,7 +1479,7 @@ div.callout{
   }
 
   &[data-callout*="fuchsia"] {
-    --callout-title-lightness: var(--fuchsia-lightness)
+    --callout-title-lightness: var(--fuchsia-lightness);
     --callout-title-chroma: var(--fuchsia-chroma);
     --callout-title-hue: var(--fuchsia-hue);
     --callout-lightness: var(--fuchsia-lightness);
@@ -1548,7 +1548,7 @@ div.callout {
   }
 
   &[data-callout*="tangerine"] {
-    --callout-title-lightness: var(--trangerine-lightness);
+    --callout-title-lightness: var(--tangerine-lightness);
     --callout-title-chroma: var(--tangerine-chroma);
     --callout-title-hue: var(--tangerine-hue);
     --callout-lightness: var(--tangerine-lightness);

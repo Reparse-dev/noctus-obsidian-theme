@@ -1410,7 +1410,7 @@ div.callout{
     --callout-title-lightness: var(--teal-lightness);
     --callout-title-chroma: var(--teal-chroma);
     --callout-title-hue: var(--teal-hue);
-    --callout-lightness: var(--teal-lightness)M
+    --callout-lightness: var(--teal-lightness);
     --callout-chroma: var(--teal-chroma);
     --callout-hue: var(--teal-hue);
   }

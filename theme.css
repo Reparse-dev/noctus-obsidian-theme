@@ -57,28 +57,28 @@ body {
   --black: 0%;
   /* Or I could go with: base-10, base-20, base-30, base-40, base-50, etc. */
 
-  --grey-lightness: 50%;
-  --rhodamine-lightness: 50%;
-  --rose-red-lightness: 50%;
-  --crimson-lightness: 50%;
-  --scarlet-lightness: 50%;;
-  --red-lightness: 50%;;
-  --brown-lightness: 50%;
-  --gold-lightness: 50%;
-  --amber-lightness: 50%;
-  --chartreuse-lightness: 50%;
-  --olive-lightness: 50%;
-  --green-lightness: 50%;
-  --teal-lightness: 50%;
-  --turquoise-lightness: 50%;
-  --cerulean-lightness: 50%;
-  --blue-lightness: 50%;
+  --grey-lightness: 70%;
+  --rhodamine-lightness: 60%;
+  --rose-red-lightness: 60%;
+  --crimson-lightness: 60%;
+  --scarlet-lightness: 60%;;
+  --red-lightness: 60%;
+  --amber-lightness: 70%;
+  --gold-lightness: 55%;
+  --brown-lightness: 60%;
+  --chartreuse-lightness: 70%;
+  --olive-lightness: 70%;
+  --green-lightness: 70%;
+  --teal-lightness: 70%;
+  --turquoise-lightness: 70%;
+  --cerulean-lightness: 65%;
+  --blue-lightness: 60%;
   --indigo-lightness: 50%;
   --lapis-lightness: 50%;
-  --violet-lightness: 50%;
-  --purple-lightness: 50%;
-  --fuchsia-lightness: 50%;
-  --magenta-lightness: 50%;
+  --violet-lightness: 60%;
+  --purple-lightness: 60%;
+  --fuchsia-lightness: 70%;
+  --magenta-lightness: 65%;
 
   --coral-lightness: 70%;
   --amaranth-lightness: 60%;
@@ -1290,6 +1290,9 @@ div.callout {
   &[data-callout$="history"] { --callout-icon: lucide-history; }
 
   &[data-callout$="flame"] { --callout-icon: lucide-flame; }
+
+  &[data-callout$="quote"] { --callout-icon: lucide-quote; }
+  &[data-callout$="text-quote"] { --callout-icon: lucide-text-quote; }
 
   &[data-callout$="info"] { --callout-icon: lucide-info; }
 

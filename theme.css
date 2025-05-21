@@ -224,6 +224,7 @@ body {
   --primary-lightness: var(--white);
   --primary-chroma: 0;
   --primary-hue: 0;
+  --primary-color: var(--primary-lightness) var(--primary-chroma) var(--primary-hue);
 
   --bold-color: var(--text-normal-lightness) var(--text-normal-chroma) var(--text-normal-hue);
 
@@ -239,7 +240,6 @@ body {
 
   --h4-vertical-padding: 0.4rem; /* Better padding variable */
   --titlebar-background-focused: oklch(0% 0 0);
-  --blockquote-border-color: var(--text-color);
 
   /* Callout Preset & Format Colors */
 
@@ -296,6 +296,10 @@ Link: https://github.com/radekkozak/discordian
 
 svg.svg-icon {
   --icon-size: 1.15em;
+}
+
+.metadata-property .metadata-property-key-input {
+  text-transform: capitalize;
 }
 
 
@@ -374,7 +378,6 @@ body {
 
 
 
-
 /* MINIMIZE, FULLSCREEN, EXIT WINDOW ICON REPLACEMENT 
 Based on Obsidian Encore Theme by Carbonateb
 GitHub: https://github.com/carbonateb/obsidian-encore-theme
@@ -437,10 +440,11 @@ ul.contains-task-list { /*WIP: Better padding variable*/
 
 ul.contains-task-list>li.task-list-item { margin-left: 1.2em; }
 
-div.callout .callout-content p { margin-left: 0rem; }
+:is(div.callout .callout-content, blockquote) p { margin-left: 0rem; }
 
 .markdown-rendered ul > li { margin-inline-start: 1rem; }
 
+.markdown-rendered blockquote { padding-left: 1em; }
 
 
 /* HOLISTIC OKLCH */
@@ -660,7 +664,7 @@ body .cm-line.hr hr {
   body .markdown-rendered hr,
   body .cm-line.hr hr {
     height: 1px;
-    background-image: linear-gradient(to right, transparent, rgba(0,0,0,0.5) 46.2%, transparent 46.2%, transparent 54%, rgba(0,0,0,0.5) 54%, transparent);
+    background-image: linear-gradient(to right, transparent, oklch(var(--hr-color) / 0.5) 46.2%, transparent 46.2%, transparent 54%, oklch(var(--hr-color) / 0.5) 54%, transparent);
     border: none;
     position: relative;
     overflow: visible;
@@ -755,6 +759,7 @@ div.callout {
   --callout-double-border-width: .3em;
 
   --callout-quote-lightness: var(--lightest);
+  --callout-icon: lucide-square-pen;
 
   overflow: visible;
   background-color: oklch(var(--callout-color) / var(--transparent));
@@ -801,19 +806,33 @@ div.callout {
 All done by me.
 -------------------*/
 
-/* Blank */
+/* Anchor (Blank) 
+Serves as an invisible callout used to link to a certain text section despite lines breaks and such.
+Alternative Names:
+[data-callout*="bare"], [data-callout*="empty"], [data-callout*="unstyled"]
+*/
 
-div.callout[data-callout*="blanco"] {
+div.callout:is([data-callout*="anchor"], [data-callout*="invisible"]) {
   --callout-blend-mode: normal;
   --callout-title-size: 1em;
+  --callout-title-lightness: var(--white);
   border: none;
   padding: 0px;
-  margin: 1em 0em;/*
+  margin: 0em 0em 0em var(--h4-vertical-padding);/*
   padding-inline: 5px; 
   background: unset; 
   box-shadow: unset;*/
 
-  &>.callout-content { display: contents; }
+  &>.callout-content { 
+    display: contents; 
+    p:first-of-type {
+    margin-top: 0.2em;
+    }
+    :is(ol, ul):first-of-type {
+    margin-top: 0.4em;
+    }
+  }
+  &>.callout-content 
   &>.callout-icon { display: none; }
   &>.callout-title {
     margin-top: 0em;
@@ -821,21 +840,28 @@ div.callout[data-callout*="blanco"] {
   }
 }
 
+.cm-embed-block.cm-callout:has(.markdown-rendered .callout:is([data-callout="anchor"], [data-callout*="invisible"])) {
+  padding: 0 !important;
+}
+
+.cm-embed-block.cm-callout:has(.markdown-rendered .callout:is([data-callout="anchor"], [data-callout*="invisible"])) .edit-block-button::before {
+  content: "Anchor";
+  padding: 0.1em;
+  transform: translateX(-0.5em) translateY(-0.3em);
+}
+
+
 /* Quote & Cite */
 
-div.callout:is([data-callout*="quote"], [data-callout*="cite"]) {
+div.callout:is([data-callout*="reversed"], [data-callout^="quote"], [data-callout^="cite"]) {
   --callout-lightness: var(--callout-quote-lightness);
   --callout-title-lightness: var(--callout-quote-lightness);
   --callout-color: var(--callout-lightness) var(--callout-chroma) var(--callout-hue);
   display: flex;
   flex-direction: column-reverse;
-  padding-bottom: 1.5em;
-  border-image: 
-  linear-gradient(to right, oklch(var(--callout-color)), 
-  oklch(var(--callout-color) / 0.4), oklch(var(--callout-color) / 0.2)) 1;
+  padding-bottom: 1.6em;
   padding-top: 0.5em;
   margin-bottom: 2.5em;
-  --callout-icon: quote-glyph;
 
   .cm-embed-block.cm-callout & {
     margin-top: 0em;
@@ -858,7 +884,42 @@ div.callout:is([data-callout*="quote"], [data-callout*="cite"]) {
   }
 }
 
-div.callout[data-callout*="cite"] {
+div.callout[data-callout*="normal"] {
+  flex-direction: column;
+  margin-top: 1.7em;
+  padding-left: 1.4rem;
+  margin-bottom: 1.5em;
+
+  &>.callout-content {
+    margin-top: 3rem;
+    padding: 0;
+  }
+
+  &>.callout-title {
+    width: fit-content;
+    margin-top: -1.2em;
+    margin-left: -0.75em;
+    padding: 0 0.7em;
+
+    &>.callout-title-inner {
+      letter-spacing: 0.07em;
+    }
+
+    &>.callout-icon {
+      margin-right: 0.4em;
+      margin-top: -0.05em;
+    }
+  }
+}
+
+div.callout[data-callout^="quote"] {
+  border-image: 
+  linear-gradient(to right, oklch(var(--callout-color)), 
+  oklch(var(--callout-color) / 0.4), oklch(var(--callout-color) / 0.2)) 1;
+  --callout-icon: quote-glyph;
+}
+
+div.callout[data-callout^="cite"] {
   border-left: none;
   border-right: none;
   border-radius: 0px;
@@ -1140,7 +1201,7 @@ div.callout {
   --callout-hue: 185;
   }
   &[data-callout^="important"] { border-style: double; border-width: var(--callout-double-border-width); }
-  &:[data-callout^="important"] { --callout-icon: lucide-flame; }
+  &[data-callout^="important"] { --callout-icon: lucide-flame; }
   &[data-callout^="tip"] { --callout-icon: lucide-badge-info; }
   &[data-callout^="hint"] { border-style: dashed; --callout-icon: lucide-badge-help; }
   &:is([data-callout^="tldr"], [data-callout^="tl;dr"]) { --callout-icon: lucide-clipboard-list; }
@@ -1189,27 +1250,34 @@ div.callout {
   --callout-chroma: 0.3;
   --callout-hue: 270;
   }
-  &[data-callout*="todo"] { --callout-icon: lucide-check-circle-2; }
-  &[data-callout*="info"] { --callout-icon: lucide-info; }
+  &[data-callout^="todo"] { --callout-icon: lucide-check-circle-2; }
+  &[data-callout^="info"] { --callout-icon: lucide-info; }
 }
 
 /* Definition, Example */ /*WIP: Perhaps make Example Purple/Lavender again */
-div.callout {
-  &:is([data-callout^="definition"], [data-callout^="example"]) {
+div.callout[data-callout^="definition"] {
     --callout-title-lightness: var(--lightest);
     --callout-title-chroma: 0;
     --callout-title-hue: 0;
     --callout-lightness: var(--lightest);
     --callout-chroma: 0;
     --callout-hue: 0;
-  }
-  &[data-callout^="definition"] { --callout-icon: lucide-clipboard-list; } 
-  &[data-callout^="example"] { --callout-icon: lucide-list; } 
+    --callout-icon: lucide-clipboard-list;
 }
 
-/* Extra, Result */
+div.callout[data-callout^="example"] {
+    --callout-title-lightness: var(--white);
+    --callout-title-chroma: var(--lavender-chroma);
+    --callout-title-hue: var(--lavender-hue);
+    --callout-lightness: var(--white);
+    --callout-chroma: var(--lavender-chroma);
+    --callout-hue: var(--lavender-hue);
+    --callout-icon: lucide-list;
+}
+
+/* Extra, Highlight, Result */
 div.callout {
-  &:is([data-callout^="extra"], [data-callout^="result"]) {
+  &:is([data-callout^="extra"], [data-callout^="highlight"], [data-callout^="result"]) {
     --callout-title-lightness: var(--lightest);
     --callout-title-chroma: 0.25;
     --callout-title-hue: 100;
@@ -1218,7 +1286,7 @@ div.callout {
     --callout-hue: 100;
   }
   &[data-callout^="result"] { --callout-icon: lucide-clipboard; } 
-  &[data-callout^="extra"] { --callout-icon: lucide-star; } 
+  &:is([data-callout^="extra"], [data-callout^="highlight"]) { --callout-icon: lucide-star; } 
 }
 
 /* Solution */
@@ -1322,7 +1390,7 @@ div.callout {
 
   &[data-callout$="activity"] { --callout-icon: lucide-activity; }
 
-  &[data-calout$="shield"] { --callout-icon: lucide-shield; --icon-size: 1.25em; }
+  &[data-callout$="shield"] { --callout-icon: lucide-shield; --icon-size: 1.25em; }
   &[data-callout$="shield-alert"] { --callout-icon: lucide-shield-alert; --icon-size: 1.25em; }
   &[data-callout$="shield-ban"] { --callout-icon: lucide-shield-ban; --icon-size: 1.25em; }
   &[data-callout$="shield-check"] { --callout-icon: lucide-shield-check; --icon-size: 1.25em; }
@@ -1914,15 +1982,24 @@ sup, sub {
 }
 
 /* BLOCKQUOTE STYLING */
-.markdown-rendered blockquote {
-  --blockquote-border-color: oklch(var(--text-lightness) var(--text-chroma) var(--text-hue));
+.HyperMD-quote.HyperMD-quote-1.cm-line .markdown-rendered blockquote {
+  --blockquote-border-color: var(--primary-color);
   background-color: var(--blockquote-background-color);
-  border-inline-start: var(--blockquote-border-thickness) solid var(--blockquote-border-color);
+  border-inline-start: var(--blockquote-border-thickness) solid oklch(var(--blockquote-border-color));
   padding-left: 1rem;
   p {
   margin-left: 0em;
   }
 }
+
+:not(.HyperMD-quote.HyperMD-quote-1.cm-line) .markdown-rendered blockquote {
+  --blockquote-border-color: var(--primary-color);
+  border-left: var(--blockquote-border-thickness) solid oklch(var(--blockquote-border-color));
+}
+
+/*
+<div class="HyperMD-quote HyperMD-quote-1 cm-line" dir="ltr" style="text-indent: -12px; padding-inline-start: 12px;"><span class="cm-formatting cm-formatting-quote cm-formatting-quote-1 cm-quote cm-quote-1"><span class="cm-transparent">&gt;</span> 
+</span><span class="cm-quote cm-quote-1">Marked by disdain, for you Mr. West.</span></div>*/
 
 .markdown-source-view.mod-cm6.is-live-preview .HyperMD-quote:before, .markdown-source-view.mod-cm6 .cm-blockquote-border:before {
     --blockquote-border-color: oklch(var(--text-lightness) var(--text-chroma) var(--text-hue));

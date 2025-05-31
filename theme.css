@@ -25,7 +25,6 @@ element {
 body {
   /* General */
   --obsidian-logo-small: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 512 512' width='8' height='8' fill='none' stroke='%23ffffff90' stroke-width='5%' stroke-linecap='round' stroke-linejoin='round' class='logo-wireframe'%3E%3Cpath d='M172.7 461.6c73.6-149.1 2.1-217-43.7-246.9m72 96.7c71.6-17.3 141-16.3 189.8 88.5m-114-96.3c-69.6-174 44.6-181 16.3-273.6m97.7 370c1.6-3 3.3-5.8 5.1-8.6 20-29.9 34.2-53.2 41.4-65.3a16 16 0 0 0-1.2-17.7 342.1 342.1 0 0 1-40.2-66.1c-10.9-26-12.5-66.5-12.6-86.2 0-7.4-2.4-14.7-7-20.6l-81.8-104a32 32 0 0 0-1.4-1.5m97.7 370a172.8 172.8 0 0 0-18 59c-2.9 21.5-24 38.4-45 32.6-30-8.3-64.5-21.1-95.7-23.5l-47.8-3.6c-7.7-.6-15-4-20.3-9.5l-82.3-84.8c-9-9.2-11.4-23-6.2-34.8 0 0 51-111.8 52.8-117.7l.7-3M293.1 30a31.5 31.5 0 0 0-44.4-2.3l-97.4 87.5c-5.4 5-9 11.5-10 18.8-3.7 24.5-9.7 68-12.3 80.7'%3E%3C/path%3E%3C/svg%3E");
-  --background-primary: oklch(0% 0 0);
 
   /* Primary Accent */
   --primary-accent-lightness: 58%;
@@ -39,6 +38,13 @@ body {
   --secondary-accent-hue: 20.09;
   --secondary-accent-color: var(--secondary-accent-lightness) var(--secondary-accent-chroma) var(--secondary-accent-hue);
   
+  /* Background Primary */
+  --background-primary-lightness: 0%;
+  --background-primary-chroma: 0;
+  --background-primary-hue: 0;
+  --background-primary-color: var(--background-primary-lightness) var(--background-primary-chroma) var(--background-primary-hue);
+  --background-primary-opacity: 1;
+
   --graph-primary: #dedede;
   --graph-secondary: #a083ff;
   --graph-tertiary: #636363; 
@@ -236,7 +242,7 @@ body {
   --big-heading-letter-spacing: 0.07em;
   --medium-heading-letter-spacing: 0.06em;
   --small-heading-letter-spacing: 0.04em;
-  --pdf-text-size: 12pt;
+  --pdf-text-size: 11pt;
 
   --h4-vertical-padding: 0.4rem; /* Better padding variable */
   --titlebar-background-focused: oklch(0% 0 0);
@@ -278,25 +284,27 @@ Link: https://github.com/radekkozak/discordian
 
 @media print {
   body {
-    --background-primary: oklch(100% 0 0);
+    --background-primary-lightness: 100%;
+    --background-primary-chroma: 0;
+    --background-primary-hue: 0;
     --text-lightness: var(--black);
     --primary-lightness: 0%;
     --primary-chroma: 0;
     --primary-hue: 0;
-    --primary-color: var(--black) 0 0;
     --obsidian-logo-small: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 512 512' width='8' height='8' fill='none' stroke='%2300000090' stroke-width='5%' stroke-linecap='round' stroke-linejoin='round' class='logo-wireframe'%3E%3Cpath d='M172.7 461.6c73.6-149.1 2.1-217-43.7-246.9m72 96.7c71.6-17.3 141-16.3 189.8 88.5m-114-96.3c-69.6-174 44.6-181 16.3-273.6m97.7 370c1.6-3 3.3-5.8 5.1-8.6 20-29.9 34.2-53.2 41.4-65.3a16 16 0 0 0-1.2-17.7 342.1 342.1 0 0 1-40.2-66.1c-10.9-26-12.5-66.5-12.6-86.2 0-7.4-2.4-14.7-7-20.6l-81.8-104a32 32 0 0 0-1.4-1.5m97.7 370a172.8 172.8 0 0 0-18 59c-2.9 21.5-24 38.4-45 32.6-30-8.3-64.5-21.1-95.7-23.5l-47.8-3.6c-7.7-.6-15-4-20.3-9.5l-82.3-84.8c-9-9.2-11.4-23-6.2-34.8 0 0 51-111.8 52.8-117.7l.7-3M293.1 30a31.5 31.5 0 0 0-44.4-2.3l-97.4 87.5c-5.4 5-9 11.5-10 18.8-3.7 24.5-9.7 68-12.3 80.7'%3E%3C/path%3E%3C/svg%3E");  
   }
-  html {
+  html, body, body .markdown-preview-view {
     --font-text-size: var(--pdf-text-size) !important;
     font-size: var(--font-text-size) !important;
-  } 
-  body .markdown-preview-view {
-    --font-text-size: var(--pdf-text-size) !important;
-    font-size: var(--font-text-size);
-  } 
+  }/*
+  div.callout[data-callout^="anchor"] .callout-title-inner {
+    font-size: 1.1em;
+  }*/
 }
 
-
+html, body {
+  background-color: oklch(var(--background-primary-color));
+}
 
 svg.svg-icon {
   --icon-size: 1.15em;
@@ -332,7 +340,7 @@ Link: https://lucaschampagne.dev/
 .mod-root .workspace-split.mod-horizontal>div:not(:first-of-type),
 .is-focused .workspace-leaf.mod-active .view-header,
 .sidebar-toggle-button {
-  background-color: transparent;
+  background-color: transparent !important;
   border: none;
   box-shadow: none;
 }
@@ -450,6 +458,10 @@ ul.contains-task-list>li.task-list-item { margin-left: 1.2em; }
 
 .markdown-rendered blockquote { padding-left: 1em; }
 
+.markdown-rendered blockquote {
+  margin-left: var(--h4-vertical-padding);
+}
+
 
 /* HOLISTIC OKLCH */
 body :is(p, li, li.task-list-item, th, tr, code, span.cm-inline-code, div.cm-line, 
@@ -483,7 +495,7 @@ Link: https://lucaschampagne.dev/
   display: flex;
   justify-content: center;
   align-items: center;
-  background-color: var(--background-primary) !important;
+  background-color: oklch(var(--background-primary-color) / var(--background-primary-opacity)) !important;
   min-width: 2px;
   min-height: 1px;
   --divider-width-hover: 3px;
@@ -491,7 +503,7 @@ Link: https://lucaschampagne.dev/
   &::after {
   content: "";
   position: absolute;
-  transition: var(--background-primary) 150ms ease-out;
+  transition: oklch(var(--background-primary-color) / var(--background-primary-opacity)) 150ms ease-out;
   }
 
   &:hover::after {
@@ -576,7 +588,7 @@ h4, .markdown-rendered h4, .HyperMD-header.HyperMD-header-4.cm-line, span.cm-hea
   --h4-opacity: 1;
   --h4-color: var(--h4-lightness) var(--h4-chroma) var(--h4-hue);
   background-color: oklch(var(--h4-color) / var(--h4-opacity));
-  color: var(--background-primary);
+  color: oklch(var(--background-primary-color) / var(--background-primary-opacity));
   letter-spacing: var(--h4-letter-spacing);
   font-weight: 900;
   padding: 0 var(--h4-vertical-padding) 0 var(--h4-vertical-padding);
@@ -612,12 +624,13 @@ h6, .markdown-rendered h6, .HyperMD-header.HyperMD-header-6.cm-line {
   --h6-color: var(--h6-lightness) var(--h6-chroma) var(--h6-hue);
   color: oklch(var(--h6-color) / var(--h6-opacity));
   letter-spacing: var(--h6-letter-spacing);
-  margin: 0;
+  margin: 0 !important;
+  padding: 0 !important;
 }
 
 @media print {
   a.footnote-link {
-    color: var(--background-primary);
+    color: oklch(var(--background-primary-color) / var(--background-primary-opacity));
   }
 
   h2,
@@ -783,7 +796,7 @@ div.callout {
     font-variant-caps: normal;
     font-size: var(--callout-title-size);
     color: var(--callout-title-color);
-    background-color: var(--background-primary);
+    background-color: oklch(var(--background-primary-color) / var(--background-primary-opacity));
     margin-top: -1.5em;
     margin-left: -0.75em;
     padding: 0 0.7em;
@@ -1055,7 +1068,7 @@ div.callout[data-callout*="timeline"] {
       border-top: dotted .1rem rgb(218,218,218);
       border-left: solid .1rem rgb(180,180,180);
       padding: 0.3em 0 0 0!important;
-      background-color: var(--background-primary);
+      background-color: oklc(var(--background-primary-color) / var(--background-primary-opacity));
       position: relative;
     }
 
@@ -1079,7 +1092,7 @@ div.callout[data-callout*="timeline"] {
       border-bottom: dotted .1rem rgb(180,180,180);
       font-weight: var(--font-normal);
       font-size: 1em;
-      background-color: var(--background-primary);
+      background-color: oklch(var(--background-primary-color) / var(--background-primary-opacity));
       position: relative;
     }
 
@@ -1802,6 +1815,34 @@ div.callout {
 }
 
 
+/* LIST STYLING */
+
+.markdown-reading-view :is(ul, ol) > :is(li > .list-bullet:after, li::marker),
+.markdown-source-view.mod-cm6 :is(.HyperMD-list-line-1, .HyperMD-list-line-2, .HyperMD-list-line-3, .HyperMD-list-line-4) :is(.list-bullet:after ::marker) {
+  --list-lightness: var(--primary-lightness);
+  --list-chroma: var(--primary-chroma);
+  --list-hue: var(--primary-hue);
+  --list-opacity: 0.4;
+} 
+
+.markdown-reading-view ol > li::marker,
+.markdown-source-view.mod-cm6 :is(.HyperMD-list-line-1, .HyperMD-list-line-2, .HyperMD-list-line-3, .HyperMD-list-line-4) ::marker {
+  --ordered-list-lightness: var(--list-lightness);
+  --ordered-list-chroma: var(--list-chroma);
+  --ordered-list-hue: var(--list-hue);
+  --ordered-list-color: var(--ordered-list-lightness) var(--ordered-list-chroma) var(--ordered-list-hue);
+  --ordered-list-opacity: var(--list-opacity);
+  color: oklch(var(--ordered-list-color) / var(--ordered-list-opacity));
+} 
+
+.markdown-reading-view ul > li > .list-bullet:after,
+.markdown-source-view.mod-cm6 :is(.HyperMD-list-line-1, .HyperMD-list-line-2, .HyperMD-list-line-3, .HyperMD-list-line-4) .list-bullet:after {
+  --unordered-list-lightness: var(--list-lightness);
+  --unordered-list-chroma: var(--list-chroma);
+  --unordered-list-hue: var(--list-hue);
+  --unordered-list-color: var(--unordered-list-lightness) var(--unordered-list-chroma) var(--unordered-list-hue);
+  --unordered-list-opacity: var(--list-opacity);
+}
 
 /* UNORDERED LIST STYLING 
 Based on Emacs bulletlist Snippet by Lilian POULIQUEN
@@ -1812,14 +1853,23 @@ With special thanks to:
 - LukeSKY75_ (Reddit: https://www.reddit.com/user/LukeSKY75_/) for making it work in reading mode and improving the CSS 
 ------------------------------*/
 
+.markdown-reading-view ul > li > .list-bullet:after,
+.markdown-source-view.mod-cm6 :is(.HyperMD-list-line-1, .HyperMD-list-line-2, .HyperMD-list-line-3, .HyperMD-list-line-4) .list-bullet:after {
+  --unordered-list-lightness: var(--primary-lightness);
+  --unordered-list-chroma: var(--primary-chroma);
+  --unordered-list-hue: var(--primary-hue);
+  --unordered-list-color: var(--unordered-list-lightness) var(--unordered-list-chroma) var(--unordered-list-hue);
+  --unordered-list-opacity: 0.4;
+}
+
 /* LEVEL 1 - Bullet*/
 .markdown-reading-view ul > li > .list-bullet:after,
 .markdown-source-view.mod-cm6 .HyperMD-list-line-1 .list-bullet:after {
   height: 7px;
   width: 7px;
   border-radius: 50%;
-  border-color: oklch(var(--text-color) / 0.4);
-  background-color: oklch(var(--text-color) / 0.4);
+  border-color: oklch(var(--unordered-list-color) / var(--unordered-list-opacity));
+  background-color: oklch(var(--unordered-list-color) / var(--unordered-list-opacity));
 } .markdown-source-view.mod-cm6 .HyperMD-list-line-1 .list-bullet:after {
   margin-right: 1em;
 }
@@ -1829,9 +1879,9 @@ With special thanks to:
 .markdown-source-view.mod-cm6 .HyperMD-list-line-2 .list-bullet:after {
   height: 7px;
   width: 7px;
-  background-color: oklch(var(--text-color) / 0);
+  background-color: oklch(var(--unordered-list-color) / 0);
   border-style: solid;
-  border-color: oklch(var(--text-color) / 0.4);
+  border-color: oklch(var(--unordered-list-color) / var(--unordered-list-opacity));
   border-radius: 50%;
   border-width: 1px;
 } .markdown-source-view.mod-cm6 .HyperMD-list-line-2 .list-bullet:after {
@@ -1844,13 +1894,13 @@ With special thanks to:
   height: 5px;
   width: 5px;
   border-radius: 0%;
-  background-color: oklch(var(--text-color) / 0.4);
+  background-color: oklch(var(--unordered-list-color) / var(--unordered-list-opacity));
 }
 .markdown-source-view.mod-cm6 .HyperMD-list-line-3 .list-bullet:after {
   height: 7px;
   width: 7px;
   border-radius: 0%;
-  background-color: oklch(var(--text-color) / 0.4);
+  background-color: oklch(var(--unordered-list-color) / var(--unordered-list-opacity));
   margin-right: 1em;
 }
 
@@ -1863,8 +1913,8 @@ With special thanks to:
   border-radius: 0%;
   border-top: 5px solid transparent;
   border-bottom: 5px solid transparent;
-  border-left: 8px solid oklch(var(--text-color) / 0.4);
-  border-right: 0px solid oklch(var(--text-color) / 0.4);
+  border-left: 8px solid oklch(var(--unordered-list-color) / var(--unordered-list-opacity));
+  border-right: 0px solid oklch(var(--unordered-list-color) / var(--unordered-list-opacity));
 } .markdown-source-view.mod-cm6 .HyperMD-list-line-4 .list-bullet:after {
   margin-right: 1em;
 }
@@ -1985,21 +2035,33 @@ sup, sub {
   color: oklch( var(--lightest) var(--text-normal-chroma) var(--text-normal-hue) / 0.9);
 }
 
-.markdown-rendered blockquote {
-  margin-left: var(--h4-vertical-padding);
-}
 
 .mod-root .workspace-tab-container .workspace-leaf-content {
   --en-opacity: 1;
-  background-color: var(--background-primary);
+  background-color: oklch(var(--background-primary-color) / var(--background-primary-opacity));
   border-radius: var(--tab-radius);
 }
 
 /* BLOCKQUOTE STYLING */
+
+.HyperMD-quote.HyperMD-quote-1.cm-line .markdown-rendered blockquote,
+:not(.HyperMD-quote.HyperMD-quote-1.cm-line) .markdown-rendered blockquote,
+.markdown-source-view.mod-cm6.is-live-preview .HyperMD-quote:before, .markdown-source-view.mod-cm6 .cm-blockquote-border:before {
+  --blockquote-border-lightness: var(--primary-hue);
+  --blockquote-border-chroma: var(--primary-chroma);
+  --blockquote-border-hue: var(--primary-hue);
+  --blockquote-border-color: var(--primary-lightness) var(--primary-chroma) var(--primary-hue);
+  --blockquote-border-opacity: 1;
+  --blockquote-background-lightness: var(--background-primary-lightness);
+  --blockquote-background-chroma: var(--background-primary-chroma);
+  --blockquote-background-hue: var(--background-primary-hue);
+  --blockquote-background-color: var(--blockquote-background-lightness) var(--blockquote-background-chroma) var(--blockquote-background-hue);
+  --blockquote-background-opacity: 1;
+}
+
 .HyperMD-quote.HyperMD-quote-1.cm-line .markdown-rendered blockquote {
-  --blockquote-border-color: var(--primary-color);
-  background-color: var(--blockquote-background-color);
-  border-inline-start: var(--blockquote-border-thickness) solid oklch(var(--blockquote-border-color));
+  background-color: oklch(var(--blockquote-background-color) / var(--blockquote-background-opacity));
+  border-inline-start: var(--blockquote-border-thickness) solid oklch(var(--blockquote-border-color) / var(--blockquote-border-opacity));
   padding-left: 1rem;
   p {
   margin-left: 0em;
@@ -2007,24 +2069,19 @@ sup, sub {
 }
 
 :not(.HyperMD-quote.HyperMD-quote-1.cm-line) .markdown-rendered blockquote {
-  --blockquote-border-color: var(--primary-color);
-  border-left: var(--blockquote-border-thickness) solid oklch(var(--blockquote-border-color));
+  border-left: var(--blockquote-border-thickness) solid oklch(var(--blockquote-border-color) / var(--blockquote-border-opacity));
 }
 
-/*
-<div class="HyperMD-quote HyperMD-quote-1 cm-line" dir="ltr" style="text-indent: -12px; padding-inline-start: 12px;"><span class="cm-formatting cm-formatting-quote cm-formatting-quote-1 cm-quote cm-quote-1"><span class="cm-transparent">&gt;</span> 
-</span><span class="cm-quote cm-quote-1">Marked by disdain, for you Mr. West.</span></div>*/
-
 .markdown-source-view.mod-cm6.is-live-preview .HyperMD-quote:before, .markdown-source-view.mod-cm6 .cm-blockquote-border:before {
-    --blockquote-border-color: oklch(var(--text-lightness) var(--text-chroma) var(--text-hue));
+  border-inline-start: var(--blockquote-border-thickness) solid oklch(var(--blockquote-border-color) / var(--blockquote-border-opacity));
 }
 
 @media print {
   .markdown-rendered blockquote, blockquote {
-    --blockquote-background-color: var(--background-primary);
-    --blockquote-border-color: rgba(0,0,0, 1);
-    background-color: var(--blockquote-background-color);
-    border-inline-start: var(--blockquote-border-thickness) solid var(--blockquote-border-color);
+    --blockquote-background-color: var(--background-primary-color);
+    --blockquote-border-color: var(--primary-color);
+    background-color: oklch(var(--blockquote-background-color) / var(--blockquote-background-opacity));
+    border-inline-start: var(--blockquote-border-thickness) solid oklch(var(--blockquote-border-color) / var(--blockquote-border-opacity));
   }
 }
 
@@ -2108,7 +2165,7 @@ Here I add styling for the most commonly used plugins
     padding-left: 0.1em;
     padding-right: 0.1em;
     font-family: var(--font-text);
-    background-color: var(--background-primary);
+    background-color: oklch(var(--background-primary-color) / var(--background-primary-opacity));
     outline: 2px solid oklch(var(--text-color) / var(--translucent));
     color: var(--text-color);
   }
@@ -2123,7 +2180,7 @@ Here I add styling for the most commonly used plugins
     padding-left: 0.2em;
     padding-right: 0.2em;
     font-family: var(--font-monospace);
-    background-color: var(--background-primary);
+    background-color: oklch(var(--background-primary-color) / var(--background-primary-opacity));
     outline: 2px solid var(--background-primary-alt);
     color: var(--text-color);
   }

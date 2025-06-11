@@ -6,7 +6,7 @@ The Noctus Theme for Obsidian is a theme made with the intent to be as modular *
 
 Initially, this theme was just a modified version of the [Obsidian Encore Theme](https://github.com/carbonateb/obsidian-encore-theme) by Carbonateb but overtime I, Shayde, looked at other themes, like the [Minimal Theme](https://github.com/kepano/obsidian-minimal) by kepano, and started making it a theme of its own.
 
-Around that time I also started working on an Obsidian Snippet that would change the colors, functions, and similar of callout when putting in different callout (meta)-data, which has become a major function in this theme and has long surpassed the snippet since. I have added formats, like a timeline callout based on harr's [Timeline CSS](https://forum.obsidian.md/t/css-snippet-timeline-as-callout/93652) and more.
+Around that time I also started working on an obsidian snippet that would change the colors, functions, and similar of callout when putting in different callout (meta-) data, which has become a major function in this theme and has long surpassed the snippet since. I have added formats, like a timeline callout based on harr's [Timeline CSS](https://forum.obsidian.md/t/css-snippet-timeline-as-callout/93652) and more.
 
 ### Features
 
@@ -17,7 +17,7 @@ Around that time I also started working on an Obsidian Snippet that would change
 
 #### Plugin Integrations
 
-We integrate plugins we personally use into the base theme, given the CSS for it is not exessive as to warrant a CSS Snippet of its own. All of these plugins are worth checking out!
+We integrate CSS for plugins we personally use into the base theme, given the CSS for it is not exessive as to warrant a CSS Snippet of its own. All of these plugins are worth checking out!
 
 **List of currently integrated Plugins**
 - [Calendar Plugin by Liam Cain](https://github.com/liamcain/obsidian-calendar-plugin)
@@ -27,4 +27,11 @@ We integrate plugins we personally use into the base theme, given the CSS for it
 
 ### How to make Theme Snippets
 
-Every
+Every color in this theme is split into multiple variables:
+
+--colorname-lightness, --colorname-chroma, --colorname-hue
+--colorname-color: var(--colorname-lightness) var(colorname-chroma) var(colorname-hue)
+For some, like blockquote color: --colorname-opacity
+
+And then, for each element, it is implemented akin to this:
+color: var(--colorname-color / --colorname-opacity)

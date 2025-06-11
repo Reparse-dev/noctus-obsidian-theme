@@ -38,6 +38,6 @@ For some, like blockquote color: `--colorname-opacity`
 And then, for each element, it is implemented akin to this:
 ```css
 element {
-  color: var(--colorname-color / --colorname-opacity)
+  color: oklch(--colorname-color / --colorname-opacity)
 }
 ```

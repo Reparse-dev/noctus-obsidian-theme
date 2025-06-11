@@ -1,7 +1,9 @@
 /* Info 
-Modulo by Shaydelity
-Github: https://github.com/Shaydelity
+Noctus Theme by Shaydelity, Reparse
+Github: https://github.com/Shaydelity, https://github.com/Reparse-dev
 Contact: shaydedg@gmail.com
+Fun Fact: Noctus Theme was once known as "Modulo", 
+for its focus on modularity.
 -----------------------------------*/
 
 @charset "UTF-8";
@@ -10,16 +12,11 @@ Contact: shaydedg@gmail.com
 @import 'mobile/ios';
 @import 'mobile/toolbar';
 
-/* ALL COLOR MUST WORK LIKE THIS:
---color-lightness: val;
---color-chroma: val;
---color-hue: val;
---color-opacity: val;
---color: var(--color-lightness) var(--color-chroma) var (--color-hue);
-element {
-  color: oklch(var(--color) / var(--color-opacity));
-}
-/* That serves the purpose of making it easier to use the same color without the same opacity!
+/*
+https://www.realtimecolors.com/
+https://webaim.org/resources/contrastchecker/
+Take inspiration: https://yeun.github.io/open-color/
+Consider catpuccin integration or inspiration: https://catppuccin.com/palette/ 
 */
 
 body {

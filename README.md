@@ -30,6 +30,7 @@ We integrate CSS for plugins we personally use into the base theme, given the CS
 Every color in this theme is split into multiple variables:
 
 `--colorname-lightness`, `--colorname-chroma`, `--colorname-hue`
+
 `--colorname-color: var(--colorname-lightness) var(colorname-chroma) var(colorname-hue)`
 For some, like blockquote color: `--colorname-opacity`
 

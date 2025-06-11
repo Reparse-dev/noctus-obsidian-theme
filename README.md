@@ -32,6 +32,7 @@ Every color in this theme is split into multiple variables:
 `--colorname-lightness`, `--colorname-chroma`, `--colorname-hue`
 
 `--colorname-color: var(--colorname-lightness) var(colorname-chroma) var(colorname-hue)`
+
 For some, like blockquote color: `--colorname-opacity`
 
 And then, for each element, it is implemented akin to this:

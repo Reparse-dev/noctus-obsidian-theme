@@ -2183,6 +2183,11 @@ Here I add styling for the most commonly used plugins
   }
 }
 
+/* Datacore Table Styling */
+
+.datacore-table :is(ul, ol) {
+  height: 1em;
+}
 
 /* Calendar Title Font-Size */
 #calendar-container .title {

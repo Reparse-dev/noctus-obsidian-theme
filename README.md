@@ -21,23 +21,34 @@ We integrate CSS for plugins we personally use into the base theme, given the CS
 
 **List of currently integrated Plugins**
 - [Calendar Plugin by Liam Cain](https://github.com/liamcain/obsidian-calendar-plugin)
-- [Dataview Plugin by Michael Brenan](https://github.com/blacksmithgu/obsidian-dataview) (Might add support for the experimental [Datacore Plugin](https://github.com/blacksmithgu/datacore) as well)
+- [Dataview Plugin by Michael Brenan](https://github.com/blacksmithgu/obsidian-dataview)
+- [Datacore Plugin by Michael Brenan](https://github.com/blacksmithgu/datacore)
 - [Chat View by Aditya Majethia](https://github.com/adifyr/obsidian-chat-view) (WIP)
 - [Excalidraw Plugin](https://github.com/zsviczian/obsidian-excalidraw-plugin) (Currently only removes the Excalidraw welcome)
 
 ### How to make Theme Snippets
 
-Every color in this theme is split into multiple variables:
+Every color in this theme is split into multiple variables, like this:
 
 `--colorname-lightness`, `--colorname-chroma`, `--colorname-hue`
 
 `--colorname-color: var(--colorname-lightness) var(colorname-chroma) var(colorname-hue)`
 
-For some, like blockquote color: `--colorname-opacity`
+For some, like blockquote or callout color we also have opacity variables: `--colorname-opacity`
 
-And then, for each element, it is implemented akin to this:
+And then, for each element, the colors are implemented akin to this:
 ```css
 element {
   color: oklch(var(--colorname-color) / var(--colorname-opacity))
 }
 ```
+
+### Contributing
+
+Contributions via documentation, and general improvements (like "bug fixes") are always welcome. For more major feature work, make an issue about the feature idea / reach out to me so we can judge if it is right for us and how best to implement it.
+
+#### Dev Ressources
+
+- https://oklch.com/
+- https://lucide.dev/icons/
+- https://github.com/chrisgrieser/obsidian-theme-design-utilities

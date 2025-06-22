@@ -25,7 +25,13 @@ As the theme is still a work in progress, it is not yet in the official Obsidian
 2. New Callout Formats: Timeline callouts and a reverse callout (places title below content).
 3. New Callout Presets: Highlight, Result, and Solution.
 4. Modular Callouts: Allows changing colors and icons of all Presets and Formats, even down to precise color value changes and more!
-5. Style Settings like line-lenght, featuring line lengths made to approximate PDF exports and line lengths for [optimal readability](https://baymard.com/blog/line-length-readability) or text alignment options.
+5. Options using the [Style Settings Plugin](https://github.com/mgmeyers/obsidian-style-settings)
+
+#### Style Settings
+
+1. Line-length, featuring line lengths made to approximate PDF exports (based on their export font size) and line lengths for [optimal readability](https://baymard.com/blog/line-length-readability). Can be used for only reading view, or with live and source editing view as well!
+2. Text-Alignment, featuring block (or justify), right aligned, left aligned, and centered options! Can be changed on a per-notes basis using the css classes which are formated like this: `text-align-[alignment]` (alignment options: block (or justify), right, left, center)
+
 
 #### Plugin Integrations
 

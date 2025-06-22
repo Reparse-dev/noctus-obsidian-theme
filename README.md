@@ -8,6 +8,17 @@ Initially, this theme was just a modified version of the [Obsidian Encore Theme]
 
 Around that time I also started working on an obsidian snippet that would change the colors, functions, and similar of callout when putting in different callout (meta-) data, which has become a major function in this theme and has long surpassed the snippet since. I have added formats, like a timeline callout based on harr's [Timeline CSS](https://forum.obsidian.md/t/css-snippet-timeline-as-callout/93652) and more.
 
+### Installation
+
+As the theme is still a work in progress, it is not yet in the official Obsidian theme store; Thus, if you want it to be kept up to date, using the [BRAT Plugin by TfTHacker](https://github.com/TfTHacker/obsidian42-brat) is recommended.
+
+#### Steps
+
+1. Install the BRAT plugin from the obsidian plugin store
+2. Enable it and go into the options
+3. Below "Beta themes list", press "Add beta theme" and paste this repository's link into it (`https://github.com/Reparse-dev/noctus-obsidian-theme`)
+4. Press "Add theme" and presto- it's done! Enjoy the Noctus Obsidian Theme ^-^
+
 ### Features
 
 1. Usage of Oklch instead of RGB: Allows more precise gradients and more modular coloring.
@@ -28,6 +39,8 @@ We integrate CSS for plugins we personally use into the base theme, given the CS
 - [Excalidraw Plugin](https://github.com/zsviczian/obsidian-excalidraw-plugin) (Currently only removes the Excalidraw welcome)
 
 ### How to make Theme Snippets
+
+> Not done yet, might be subject to heavy changes and many variables are yet to be set up.
 
 Every color in this theme is split into multiple variables, like this:
 

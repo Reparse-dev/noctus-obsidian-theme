@@ -1,3 +1,40 @@
+/* @settings
+
+name: Noctus Theme
+id: noctus-theme-settings
+settings:
+  - 
+    id: editor-line-length
+    title: Editor Line Length
+    description: Determines Line Length for the Editor. PDF-based should be accurate *most* of the time. None makes it always use the whole width available.
+    description.de: Bestimmt Zeilen Länge des Editors. PDF basierte Zeilen Längen sollten *meistens* akkurat sein. Keine Auswahl führt dazu, dass immer die maximale Breite genutzt wird.
+    type: class-select
+    allowEmpty: true
+    default: pdf-line-length-11pt
+    options:
+      - 
+        label: PDF with Fontsize 10 points
+        value: pdf-line-length-10pt
+      - 
+        label: PDF with Fontsize 11 points
+        value: pdf-line-length-11pt
+      - 
+        label: PDF with Fontsize 12 points
+        value: pdf-line-length-12pt
+      - 
+        label: PDF with Fontsize 13 points
+        value: pdf-line-length-13pt
+      - 
+        label: Optimal Reading Line Length 60 Characters
+        value: optimal-reading-line-length-60
+      - 
+        label: Optimal Reading Line Length 65 Characters
+        value: optimal-reading-line-length-65
+      - 
+        label: Optimal Reading Line Length 70 Characters
+        value: optimal-reading-line-length-70
+*/
+
 /* Info 
 Noctus Theme by Shaydelity, Reparse
 Github: https://github.com/Shaydelity, https://github.com/Reparse-dev
@@ -239,7 +276,7 @@ body {
   --big-heading-letter-spacing: 0.07em;
   --medium-heading-letter-spacing: 0.06em;
   --small-heading-letter-spacing: 0.04em;
-  --pdf-text-size: 11pt;
+  --pdf-text-size: 10pt;
 
   --h4-vertical-padding: 0.4rem; /* Better padding variable */
   --titlebar-background-focused: oklch(0% 0 0);
@@ -309,6 +346,58 @@ svg.svg-icon {
 
 .metadata-property .metadata-property-key-input {
   text-transform: capitalize;
+}
+
+/* Line Length Settings 
+Based on CSS shared on the Forum
+Link: https://forum.obsidian.md/t/a-fix-for-ugly-long-lines-in-fullscreen-v2/1279/21
+*/
+
+body.optimal-reading-line-length-60 :is(
+  .CodeMirror-lines, .CodeMirror-selected, .markdown-preview-section) {
+  max-width: 60ch;
+  margin: 0 auto;
+}
+
+body.optimal-reading-line-length-65 :is(
+  .CodeMirror-lines, .CodeMirror-selected, .markdown-preview-section) {
+  max-width: 65ch;
+  margin: 0 auto;
+}
+
+body.optimal-reading-line-length-70 :is(
+  .CodeMirror-lines, .CodeMirror-selected, .markdown-preview-section) {
+  max-width: 70ch; 
+  margin: 0 auto;
+}
+
+body.pdf-line-length-13pt :is(
+  .CodeMirror-lines, .CodeMirror-selected, .markdown-preview-section) { 
+  max-width: 81ch;
+  margin: 0 auto; 
+}
+
+body.pdf-line-length-12pt :is(
+  .CodeMirror-lines, .CodeMirror-selected, .markdown-preview-section) {     
+  max-width: 89ch;
+  margin: 0 auto; 
+}
+
+body.pdf-line-length-11pt :is(
+  .CodeMirror-lines, .CodeMirror-selected, .markdown-preview-section) {  
+  max-width: 96ch;
+  margin: 0 auto; 
+}
+
+body.pdf-line-length-10pt :is(
+  .CodeMirror-lines, .CodeMirror-selected, .markdown-preview-section) {   
+  max-width: 106ch;
+  margin: 0 auto; 
+}
+
+body:not(.pdf-line-length-10pt):not(.pdf-line-length-11pt):not(.pdf-line-length-12pt):not(.pdf-line-length-13pt):not(.optimal-reading-line-length-60):not(.optimal-reading-line-length-65):not(.optimal-reading-line-length-70) :is(.CodeMirror-lines, .CodeMirror-selected, .markdown-preview-section) {
+  max-width: none;
+  margin: 0 auto;
 }
 
 

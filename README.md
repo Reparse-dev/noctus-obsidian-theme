@@ -1,6 +1,6 @@
 ## About the Noctus Theme
 
-> This is a HUGE work in progress!
+> This is a HUGE work in progress! No Light Theme included yet!
 
 The Noctus Theme for Obsidian is a theme made with the intent to be as modular **as possible**, which is why it was initially known as the "Modulo Theme". It uses Oklch instead of RGB as a color space, which allows for more modular treatment of colors and better gradients **BUT also leads to many snippets becoming incompatible with this theme. *Yet we intend to make snippets of our own to both extend the functions of this theme but also offer beloved snippets compatible with our theme.***
 
@@ -14,6 +14,7 @@ Around that time I also started working on an obsidian snippet that would change
 2. New Callout Formats: Timeline callouts and a reverse callout (places title below content).
 3. New Callout Presets: Highlight, Result, and Solution.
 4. Modular Callouts: Allows changing colors and icons of all Presets and Formats, even down to precise color value changes and more!
+5. Style Settings like line-lenght, featuring line lengths made to approximate PDF exports and line lengths for [optimal readability](https://baymard.com/blog/line-length-readability) (WIP, only line length thus far.)
 
 #### Plugin Integrations
 

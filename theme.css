@@ -15,24 +15,31 @@ settings:
     options:
       - 
         label: PDF with Fontsize 10 points
+        label.de: PDF mit 10 punkt Font Größe
         value: pdf-line-length-10pt
       - 
         label: PDF with Fontsize 11 points
+        label.de: PDF mit 11 punkt Font Größe
         value: pdf-line-length-11pt
       - 
         label: PDF with Fontsize 12 points
+        label.de: PDF mit 12 punkt Font Größe
         value: pdf-line-length-12pt
       - 
         label: PDF with Fontsize 13 points
+        label.de: PDF mit 13 punkt Font Größe
         value: pdf-line-length-13pt
       - 
         label: Optimal Reading Line Length 60 Characters
+        label.de: Optimale Lese Zeilen Länge 60 Zeichen
         value: optimal-reading-line-length-60
       - 
         label: Optimal Reading Line Length 65 Characters
+        label.de: Optimale Lese Zeilen Länge 65 Zeichen
         value: optimal-reading-line-length-65
       - 
         label: Optimal Reading Line Length 70 Characters
+        label.de: Optimale Lese Zeilen Länge 70 Zeichen
         value: optimal-reading-line-length-70
   - 
     id: line-length-for-live-editing
@@ -48,6 +55,32 @@ settings:
     description: Determines Line Length for the Source Editor based on chosen line-length in the **Reading Line Length** Setting.
     description.de: Bestimmt Zeilen Länge des Quellen Editors basierend auf der **Lese Zeilen Länge**.
     type: class-toggle
+  - 
+    id: text-alignment
+    title: Standard Text-Alignment
+    title.de: Standard Text-Format
+    description: Changes the text-alignment globally. For individual put text-align-[Alignment] into the cssclasses property (Alignments - block, right, left, center).
+    description.de: Bestimmt globales Text Format. Für einzelne Notes pack text-align-[Format] in die cssclasses eigenschaft (Formate - block, right, left, center).
+    type: class-select
+    allowEmpty: true
+    default: text-align-block
+    options:
+      - 
+        label: Block Text
+        label.de: Block Text
+        value: text-align-block
+      - 
+        label: Text to the Right
+        label.de: Text nach Rechts
+        value: text-align-right
+      - 
+        label: Text to the Left
+        label.de: Text nach Links
+        value: text-align-left
+      - 
+        label: Centered Text
+        label.de: Zentrierter Text
+        value: text-align-center
 */
 
 /* Info 
@@ -472,6 +505,25 @@ body.pdf-line-length-10pt.line-length-for-source-editing :is(.markdown-source-vi
 body:not(.pdf-line-length-10pt):not(.pdf-line-length-11pt):not(.pdf-line-length-12pt):not(.pdf-line-length-13pt):not(.optimal-reading-line-length-60):not(.optimal-reading-line-length-65):not(.optimal-reading-line-length-70) :is(.CodeMirror-lines, .CodeMirror-selected, .markdown-preview-section) {
   max-width: none;
   margin: 0 auto;
+}
+
+
+/* Text-Alignment */
+
+body:is(.text-align-block, .text-align-justify) p {
+  text-align: justify;
+}
+
+body.text-align-right p {
+  text-align: right;
+}
+
+body.text-align-left p {
+  text-align: left;
+}
+
+body.text-align-center p {
+  text-align: center;
 }
 
 

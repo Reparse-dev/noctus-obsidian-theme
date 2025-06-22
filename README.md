@@ -32,6 +32,7 @@ As the theme is still a work in progress, it is not yet in the official Obsidian
 1. Line-length, featuring line lengths made to approximate PDF exports (based on their export font size) and line lengths for [optimal readability](https://baymard.com/blog/line-length-readability). Can be used for only reading view, or with live and source editing view as well!
 2. Text-Alignment, featuring block (or justify), right aligned, left aligned, and centered options! Can be changed on a per-notes basis using the css classes which are formated like this: `text-align-[alignment]` (alignment options: block (or justify), right, left, center)
 
+> For changing colors you will find simple instructions in the **Color Styling** section!
 
 #### Plugin Integrations
 
@@ -44,9 +45,15 @@ We integrate CSS for plugins we personally use into the base theme, given the CS
 - [Chat View by Aditya Majethia](https://github.com/adifyr/obsidian-chat-view) (WIP)
 - [Excalidraw Plugin](https://github.com/zsviczian/obsidian-excalidraw-plugin) (Currently only removes the Excalidraw welcome)
 
-### How to make Theme Snippets
+### Making CSS Snippets
 
-> Not done yet, might be subject to heavy changes and many variables are yet to be set up.
+Obsidian Snippets are CSS files that are put in the `.obsidian/snippets` (You might have to make hidden files visible in your explorer to find the .obsidian folder!) folder and overwrite/alter the theme CSS. To make one, you create a text file and write CSS code in it and change its extension from `.txt` to `.css` afterwards.
+
+#### Color Styling
+
+One of the main aspects of this theme is that it relies on the oklch color space. Thus, the color picking from the style settings plugin is not used as it only supports hex and rgb color spaces.
+
+> If you are not well accustomed to CSS, skip to the template section!
 
 Every color in this theme is split into multiple variables, like this:
 
@@ -62,6 +69,37 @@ element {
   color: oklch(var(--colorname-color) / var(--colorname-opacity))
 }
 ```
+##### Template for Primary & Accent Color changes
+
+> To know what your favorite hex or rgb color is in oklch, use this website: [oklch.com](https://oklch.com/)!
+
+Copy and paste this into a text file and change the [new value] to oklch values. Once done, change the file extension from `.txt` to `.css` and put it into the `.obsidian/snippets` (You might have to make hidden files visible in your explorer to find the .obsidian folder!).
+
+```css
+body {
+  /* Changing Text Color (default: white) */
+  --primary-lightness: [new value]%;
+  --primary-chroma: [new value];
+  --primary-hue: [new value];
+  --primary-color: var(--primary-lightness) var(primary-chroma) var(--primary-hue);
+
+  /* Changing Primary Accent Color (default: violet) */
+  --primary-accent-lightness: [new value]%;
+  --primary-accent-chroma: [new value];
+  --primary-accent-hue: [new value];
+  --primary-accent-color: var(--primary-accent-lightness) var(primary-accent-chroma) var(--primary-accent-hue);
+
+  /* Changing Secondary Accent Color (default: crimson (red)) */
+  --secondary-accent-lightness: [new value]%;
+  --secondary-accent-chroma: [new value];
+  --secondary-accent-hue: [new value];
+  --secondary-accent-color: var(--secondary-accent-lightness) var(secondary-accent-chroma) var(--secondary-accent-hue);
+}
+```
+
+#### Theme Snippets
+
+
 
 ### Contributing
 

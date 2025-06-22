@@ -309,7 +309,7 @@ body {
   --transparent: 0;
 
   /* Text Colors */
-  --primary-lightness: var(--white);
+  --primary-lightness: 95%;
   --primary-chroma: 0;
   --primary-hue: 0;
   --primary-color: var(--primary-lightness) var(--primary-chroma) var(--primary-hue);

@@ -4,7 +4,7 @@
 
 The Noctus Theme for Obsidian is a theme made with the intent to be as modular **as possible**, which is why it was initially known as the "Modulo Theme". It uses Oklch instead of RGB as a color space, which allows for more modular treatment of colors and better gradients **BUT also leads to many snippets becoming incompatible with this theme. *Yet we intend to make snippets of our own to both extend the functions of this theme but also offer beloved snippets compatible with our theme.***
 
-Initially, this theme was just a modified version of the [Obsidian Encore Theme](https://github.com/carbonateb/obsidian-encore-theme) by Carbonateb but overtime I, Shayde, looked at other themes, like the [Minimal Theme](https://github.com/kepano/obsidian-minimal) by kepano, and started making it a theme of its own.
+Initially, this theme was just a modified version of the [Obsidian Encore Theme by Carbonateb](https://github.com/carbonateb/obsidian-encore-theme) but overtime I, Shayde, looked at other themes, like the [Minimal Theme](https://github.com/kepano/obsidian-minimal) by kepano, and started making it a theme of its own.
 
 Around that time I also started working on an obsidian snippet that would change the colors, functions, and similar of callout when putting in different callout (meta-) data, which has become a major function in this theme and has long surpassed the snippet since. I have added formats, like a timeline callout based on harr's [Timeline CSS](https://forum.obsidian.md/t/css-snippet-timeline-as-callout/93652) and more.
 

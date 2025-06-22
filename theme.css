@@ -4,10 +4,11 @@ name: Noctus Theme
 id: noctus-theme-settings
 settings:
   - 
-    id: editor-line-length
-    title: Editor Line Length
-    description: Determines Line Length for the Editor. PDF-based should be accurate *most* of the time. None makes it always use the whole width available.
-    description.de: Bestimmt Zeilen Länge des Editors. PDF basierte Zeilen Längen sollten *meistens* akkurat sein. Keine Auswahl führt dazu, dass immer die maximale Breite genutzt wird.
+    id: reading-line-length
+    title: Reading Line Length
+    title.de: Lese Zeilen Länge
+    description: Determines Line Length for the Reading View. PDF-based should be accurate *most* of the time. None makes it always use the whole width available.
+    description.de: Bestimmt Zeilen Länge der Lese Ansicht. PDF basierte Zeilen Längen sollten *meistens* akkurat sein. Keine Auswahl führt dazu, dass immer die maximale Breite genutzt wird.
     type: class-select
     allowEmpty: true
     default: pdf-line-length-11pt
@@ -33,6 +34,20 @@ settings:
       - 
         label: Optimal Reading Line Length 70 Characters
         value: optimal-reading-line-length-70
+  - 
+    id: line-length-for-live-editing
+    title: Live Editor Line Length
+    title.de: Live Editor Zeilen Länge
+    description: Determines Line Length for the Live Editor based on chosen line-length in the **Reading Line Length** Setting.
+    description.de: Bestimmt Zeilen Länge des Live Editors basierend auf der **Lese Zeilen Länge**.
+    type: class-toggle
+  - 
+    id: line-length-for-source-editing
+    title: Source Editor Line Length
+    title.de: Quellen Editor Zeilen Länge
+    description: Determines Line Length for the Source Editor based on chosen line-length in the **Reading Line Length** Setting.
+    description.de: Bestimmt Zeilen Länge des Quellen Editors basierend auf der **Lese Zeilen Länge**.
+    type: class-toggle
 */
 
 /* Info 
@@ -310,17 +325,7 @@ Link: https://github.com/radekkozak/discordian
   --color-cyan: #53dfdd;
   --color-blue-rgb: 2, 122, 255;
   --color-blue: #027aff;
-  --color-purple-rgb: 168, 130, 255;
-  --color-purple: #a882ff;
-  --color-pink-rgb: 250, 153, 205;
-  --color-pink: #fa99cd;
-*/
-
-@media print {
-  body {
-    --background-primary-lightness: 100%;
-    --background-primary-chroma: 0;
-    --background-primary-hue: 0;
+body.pdf-line-length-10pt :is(
     --text-lightness: var(--black);
     --primary-lightness: 0%;
     --primary-chroma: 0;
@@ -334,7 +339,6 @@ Link: https://github.com/radekkozak/discordian
   div.callout[data-callout^="anchor"] .callout-title-inner {
     font-size: 1.1em;
   }*/
-}
 
 html, body {
   background-color: oklch(var(--background-primary-color));
@@ -359,10 +363,30 @@ body.optimal-reading-line-length-60 :is(
   margin: 0 auto;
 }
 
+body.optimal-reading-line-length-65.line-length-for-live-editing :is(.markdown-source-view.is-live-preview) {
+  max-width: 72ch;
+  margin: 0 auto; 
+}
+
+body.optimal-reading-line-length-65.line-length-for-source-editing :is(.markdown-source-view) {
+  max-width: 72ch;
+  margin: 0 auto; 
+}
+
 body.optimal-reading-line-length-65 :is(
   .CodeMirror-lines, .CodeMirror-selected, .markdown-preview-section) {
   max-width: 65ch;
   margin: 0 auto;
+}
+
+body.optimal-reading-line-length-65.line-length-for-live-editing :is(.markdown-source-view.is-live-preview) {
+  max-width: 77ch;
+  margin: 0 auto; 
+}
+
+body.optimal-reading-line-length-65.line-length-for-source-editing :is(.markdown-source-view) {
+  max-width: 77ch;
+  margin: 0 auto; 
 }
 
 body.optimal-reading-line-length-70 :is(
@@ -371,9 +395,29 @@ body.optimal-reading-line-length-70 :is(
   margin: 0 auto;
 }
 
+body.optimal-reading-line-length-70.line-length-for-live-editing :is(.markdown-source-view.is-live-preview) {
+  max-width: 82ch;
+  margin: 0 auto; 
+}
+
+body.optimal-reading-line-length-70.line-length-for-source-editing :is(.markdown-source-view) {
+  max-width: 82ch;
+  margin: 0 auto; 
+}
+
 body.pdf-line-length-13pt :is(
   .CodeMirror-lines, .CodeMirror-selected, .markdown-preview-section) { 
   max-width: 81ch;
+  margin: 0 auto; 
+}
+
+body.pdf-line-length-13pt.line-length-for-live-editing :is(.markdown-source-view.is-live-preview) {
+  max-width: 93ch;
+  margin: 0 auto; 
+}
+
+body.pdf-line-length-13pt.line-length-for-source-editing :is(.markdown-source-view) {
+  max-width: 93ch;
   margin: 0 auto; 
 }
 
@@ -383,9 +427,29 @@ body.pdf-line-length-12pt :is(
   margin: 0 auto; 
 }
 
+body.pdf-line-length-12pt.line-length-for-live-editing :is(.markdown-source-view.is-live-preview) {
+  max-width: 101ch;
+  margin: 0 auto; 
+}
+
+body.pdf-line-length-12pt.line-length-for-source-editing :is(.markdown-source-view) {
+  max-width: 101ch;
+  margin: 0 auto; 
+}
+
 body.pdf-line-length-11pt :is(
   .CodeMirror-lines, .CodeMirror-selected, .markdown-preview-section) {  
   max-width: 96ch;
+  margin: 0 auto; 
+}
+
+body.pdf-line-length-11pt.line-length-for-live-editing :is(.markdown-source-view.is-live-preview) {
+  max-width: 108ch;
+  margin: 0 auto; 
+}
+
+body.pdf-line-length-11pt.line-length-for-source-editing :is(.markdown-source-view) {
+  max-width: 108ch;
   margin: 0 auto; 
 }
 
@@ -395,11 +459,20 @@ body.pdf-line-length-10pt :is(
   margin: 0 auto; 
 }
 
+body.pdf-line-length-10pt.line-length-for-live-editing :is(.markdown-source-view.is-live-preview) {
+  max-width: 118ch;
+  margin: 0 auto; 
+}
+
+body.pdf-line-length-10pt.line-length-for-source-editing :is(.markdown-source-view) {
+  max-width: 118ch;
+  margin: 0 auto; 
+}
+
 body:not(.pdf-line-length-10pt):not(.pdf-line-length-11pt):not(.pdf-line-length-12pt):not(.pdf-line-length-13pt):not(.optimal-reading-line-length-60):not(.optimal-reading-line-length-65):not(.optimal-reading-line-length-70) :is(.CodeMirror-lines, .CodeMirror-selected, .markdown-preview-section) {
   max-width: none;
   margin: 0 auto;
 }
-
 
 
 /* MAKE UI BACKGROUND TRANSPARENT

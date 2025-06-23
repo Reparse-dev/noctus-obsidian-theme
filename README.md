@@ -26,6 +26,7 @@ As the theme is still a work in progress, it is not yet in the official Obsidian
 3. New Callout Presets: Highlight, Result, and Solution.
 4. Modular Callouts: Allows changing colors and icons of all Presets and Formats, even down to precise color value changes and more!
 5. Options using the [Style Settings Plugin](https://github.com/mgmeyers/obsidian-style-settings)
+6. A focus on PDF compatibility and enhancements (if there is anything lacking, please let us know by opening an issue!)
 
 #### Style Settings
 

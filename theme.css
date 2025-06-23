@@ -108,6 +108,16 @@ body {
   /* General */
   --obsidian-logo-small: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 512 512' width='8' height='8' fill='none' stroke='%23ffffff90' stroke-width='5%' stroke-linecap='round' stroke-linejoin='round' class='logo-wireframe'%3E%3Cpath d='M172.7 461.6c73.6-149.1 2.1-217-43.7-246.9m72 96.7c71.6-17.3 141-16.3 189.8 88.5m-114-96.3c-69.6-174 44.6-181 16.3-273.6m97.7 370c1.6-3 3.3-5.8 5.1-8.6 20-29.9 34.2-53.2 41.4-65.3a16 16 0 0 0-1.2-17.7 342.1 342.1 0 0 1-40.2-66.1c-10.9-26-12.5-66.5-12.6-86.2 0-7.4-2.4-14.7-7-20.6l-81.8-104a32 32 0 0 0-1.4-1.5m97.7 370a172.8 172.8 0 0 0-18 59c-2.9 21.5-24 38.4-45 32.6-30-8.3-64.5-21.1-95.7-23.5l-47.8-3.6c-7.7-.6-15-4-20.3-9.5l-82.3-84.8c-9-9.2-11.4-23-6.2-34.8 0 0 51-111.8 52.8-117.7l.7-3M293.1 30a31.5 31.5 0 0 0-44.4-2.3l-97.4 87.5c-5.4 5-9 11.5-10 18.8-3.7 24.5-9.7 68-12.3 80.7'%3E%3C/path%3E%3C/svg%3E");
 
+  /* Primary: Text, HR */
+  --primary-lightness: 95%;
+  --primary-chroma: 0;
+  --primary-hue: 0;
+  --primary-color: var(--primary-lightness) var(--primary-chroma) var(--primary-hue);
+
+  --bold-color: var(--text-normal-lightness) var(--text-normal-chroma) var(--text-normal-hue);
+
+  --font-text: "Ubuntu", "Play", "Inter";
+
   /* Primary Accent */
   --primary-accent-lightness: 58%;
   --primary-accent-chroma: 0.27;
@@ -308,16 +318,6 @@ body {
   --translucent: 0.2;
   --transparent: 0;
 
-  /* Text Colors */
-  --primary-lightness: 95%;
-  --primary-chroma: 0;
-  --primary-hue: 0;
-  --primary-color: var(--primary-lightness) var(--primary-chroma) var(--primary-hue);
-
-  --bold-color: var(--text-normal-lightness) var(--text-normal-chroma) var(--text-normal-hue);
-
-  --font-text: "Ubuntu", "Play", "Inter";
-
   --hr-color: 100% 0 0;
 
   --tab-radius: 0.5em;
@@ -328,11 +328,7 @@ body {
 
   --h4-vertical-padding: 0.4rem; /* Better padding variable */
   --titlebar-background-focused: oklch(0% 0 0);
-
-  /* Callout Preset & Format Colors */
-
 }
-
 
 /* Active  Note Marker 
 Based on Discordian Theme by radekkozak
@@ -990,7 +986,12 @@ div.callout {
   --callout-border-width: .2em;
   --callout-double-border-width: .3em;
 
-  --callout-quote-lightness: var(--lightest);
+  --callout-quote-lightness: 90%;
+  --callout-quote-chroma: 0;
+  --callout-quote-hue: 0;
+  --callout-quote-opacity: 0.8;
+  --callout-quote-opacity-1: 0.2;
+
   --callout-icon: lucide-square-pen;
 
   overflow: visible;
@@ -1092,8 +1093,6 @@ div.callout:is([data-callout*="anchor"], [data-callout*="invisible"]) {
 /* Quote & Cite */
 
 div.callout:is([data-callout*="reversed"], [data-callout^="quote"], [data-callout^="cite"]) {
-  --callout-lightness: var(--callout-quote-lightness);
-  --callout-title-lightness: var(--callout-quote-lightness);
   --callout-color: var(--callout-lightness) var(--callout-chroma) var(--callout-hue);
   display: flex;
   flex-direction: column-reverse;
@@ -1151,9 +1150,15 @@ div.callout[data-callout*="normal"] {
 }
 
 div.callout[data-callout^="quote"] {
+  --callout-title-lightness: var(--callout-quote-lightness);
+  --callout-title-chroma: var(--callout-quote-chroma);
+  --callout-title-hue: var(--callout-quote-hue);
+  --callout-lightness: var(--callout-quote-lightness);
+  --callout-chroma: var(--callout-quote-chroma);
+  --callout-hue: var(--callout-quote-hue);
   border-image: 
   linear-gradient(to right, oklch(var(--callout-color)), 
-  oklch(var(--callout-color) / 0.4), oklch(var(--callout-color) / 0.2)) 1;
+  oklch(var(--callout-color) / var(--callout-quote-opacity)), oklch(var(--callout-color) / var(--callout-quote-opacity-1))) 1;
   --callout-icon: quote-glyph;
 }
 
@@ -2437,6 +2442,32 @@ h4.chat-view-header {
 .welcome-screen-center__heading.welcome-screen-decor.virgil,
 .welcome-screen-menu {
   display: none !important;
+}
+
+
+/* PDF EXPORT STYLING 
+Placed all the way down for highest priority.
+*/
+
+@media print {
+  body {
+    --primary-lightness: 5%;
+    --primary-chroma: 0;
+    --primary-hue: 0;
+    --background-primary-lightness: 100%;
+    --background-primary-chroma: 0;
+    --background-primary-hue: 0;
+  }
+  div.callout {
+    --callout-quote-lightness: 40%;
+    --callout-quote-chroma: 0;
+    --callout-quote-hue: 0;
+    --callout-quote-opacity: 0.6;
+    --callout-quote-opacity-1: 0.2;
+  }
+  div.callout:is([data-callout*="reversed"], [data-callout^="quote"], [data-callout^="cite"]) {
+    padding-bottom: .6em;
+  }
 }
 
 /* END OF DOCUMENT */

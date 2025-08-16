@@ -81,17 +81,6 @@ settings:
         label: Centered Text
         label.de: Zentrierter Text
         value: text-align-center
-  - 
-    id: secondary-accent-color
-    title: Secondary Accent Color
-    type: variable-color
-    opacity: false
-    format: hex
-    alt-format:
-        -
-            id: secondary-accent-color-rgb
-            format: rgb
-    default: '#007AFF'
 */
 
 /* Info 
@@ -140,7 +129,7 @@ body {
   --primary-accent-hue: 300.03;
   --primary-accent-color: var(--primary-accent-lightness) var(--primary-accent-chroma) var(--primary-accent-hue);
   
-  /* Secondary Accent 
+  /* Secondary Accent */
   --secondary-accent-lightness: 57.12%;
   --secondary-accent-chroma: 0.2219;
   --secondary-accent-hue: 20.09;
@@ -371,7 +360,7 @@ Link: https://github.com/radekkozak/discordian
   --color-blue-rgb: 2, 122, 255;
   --color-blue: #027aff;
 body.pdf-line-length-10pt :is(
-    --text-lightness: var(--black);
+    --text-lightness: 0%;
     --primary-lightness: 0%;
     --primary-chroma: 0;
     --primary-hue: 0;
@@ -984,7 +973,7 @@ div.callout:is([data-callout*="fail"], [data-callout*="missing"],
 [data-callout*="tldr"], [data-callout*="summary"], [data-callout*="abstract"],
 [data-callout*="info"], [data-callout*="todo"], [data-callout*="example"]), 
 div.callout {
-  --callout-lightness: var(--lighter);
+  --callout-lightness: 70%;
   --callout-chroma: var(--primary-chroma);
   --callout-hue: var(--primary-hue);
   --callout-opacity: 1;
@@ -998,7 +987,7 @@ div.callout {
   --callout-title-size: 1em;
 
   --callout-blend-mode: normal;
-  --callout-border-opacity: var(--opaque);
+  --callout-border-opacity: 1;
   --callout-border-width: .2em;
   --callout-double-border-width: .3em;
 
@@ -1064,7 +1053,7 @@ Alternative Names:
 div.callout:is([data-callout*="anchor"], [data-callout*="invisible"]) {
   --callout-blend-mode: normal;
   --callout-title-size: 1em;
-  --callout-title-lightness: var(--white);
+  --callout-title-lightness: 100%;
   border: none;
   padding: 0px;
   margin: 0em 0em 0em var(--h4-vertical-padding);/*
@@ -1091,7 +1080,7 @@ div.callout:is([data-callout*="anchor"], [data-callout*="invisible"]) {
 
 @media print {
   div.callout:is([data-callout*="anchor"], [data-callout*="invisible"]) {
-  --callout-title-lightness: var(--black);
+  --callout-title-lightness: 0%;
   }
 }
 
@@ -1158,14 +1147,7 @@ div.callout[data-callout*="normal"] {
       letter-spacing: 0.07em;
     }
 
-    &>.callout-icon {
-      margin-right: 0.4em;
-      margin-top: -0.05em;
-    }
-  }
-}
-
-div.callout[data-callout^="quote"] {
+  --orange-lightness: 60%;"quote"] {
   --callout-title-lightness: var(--callout-quote-lightness);
   --callout-title-chroma: var(--callout-quote-chroma);
   --callout-title-hue: var(--callout-quote-hue);
@@ -1274,36 +1256,7 @@ div.callout[data-callout*="timeline"] {
       &:has(+ h4) { padding-bottom: 1rem; } 
     }
 
-    /* H3 bullet */
-    & h3::before {
-        border: .4rem solid;
-        border-radius: .4rem;
-        border-color: oklch(var(--callout-color));
-        content: "";
-        display: block;
-        height: 0;
-        left: -1.45rem;
-        position: relative;
-        top: 1rem;
-        width: 0;
-        z-index: 1;
-    }    
-
-    & h4 {      
-      min-width: 80%;
-      font-weight: var(--font-normal);
-      font-size: var(--font-text-size);
-      color: rgb(218,218,218) !important;
-      margin: 0 0 0 5.48rem !important;
-      border-radius: 0rem;
-      text-align: right;
-      border-top: dotted .1rem rgb(218,218,218);
-      border-left: solid .1rem rgb(180,180,180);
-      padding: 0.3em 0 0 0!important;
-      background-color: oklc(var(--background-primary-color) / var(--background-primary-opacity));
-      position: relative;
-    }
-
+  --orange-lightness: 60%;
     h4::before {
       content: "";
       position: absolute;
@@ -1395,41 +1348,43 @@ div.callout:is([data-callout^="primary"], [data-callout^="callout"],
   --callout-hue: var(--primary-hue);
 }
 
-
 /* Primary Accent */
-div.callout[data-callout^="primary-accent"] {
+div.callout[data-callout^="primary-accent"] {/*
+  --callout-title-lightness: var(--primary-accent-lightness);
+  --callout-title-chroma: var(--primary-accent-chroma);
+  --callout-title-hue: var(--primary-accent-hue);
+  --callout-lightness: var(--primary-accent-lightness);
+  --callout-chroma: var(--primary-accent-chroma);
+  --callout-hue: var(--primary-accent-hue);
+  */
   border-color: var(--primary-accent-color);
   &>.callout-title {
     color: var(--primary-accent-color);
     &>.callout-title-inner {
       color: var(--primary-accent-color);
-    }
       &>.callout-icon .svg-icon {
-      color: var(--primary-accent-color);
+        color: var(--primary-accent-color);
+      }
     }
   }
 }
 
 /* Secondary Accent */
 div.callout[data-callout^="secondary-accent"] {
-  border-color: var(--secondary-accent-color);
-  &>.callout-title {
-    color: var(--secondary-accent-color);
-    &>.callout-title-inner {
-      color: var(--secondary-accent-color);
-    }
-      &>.callout-icon .svg-icon {
-      color: var(--secondary-accent-color);
-    }
-  }
+  --callout-title-lightness: var(--secondary-accent-lightness);
+  --callout-title-chroma: var(--secondary-accent-chroma);
+  --callout-title-hue: var(--secondary-accent-hue);
+  --callout-lightness: var(--secondary-accent-lightness);
+  --callout-chroma: var(--secondary-accent-chroma);
+  --callout-hue: var(--secondary-accent-hue);
 }
 
 /* Bug */ 
 div.callout[data-callout^="bug"] {
-  --callout-title-lightness: var(--light);
+  --callout-title-lightness: 60%;
   --callout-title-chroma: 0.25;
   --callout-title-hue: 50;
-  --callout-lightness: var(--light);
+  --callout-lightness: 60%;
   --callout-chroma: 0.25;
   --callout-hue: 50;
   --callout-icon: lucide-bug;
@@ -1438,10 +1393,10 @@ div.callout[data-callout^="bug"] {
 /* Warning, Attention, Caution */ 
 div.callout {
   &:is([data-callout^="warning"], [data-callout^="attention"], [data-callout^="caution"]) {
-  --callout-title-lightness: var(--lighter);
+  --callout-title-lightness: 70%;
   --callout-title-chroma: 0.25;
   --callout-title-hue: 70;
-  --callout-lightness: var(--lighter);
+  --callout-lightness: 70%;
   --callout-chroma: 0.25;
   --callout-hue: 70;
   border-style: double;
@@ -1461,10 +1416,10 @@ div.callout {
 div.callout {
   &:is([data-callout^="important"], [data-callout^="tip"], [data-callout^="hint"], 
   [data-callout*="summary"], [data-callout*="tldr"], [data-callout*="tl;dr"], [data-callout*="abstract"]) {
-  --callout-title-lightness: var(--lightest);
+  --callout-title-lightness: 90%;
   --callout-title-chroma: 0.13;
   --callout-title-hue: 185;
-  --callout-lightness: var(--lightest);
+  --callout-lightness: 90%;
   --callout-chroma: 0.13;
   --callout-hue: 185;
   }
@@ -1480,10 +1435,10 @@ div.callout {
 /* Error, Danger */ 
 div.callout {
   &:is([data-callout^="error"], [data-callout^="danger"]) {
-  --callout-title-lightness: var(--light);
+  --callout-title-lightness: 60%;
   --callout-title-chroma: 0.25;
   --callout-title-hue: 30;
-  --callout-lightness: var(--light);
+  --callout-lightness: 60%;
   --callout-chroma: 0.25;
   --callout-hue: 30;
   --callout-icon: lucide-badge-alert;
@@ -1497,10 +1452,10 @@ div.callout {
 /* Fail/Failure & Missing */ 
 div.callout {
   &:is([data-callout^="fail"], [data-callout^="failure"], [data-callout^="missing"]) {
-    --callout-title-lightness: var(--base);
+    --callout-title-lightness: 50%;
     --callout-title-chroma: 0.25;
     --callout-title-hue: 30;
-    --callout-lightness: var(--base);
+    --callout-lightness: 50%;
     --callout-chroma: 0.25;
     --callout-hue: 30;
     --callout-icon: lucide-ban;
@@ -1511,10 +1466,10 @@ div.callout {
 /* Todo, Info */ 
 div.callout {
   &:is([data-callout^="todo"], [data-callout^="info"]) {
-  --callout-title-lightness: var(--light);
+  --callout-title-lightness: 60%;
   --callout-title-chroma: 0.3;
   --callout-title-hue: 270;
-  --callout-lightness: var(--light);
+  --callout-lightness: 60%;
   --callout-chroma: 0.3;
   --callout-hue: 270;
   }
@@ -1524,20 +1479,20 @@ div.callout {
 
 /* Definition, Example */ /*WIP: Perhaps make Example Purple/Lavender again */
 div.callout[data-callout^="definition"] {
-    --callout-title-lightness: var(--lightest);
+    --callout-title-lightness: 90%;
     --callout-title-chroma: 0;
     --callout-title-hue: 0;
-    --callout-lightness: var(--lightest);
+    --callout-lightness: 90%;
     --callout-chroma: 0;
     --callout-hue: 0;
     --callout-icon: lucide-clipboard-list;
 }
 
 div.callout[data-callout^="example"] {
-    --callout-title-lightness: var(--white);
+    --callout-title-lightness: 100%;
     --callout-title-chroma: var(--lavender-chroma);
     --callout-title-hue: var(--lavender-hue);
-    --callout-lightness: var(--white);
+    --callout-lightness: 100%;
     --callout-chroma: var(--lavender-chroma);
     --callout-hue: var(--lavender-hue);
     --callout-icon: lucide-list;
@@ -1546,10 +1501,10 @@ div.callout[data-callout^="example"] {
 /* Extra, Highlight, Result */
 div.callout {
   &:is([data-callout^="extra"], [data-callout^="highlight"], [data-callout^="result"]) {
-    --callout-title-lightness: var(--lightest);
+    --callout-title-lightness: 90%;
     --callout-title-chroma: 0.25;
     --callout-title-hue: 100;
-    --callout-lightness: var(--lightest);
+    --callout-lightness: 90%;
     --callout-chroma: 0.25;
     --callout-hue: 100;
   }
@@ -1560,10 +1515,10 @@ div.callout {
 /* Solution */
 div.callout {
   &[data-callout^="solution"] {
-    --callout-title-lightness: var(--super-light);
+    --callout-title-lightness: 90%;
     --callout-title-chroma: var(--green-chroma);
     --callout-title-hue: var(--green-hue);
-    --callout-lightness: var(--super-light);
+    --callout-lightness: 90%;
     --callout-chroma: var(--green-chroma);
     --callout-hue: var(--green-hue);
     --callout-icon: lucide-check;
@@ -1671,6 +1626,7 @@ div.callout {
 
 
 /* Callouts: Modular Colors */
+
 
 div.callout{
   &:is([data-callout*="grey"], [data-callout*="gray"]) {
@@ -1802,6 +1758,14 @@ div.callout{
   &[data-callout*="cerulean"] {
     --callout-title-lightness: var(--cerulean-lightness);
     --callout-title-chroma: var(--cerulean-chroma);
+    --callout-title-hue: var(--cerulean-hue);
+    --callout-lightness: var(--cerulean-lightness);
+    --callout-chroma: var(--cerulean-chroma);
+    --callout-hue: var(--cerulean-hue);
+  }
+
+  &[data-callout*="blue"] {
+    --callout-title-lightness: var(--blue-lightness);
     --callout-title-chroma: var(--blue-chroma);
     --callout-title-hue: var(--blue-hue);
     --callout-lightness: var(--blue-lightness);
@@ -1854,19 +1818,7 @@ div.callout{
     --callout-hue: var(--fuchsia-hue);
   }
 
-  &[data-callout*="magenta"] {
-    --callout-title-lightness: var(--magenta-lightness);
-    --callout-title-chroma: var(--magenta-chroma);
-    --callout-title-hue: var(--magenta-hue);
-    --callout-lightness: var(--magenta-lightness);
-    --callout-chroma: var(--magenta-chroma);
-    --callout-hue: var(--magenta-hue);
-  }
-}
-
-/* Callouts: Fixed Colors
-These colors' identities are bound to their lightness; Altering it will make it less identifiable.
-*/
+  &[data-callout*="magenta"] {>.callout-title
 
 div.callout {
   &[data-callout*="coral"] {
@@ -1960,19 +1912,19 @@ div.callout {
   }
 
   &[data-callout*="white"] {
-    --callout-title-lightness: var(--white);
+    --callout-title-lightness: 100%;
     --callout-title-chroma: var(--grey-chroma);
     --callout-title-hue: var(--grey-hue);
-    --callout-lightness: var(--white);
+    --callout-lightness: 100%;
     --callout-chroma: var(--grey-chroma);
     --callout-hue: var(--grey-hue);
   }
 
   &[data-callout*="black"] {
-    --callout-title-lightness: var(--black);
+    --callout-title-lightness: 0%;
     --callout-title-chroma: var(--grey-chroma);
     --callout-title-hue: var(--grey-hue);
-    --callout-lightness: var(--black);
+    --callout-lightness: 0%;
     --callout-chroma: var(--grey-chroma);
     --callout-hue: var(--grey-hue);
   }
@@ -1980,10 +1932,10 @@ div.callout {
 
 @media print { /*WIP: Should only apply for darkmode users!*/
   div.callout[data-callout*="black"] {
-    --callout-lightness: var(--white);
+    --callout-lightness: 100%;
   }
   div.callout[data-callout*="white"] {
-    --callout-lightness: var(--black);
+    --callout-lightness: 0%;
   }
 }
 
@@ -2035,15 +1987,15 @@ div.callout {
 
 /* Callout: Alpha (a) */
 div.callout {
-  &[data-callout-metadata*="a=1"] { --callout-opacity: 1; --callout-title-opacity: 1; --callout-border-opacity: var(--callout-opacity)}
-  &[data-callout-metadata*="a=0"] { --callout-opacity: 0; --callout-title-opacity: 0; --callout-border-opacity: var(--callout-opacity)}
-  &[data-callout-metadata*="a=0.9"] { --callout-opacity: 0.9; --callout-title-opacity: 0.9; --callout-border-opacity: var(--callout-opacity)}
-  &[data-callout-metadata*="a=0.8"] { --callout-opacity: 0.8; --callout-title-opacity: 0.8; --callout-border-opacity: var(--callout-opacity)}
-  &[data-callout-metadata*="a=0.7"] { --callout-opacity: 0.7; --callout-title-opacity: 0.7; --callout-border-opacity: var(--callout-opacity)}
-  &[data-callout-metadata*="a=0.6"] { --callout-opacity: 0.6; --callout-title-opacity: 0.6; --callout-border-opacity: var(--callout-opacity)}
-  &[data-callout-metadata*="a=0.5"] { --callout-opacity: 0.5; --callout-title-opacity: 0.5; --callout-border-opacity: var(--callout-opacity)}
-  &[data-callout-metadata*="a=0.4"] { --callout-opacity: 0.4; --callout-title-opacity: 0.4; --callout-border-opacity: var(--callout-opacity)}
-  &[data-callout-metadata*="a=0.2"] { --callout-opacity: 0.2; --callout-title-opacity: 0.2; --callout-border-opacity: var(--callout-opacity)}
+  &[data-callout-metadata*="a=1"] { --callout-opacity: 100%; --callout-title-opacity: 100%; --callout-border-opacity: var(--callout-opacity)}
+  &[data-callout-metadata*="a=0.9"] { --callout-opacity: 90%; --callout-title-opacity: 90%; --callout-border-opacity: var(--callout-opacity)}
+  &[data-callout-metadata*="a=0.8"] { --callout-opacity: var(--stronger); --callout-title-opacity: var(--stronger); --callout-border-opacity: var(--callout-opacity)}
+  &[data-callout-metadata*="a=0.7"] { --callout-opacity: var(--strong); --callout-title-opacity: var(--strong); --callout-border-opacity: var(--callout-opacity)}
+  &[data-callout-metadata*="a=0.6"] { --callout-opacity: var(--faint); --callout-title-opacity: var(--faint); --callout-border-opacity: var(--callout-opacity)}
+  &[data-callout-metadata*="a=0.5"] { --callout-opacity: 50%; --callout-title-opacity: 50%; --callout-border-opacity: var(--callout-opacity)}
+  &[data-callout-metadata*="a=0.4"] { --callout-opacity: var(--faintest); --callout-title-opacity: var(--faintest); --callout-border-opacity: var(--callout-opacity)}
+  &[data-callout-metadata*="a=0.2"] { --callout-opacity: var(--translucent); --callout-title-opacity: var(--translucent); --callout-border-opacity: var(--callout-opacity)}
+  &[data-callout-metadata*="a=0"] { --callout-opacity: var(--transparent); --callout-title-opacity: var(--transparent); --callout-border-opacity: var(--callout-opacity)}
 }
 
 
@@ -2187,7 +2139,7 @@ mark {
 
 
 .markdown-rendered a.internal-link {
-  --link-hover-lightness: var(--super-light);
+  --link-hover-lightness: 90%;
   --link-lightness: var(--primary-accent-lightness);
   --link-chroma: var(--primary-accent-chroma);
   --link-hue: var(--primary-accent-hue);
@@ -2198,7 +2150,7 @@ mark {
 }
 
 .markdown-rendered a.external-link {
-  --link-hover-external-lightness: var(--super-light);
+  --link-hover-external-lightness: 90%;
   --link-external-lightness: var(--primary-accent-lightness);
   --link-external-chroma: var(--primary-accent-chroma);
   --link-external-hue: var(--primary-accent-hue);
@@ -2243,13 +2195,13 @@ img, .markdown-preview-view img {
 }
 
 /* CODE BLOCK STYLING */
-
+60%
 .markdown-rendered pre.language-md {
-  border: solid oklch(var(--base) 0 0);
+  border: solid oklch(50% 0 0);
 }
 
 .markdown-rendered button.copy-code-button {
-  background-color: oklch(var(--base) 0 0 / 0.4);
+  background-color: oklch(50% 0 0 / 0.4);
 }
 
 
@@ -2264,7 +2216,7 @@ p a.footnote-link:hover {
 }
 
 sup, sub {
-  color: oklch( var(--lightest) var(--text-normal-chroma) var(--text-normal-hue) / 0.9);
+  color: oklch( 90% var(--text-normal-chroma) var(--text-normal-hue) / 0.9);
 }
 
 

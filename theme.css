@@ -1226,7 +1226,7 @@ div.callout[data-callout*="timeline"] {
   } 
   
   /* content */ 
-  & .callout-content {
+  & > .callout-content {
     background-color: none;
     padding: 2rem 0;
     overflow: hidden;
@@ -1282,19 +1282,19 @@ div.callout[data-callout*="timeline"] {
         content: "";
         display: block;
         height: 0;
-        left: -1.45rem;
+        left: -1.44rem;
         position: relative;
         top: 1rem;
         width: 0;
         z-index: 1;
     }    
 
-    & h4 {      
+    & > h4 {      
       min-width: 80%;
       font-weight: var(--font-normal);
       font-size: var(--font-text-size);
       color: rgb(218,218,218) !important;
-      margin: 0 0 0 5.48rem !important;
+      margin: 0 0 0 5.5rem !important;
       border-radius: 0rem;
       text-align: right;
       border-top: dotted .1rem rgb(218,218,218);
@@ -1304,19 +1304,19 @@ div.callout[data-callout*="timeline"] {
       position: relative;
     }
 
-    h4::before {
+    & > h4::before {
       content: "";
       position: absolute;
       top: -0.2rem;
       left: 0;
       height: 1.9rem;
       width: 0;
-      margin-left: -2.4rem;
+      margin-left: -2.35rem;
       margin-bottom: -2rem;
       border-left: 0.1rem solid oklch(var(--callout-color));
     }
     
-    & h5 {
+    & > h5 {
       color: rgb(218,218,218);
       margin: 0 0 0 3.2rem;
       border-left: solid .1rem;
@@ -1328,30 +1328,30 @@ div.callout[data-callout*="timeline"] {
       position: relative;
     }
 
-    h6 {
-      padding: 0 0 0 3.3rem;
-      margin-top: 0rem;
+    & > h6 { 
+      padding: 0 0 0 4.3rem !important;
       position: relative;
+      margin-left: 3.2rem !important;
     }
 
-    & h6::before {
+    & > h6::before { /* H6 Datapoint point*/
       border: .4rem solid;
       border-radius: .4rem;
       border-color: rgb(180,180,180);
       content: "";
       display: block;
       height: 100%;
-      left: -1.45rem;
+      left: -2.43rem;
       position: relative;
       top: 1rem;
       width: 0;
       z-index: 1;
     }
 
-    h6::after {
+    & > h6::after { /* Sub-timeline-line */
       content: "";
       position: absolute;
-      left: 2.2rem; /* before the h6 */
+      left: 2.21rem; /* before the h6 */
       top: 0;
       height: 100%;
       width: 0rem;
@@ -1378,6 +1378,20 @@ div.callout[data-callout*="timeline"] {
   }
 }
 
+/* CALLOUT MODIFIERS
+All done by me.
+-------------------*/
+
+/* "no-title" already exists and works, apparently, and removes *the entire title*. */
+
+div.callout[data-callout-metadata*="no-inner-title"]>.callout-title {
+  &>.callout-title-inner {
+  display: none;
+  }
+  &>.callout-icon {
+    margin-right: 0;
+  }
+}
 
 
 /* CALLOUT PRE-SETS 
@@ -2460,7 +2474,7 @@ h4.chat-view-header {
   display: none !important;
 }
 
-
+ph
 /* PDF EXPORT STYLING 
 Placed all the way down for highest priority.
 */
